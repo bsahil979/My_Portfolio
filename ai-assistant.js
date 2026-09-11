@@ -334,6 +334,13 @@ I also hold certifications in **AWS Cloud Technical Essentials**, **UX Design Fu
     });
   }
 
+  // Responsive initial state: open on desktop, minimized on mobile/tablet
+  if (window.innerWidth <= 860) {
+    minimizeWidget();
+  } else {
+    openWidget();
+  }
+
   // Expose global trigger
   window.askSahilAi = function (query) {
     openWidget();
