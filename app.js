@@ -5,6 +5,57 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  // ==========================================================================
+  // 0. Site Preloader Animation (0% to 100% Circular Counter & Cursive Reveal)
+  // ==========================================================================
+  const sitePreloader = document.getElementById('sitePreloader');
+  const preloaderBar = document.getElementById('preloaderBar');
+  const preloaderCounter = document.getElementById('preloaderCounter');
+  const preloaderRingWrapper = document.getElementById('preloaderRingWrapper');
+  const preloaderGreeting = document.getElementById('preloaderGreeting');
+
+  if (sitePreloader && preloaderBar && preloaderCounter) {
+    const circumference = 314.16;
+    let progress = 0;
+    const startTime = performance.now();
+    const duration = 1200; // 1.2s smooth counter
+
+    function animatePreloader(currentTime) {
+      const elapsed = currentTime - startTime;
+      const linearT = Math.min(1, elapsed / duration);
+      // Ease out cubic
+      const easeT = 1 - Math.pow(1 - linearT, 3);
+      progress = Math.round(easeT * 100);
+
+      preloaderCounter.textContent = `${progress}%`;
+      const offset = circumference - (easeT * circumference);
+      preloaderBar.style.strokeDashoffset = offset;
+
+      if (linearT < 1) {
+        requestAnimationFrame(animatePreloader);
+      } else {
+        preloaderCounter.textContent = '100%';
+        preloaderBar.style.strokeDashoffset = '0';
+
+        // Step 1: Hide counter & ring
+        setTimeout(() => {
+          if (preloaderRingWrapper) preloaderRingWrapper.classList.add('hide');
+          if (preloaderGreeting) preloaderGreeting.classList.add('show');
+
+          // Step 2: Slide up the preloader curtain
+          setTimeout(() => {
+            sitePreloader.classList.add('loaded');
+            setTimeout(() => {
+              sitePreloader.style.display = 'none';
+            }, 850);
+          }, 650);
+        }, 200);
+      }
+    }
+
+    requestAnimationFrame(animatePreloader);
+  }
+
   // 1. Mobile Menu Toggle
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const navLinks = document.getElementById('navLinks');

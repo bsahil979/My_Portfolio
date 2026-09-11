@@ -446,6 +446,7 @@ textarea,
    Hero Section
    ========================================================================== */
 .hero-section {
+  position: relative;
   min-height: 94vh;
   display: flex;
   align-items: center;
@@ -2101,5 +2102,296 @@ textarea,
 
   .hero-cta-group {
     flex-direction: column;
+  }
+}
+
+/* ==========================================================================
+   Site Preloader Screen (Circular Progress & Cursive Reveal)
+   ========================================================================== */
+.site-preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #040711;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.85s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.85s ease;
+  pointer-events: all;
+}
+
+.site-preloader.loaded {
+  transform: translateY(-100%);
+  pointer-events: none;
+}
+
+.preloader-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.preloader-ring-wrapper {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
+}
+
+.preloader-ring-wrapper.hide {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.preloader-svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.preloader-track {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.06);
+  stroke-width: 4;
+}
+
+.preloader-bar {
+  fill: none;
+  stroke: url(#preloaderFlameGrad);
+  stroke-width: 4.5;
+  stroke-linecap: round;
+  stroke-dasharray: 314.16;
+  stroke-dashoffset: 314.16;
+  filter: drop-shadow(0 0 8px rgba(255, 123, 37, 0.7));
+  transition: stroke-dashoffset 0.08s ease-out;
+}
+
+.preloader-counter {
+  position: absolute;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  text-shadow: 0 0 20px rgba(255, 170, 0, 0.5);
+}
+
+.preloader-greeting {
+  position: absolute;
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.preloader-greeting.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.greeting-script {
+  font-family: 'Caveat', cursive;
+  font-size: 3.5rem;
+  font-weight: 600;
+  color: #ffedd5;
+  background: linear-gradient(135deg, #ffffff 20%, #fde047 50%, #ea580c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 25px rgba(249, 115, 22, 0.6));
+}
+
+/* ==========================================================================
+   Hero Rotating Stamp Badge
+   ========================================================================== */
+.hero-stamp-wrapper {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 3.5rem;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.stamp-badge {
+  position: relative;
+  width: 130px;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: url('assets/cursor-ember-pointer.svg') 4 1, pointer;
+}
+
+.stamp-badge:hover {
+  transform: scale(1.08);
+}
+
+.stamp-svg {
+  width: 100%;
+  height: 100%;
+  animation: spinStamp 18s linear infinite;
+  transform-origin: center center;
+}
+
+.stamp-badge:hover .stamp-svg {
+  animation-duration: 8s;
+}
+
+.stamp-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  fill: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: fill 0.3s ease;
+}
+
+.stamp-badge:hover .stamp-text {
+  fill: var(--flame-gold);
+}
+
+.stamp-center-icon {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 123, 37, 0.12);
+  border: 1px solid rgba(255, 123, 37, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--flame-gold);
+  font-size: 1.15rem;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 15px rgba(255, 107, 53, 0.25);
+  transition: all 0.3s ease;
+}
+
+.stamp-badge:hover .stamp-center-icon {
+  background: rgba(255, 123, 37, 0.25);
+  border-color: var(--flame-amber);
+  color: #ffffff;
+  box-shadow: 0 0 25px rgba(255, 107, 53, 0.5);
+  transform: scale(1.1);
+}
+
+@keyframes spinStamp {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* ==========================================================================
+   Scroll to Explore Motion Indicator
+   ========================================================================== */
+.scroll-explore-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  z-index: 10;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.scroll-explore-indicator:hover {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.scroll-explore-text {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.45);
+  transition: color 0.3s ease;
+}
+
+.scroll-explore-indicator:hover .scroll-explore-text {
+  color: var(--flame-gold);
+}
+
+.scroll-explore-mouse {
+  width: 22px;
+  height: 36px;
+  border-radius: 12px;
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding-top: 6px;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(4px);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.scroll-explore-indicator:hover .scroll-explore-mouse {
+  border-color: var(--flame-amber);
+  box-shadow: 0 0 12px rgba(255, 123, 37, 0.3);
+}
+
+.scroll-explore-wheel {
+  width: 4px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--flame-gold);
+  box-shadow: 0 0 8px var(--flame-amber);
+  animation: scrollWheelGlider 1.8s infinite cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+@keyframes scrollWheelGlider {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  25% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-stamp-wrapper {
+    bottom: 1.5rem;
+    left: 1.5rem;
+  }
+  .stamp-badge {
+    width: 105px;
+    height: 105px;
+  }
+  .stamp-text {
+    font-size: 10px;
+  }
+  .stamp-center-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-stamp-wrapper {
+    display: none;
   }
 }

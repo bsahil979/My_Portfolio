@@ -23,7 +23,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -32,6 +32,29 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+  <!-- Site Preloader (0% - 100% Circular Progress Counter & Cursive Greeting) -->
+  <div class="site-preloader" id="sitePreloader">
+    <div class="preloader-content">
+      <div class="preloader-ring-wrapper" id="preloaderRingWrapper">
+        <svg class="preloader-svg" viewBox="0 0 120 120">
+          <defs>
+            <linearGradient id="preloaderFlameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ffb703" />
+              <stop offset="50%" stop-color="#ff7b25" />
+              <stop offset="100%" stop-color="#ea580c" />
+            </linearGradient>
+          </defs>
+          <circle class="preloader-track" cx="60" cy="60" r="50"></circle>
+          <circle class="preloader-bar" id="preloaderBar" cx="60" cy="60" r="50"></circle>
+        </svg>
+        <span class="preloader-counter" id="preloaderCounter">0%</span>
+      </div>
+      <div class="preloader-greeting" id="preloaderGreeting">
+        <span class="greeting-script">hello</span>
+      </div>
+    </div>
+  </div>
 
   <!-- Ambient Atmospheric Background Canvas -->
   <canvas id="atmosphereCanvas"></canvas>
@@ -100,6 +123,33 @@
           <span class="name-last">Belchada</span>
         </h1>
       </div>
+
+      <!-- Rotating Circular Stamp Badge (from Waqas video) -->
+      <div class="hero-stamp-wrapper" id="heroStamp">
+        <div class="stamp-badge">
+          <svg class="stamp-svg" viewBox="0 0 160 160">
+            <defs>
+              <path id="stampPath" d="M 80, 80 m -56, 0 a 56,56 0 1,1 112,0 a 56,56 0 1,1 -112,0" fill="none" />
+            </defs>
+            <text class="stamp-text">
+              <textPath href="#stampPath" startOffset="0%">
+                • BASED IN MUMBAI • AI &amp; DATA ENGINEER • OPEN FOR WORK 
+              </textPath>
+            </text>
+          </svg>
+          <div class="stamp-center-icon">
+            <i class="fa-solid fa-fire-flame-curved"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scroll to Explore Motion Indicator (from Waqas video) -->
+      <a href="#about" class="scroll-explore-indicator" aria-label="Scroll to explore">
+        <span class="scroll-explore-text">Scroll to explore</span>
+        <div class="scroll-explore-mouse">
+          <span class="scroll-explore-wheel"></span>
+        </div>
+      </a>
     </section>
 
     <!-- About Section -->
