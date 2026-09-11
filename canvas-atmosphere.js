@@ -375,6 +375,7 @@
   // Main Render Loop
   let frameCount = 0;
   function render() {
+    if (isPaused) return;
     frameCount++;
     const time = frameCount;
 
@@ -460,8 +461,25 @@
     spawnTouchBurst(e.clientX, e.clientY, 12);
   });
 
+  // Pause canvas atmosphere during initial preloader to give 100% CPU/GPU to the intro
+  const sitePreloader = document.getElementById('sitePreloader');
+  let isPaused = false;
+  if (sitePreloader && !sitePreloader.classList.contains('loaded') && sitePreloader.style.display !== 'none') {
+    isPaused = true;
+    const observer = new MutationObserver(() => {
+      if (sitePreloader.classList.contains('loaded') || sitePreloader.style.display === 'none') {
+        isPaused = false;
+        observer.disconnect();
+        requestAnimationFrame(render);
+      }
+    });
+    observer.observe(sitePreloader, { attributes: true, attributeFilter: ['class', 'style'] });
+  }
+
   // Init
   resize();
-  render();
+  if (!isPaused) {
+    render();
+  }
 })();
 

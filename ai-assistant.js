@@ -334,12 +334,19 @@ I also hold certifications in **AWS Cloud Technical Essentials**, **UX Design Fu
     });
   }
 
-  // Responsive initial state: open on desktop, minimized on mobile/tablet
+  // Responsive initial state: strictly minimized on mobile/tablet screens
   if (window.innerWidth <= 860) {
     minimizeWidget();
   } else {
     openWidget();
   }
+
+  // Handle mobile orientation or viewport resizing
+  window.addEventListener('resize', () => {
+    if (window.innerWidth <= 860 && !aiWidget.classList.contains('minimized')) {
+      // Don't auto-open on mobile
+    }
+  });
 
   // Expose global trigger
   window.askSahilAi = function (query) {

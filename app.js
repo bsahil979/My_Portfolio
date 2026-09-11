@@ -62,27 +62,53 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
+      const isMobile = window.innerWidth <= 768 || ('ontouchstart' in window);
+
       const letters = paths.map((path, idx) => {
         const g = path.closest('.letter-group');
         const transform = g ? (g.getAttribute('transform') || '') : '';
         const match = transform.match(/translate\(([^,]+)/);
         const offsetX = match ? parseFloat(match[1]) : 0;
-        const len = path.getTotalLength();
+        const len = Math.ceil(path.getTotalLength());
         path.style.strokeDasharray = len;
         path.style.strokeDashoffset = len;
         return { path, len, offsetX, idx };
       });
 
-      if (spark) spark.classList.add('active');
+      // Calibrated durations for H, e, l, l, o
+      const letterDurations = [720, 560, 480, 480, 600];
 
-      // Slower, natural calligraphy cadence for each letter: H, e, l, l, o
-      const letterDurations = [750, 600, 520, 520, 650];
+      if (isMobile) {
+        // PURE CSS HARDWARE-ACCELERATED TRANSITIONS FOR MOBILE (0 LAG, 60-120 FPS)
+        // No per-frame JS execution, zero getPointAtLength overhead
+        let currentDelay = 0;
+        letters.forEach((item, i) => {
+          const dur = letterDurations[i] || 520;
+          setTimeout(() => {
+            item.path.style.transition = `stroke-dashoffset ${dur}ms cubic-bezier(0.42, 0, 0.25, 1)`;
+            item.path.style.strokeDashoffset = '0';
+            setTimeout(() => {
+              item.path.classList.add('filled');
+            }, Math.round(dur * 0.62));
+          }, currentDelay);
+          currentDelay += dur + 40;
+        });
+
+        setTimeout(() => {
+          if (onComplete) {
+            setTimeout(onComplete, 750);
+          }
+        }, currentDelay);
+        return;
+      }
+
+      // Desktop: Smooth step animation with glowing spark pen tip
+      if (spark) spark.classList.add('active');
 
       function writeLetter(index) {
         if (index >= letters.length) {
           if (spark) spark.classList.remove('active');
           if (onComplete) {
-            // Admiring pause for fully written, radiant Hello
             setTimeout(onComplete, 850);
           }
           return;
@@ -95,7 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
         function step(time) {
           const elapsed = time - startTime;
           const progress = Math.min(1, elapsed / duration);
-          // Ease-in-out calligraphy curve
           const ease = 0.5 - 0.5 * Math.cos(Math.PI * progress);
 
           const currentOffset = len * (1 - ease);
@@ -376,8 +401,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }, {
       root: null,
-      threshold: 0.08,
-      rootMargin: '0px 0px -30px 0px'
+      threshold: 0.02,
+      rootMargin: '60px 0px 60px 0px'
     });
 
     document.querySelectorAll('.reveal-from-left, .reveal-from-right, .reveal-pop-up, .reveal-on-scroll').forEach(el => {
