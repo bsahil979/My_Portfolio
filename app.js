@@ -37,20 +37,101 @@ document.addEventListener('DOMContentLoaded', () => {
         preloaderCounter.textContent = '100%';
         preloaderBar.style.strokeDashoffset = '0';
 
-        // Step 1: Hide counter & ring
+        // Step 1: Hide counter & ring, show cursive Hello and start slow handwriting
         setTimeout(() => {
           if (preloaderRingWrapper) preloaderRingWrapper.classList.add('hide');
           if (preloaderGreeting) preloaderGreeting.classList.add('show');
 
-          // Step 2: Slide up the preloader curtain
-          setTimeout(() => {
+          // Step 2: Slow, graceful cursive handwriting stroke animation
+          animateHelloHandwriting(() => {
+            // Step 3: Slide up the preloader curtain after writing finishes
             sitePreloader.classList.add('loaded');
             setTimeout(() => {
               sitePreloader.style.display = 'none';
             }, 850);
-          }, 650);
+          });
         }, 200);
       }
+    }
+
+    function animateHelloHandwriting(onComplete) {
+      const paths = Array.from(document.querySelectorAll('.hello-char-path'));
+      const spark = document.getElementById('emberPenSpark');
+      if (!paths.length) {
+        if (onComplete) onComplete();
+        return;
+      }
+
+      const letters = paths.map((path, idx) => {
+        const g = path.closest('.letter-group');
+        const transform = g ? (g.getAttribute('transform') || '') : '';
+        const match = transform.match(/translate\(([^,]+)/);
+        const offsetX = match ? parseFloat(match[1]) : 0;
+        const len = path.getTotalLength();
+        path.style.strokeDasharray = len;
+        path.style.strokeDashoffset = len;
+        return { path, len, offsetX, idx };
+      });
+
+      if (spark) spark.classList.add('active');
+
+      // Slower, natural calligraphy cadence for each letter: H, e, l, l, o
+      const letterDurations = [750, 600, 520, 520, 650];
+
+      function writeLetter(index) {
+        if (index >= letters.length) {
+          if (spark) spark.classList.remove('active');
+          if (onComplete) {
+            // Admiring pause for fully written, radiant Hello
+            setTimeout(onComplete, 850);
+          }
+          return;
+        }
+
+        const { path, len, offsetX } = letters[index];
+        const duration = letterDurations[index] || 600;
+        const startTime = performance.now();
+
+        function step(time) {
+          const elapsed = time - startTime;
+          const progress = Math.min(1, elapsed / duration);
+          // Ease-in-out calligraphy curve
+          const ease = 0.5 - 0.5 * Math.cos(Math.PI * progress);
+
+          const currentOffset = len * (1 - ease);
+          path.style.strokeDashoffset = currentOffset;
+
+          if (spark) {
+            const pointDist = Math.max(1, Math.min(len - 1, ease * len));
+            try {
+              const pt = path.getPointAtLength(pointDist);
+              spark.setAttribute('cx', pt.x + offsetX);
+              spark.setAttribute('cy', pt.y);
+            } catch (e) {}
+          }
+
+          if (progress >= 0.65 && !path.classList.contains('filled')) {
+            path.classList.add('filled');
+          }
+
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            path.style.strokeDashoffset = '0';
+            path.classList.add('filled');
+            setTimeout(() => {
+              writeLetter(index + 1);
+            }, 60);
+          }
+        }
+
+        requestAnimationFrame(step);
+      }
+
+      // Begin handwriting after greeting container fades in
+      setTimeout(() => {
+        writeLetter(0);
+      }, 250);
     }
 
     requestAnimationFrame(animatePreloader);

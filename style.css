@@ -2259,10 +2259,15 @@ textarea,
 
 .preloader-greeting {
   position: absolute;
-  opacity: 0;
-  transform: scale(0.85);
-  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  width: min(88vw, 680px);
+  max-width: 680px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   pointer-events: none;
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .preloader-greeting.show {
@@ -2270,15 +2275,38 @@ textarea,
   transform: scale(1);
 }
 
-.greeting-script {
-  font-family: 'Caveat', cursive;
-  font-size: 3.5rem;
-  font-weight: 600;
-  color: #ffedd5;
-  background: linear-gradient(135deg, #ffffff 20%, #fde047 50%, #ea580c 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 25px rgba(249, 115, 22, 0.6));
+.hello-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 0 45px rgba(249, 115, 22, 0.75)) drop-shadow(0 0 18px rgba(253, 224, 71, 0.5));
+}
+
+.hello-char-path {
+  fill: transparent;
+  stroke: #fde047;
+  stroke-width: 12;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 0 18px rgba(255, 123, 37, 0.95));
+  transition: fill 0.75s ease, stroke-width 0.75s ease;
+}
+
+.hello-char-path.filled {
+  fill: url(#helloFlameGrad);
+  stroke-width: 2.5;
+  stroke: rgba(255, 255, 255, 0.7);
+}
+
+.ember-pen-spark {
+  fill: #ffffff;
+  filter: drop-shadow(0 0 8px #ffb703) drop-shadow(0 0 16px #ff5400) drop-shadow(0 0 24px #ea580c);
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.ember-pen-spark.active {
+  opacity: 1;
 }
 
 /* ==========================================================================
