@@ -2209,87 +2209,6 @@ textarea,
 }
 
 /* ==========================================================================
-   Hero Rotating Stamp Badge
-   ========================================================================== */
-.hero-stamp-wrapper {
-  position: absolute;
-  bottom: 2.5rem;
-  left: 3.5rem;
-  z-index: 10;
-  pointer-events: auto;
-}
-
-.stamp-badge {
-  position: relative;
-  width: 130px;
-  height: 130px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  cursor: url('assets/cursor-ember-pointer.svg') 4 1, pointer;
-}
-
-.stamp-badge:hover {
-  transform: scale(1.08);
-}
-
-.stamp-svg {
-  width: 100%;
-  height: 100%;
-  animation: spinStamp 18s linear infinite;
-  transform-origin: center center;
-}
-
-.stamp-badge:hover .stamp-svg {
-  animation-duration: 8s;
-}
-
-.stamp-text {
-  font-family: 'Space Grotesk', sans-serif;
-  font-size: 11.5px;
-  font-weight: 700;
-  fill: rgba(255, 255, 255, 0.55);
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  transition: fill 0.3s ease;
-}
-
-.stamp-badge:hover .stamp-text {
-  fill: var(--flame-gold);
-}
-
-.stamp-center-icon {
-  position: absolute;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: rgba(255, 123, 37, 0.12);
-  border: 1px solid rgba(255, 123, 37, 0.3);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--flame-gold);
-  font-size: 1.15rem;
-  backdrop-filter: blur(8px);
-  box-shadow: 0 0 15px rgba(255, 107, 53, 0.25);
-  transition: all 0.3s ease;
-}
-
-.stamp-badge:hover .stamp-center-icon {
-  background: rgba(255, 123, 37, 0.25);
-  border-color: var(--flame-amber);
-  color: #ffffff;
-  box-shadow: 0 0 25px rgba(255, 107, 53, 0.5);
-  transform: scale(1.1);
-}
-
-@keyframes spinStamp {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* ==========================================================================
    Scroll to Explore Motion Indicator
    ========================================================================== */
 .scroll-explore-indicator {
@@ -2368,30 +2287,5 @@ textarea,
   100% {
     opacity: 0;
     transform: translateY(16px);
-  }
-}
-
-@media (max-width: 900px) {
-  .hero-stamp-wrapper {
-    bottom: 1.5rem;
-    left: 1.5rem;
-  }
-  .stamp-badge {
-    width: 105px;
-    height: 105px;
-  }
-  .stamp-text {
-    font-size: 10px;
-  }
-  .stamp-center-icon {
-    width: 36px;
-    height: 36px;
-    font-size: 0.95rem;
-  }
-}
-
-@media (max-width: 640px) {
-  .hero-stamp-wrapper {
-    display: none;
   }
 }
