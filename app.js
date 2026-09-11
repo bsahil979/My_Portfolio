@@ -233,46 +233,73 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { passive: true });
 
   // ==========================================================================
-  // Smooth Scroll Reveal System (Cascading Entrance on Scroll)
+  // Smooth Alternating Left & Right Pop-Up Scroll Reveal System
   // ==========================================================================
   function setupScrollReveals() {
-    // Collect all elements to reveal
-    const revealGroups = [
-      { selector: '.section-header', stagger: false },
-      { selector: '.about-card', stagger: true },
-      { selector: '.project-card', stagger: true },
-      { selector: '.skill-category', stagger: true },
-      { selector: '.timeline-item', stagger: true },
-      { selector: '.contact-card-wrapper', stagger: false },
-      { selector: '.hero-stats-row', stagger: false }
-    ];
-
-    revealGroups.forEach(group => {
-      const items = document.querySelectorAll(group.selector);
-      items.forEach((item, idx) => {
-        item.classList.add('reveal-on-scroll');
-        if (group.stagger) {
-          const staggerClass = `stagger-${(idx % 5) + 1}`;
-          item.classList.add(staggerClass);
-        }
-      });
+    // 1. Section Headers (Smooth Pop-Up from center bottom)
+    document.querySelectorAll('.section-header').forEach(el => {
+      el.classList.add('reveal-pop-up');
     });
 
+    // 2. Project Cards (Sequential Stack: Alternating Left & Right Pop-Up)
+    // Project 0 (MarketMind AI): Pop-up from LEFT
+    // Project 1 (HaritKranti): Pop-up from RIGHT
+    // Project 2 (MoM Generator): Pop-up from LEFT
+    // Project 3 (Aurizen): Pop-up from RIGHT
+    // Project 4 (Stock Pipeline): Pop-up from LEFT
+    document.querySelectorAll('.project-card').forEach((card, idx) => {
+      if (idx % 2 === 0) {
+        card.classList.add('reveal-from-left');
+      } else {
+        card.classList.add('reveal-from-right');
+      }
+    });
+
+    // 3. About Cards: Left from left, middle pops up, right from right
+    document.querySelectorAll('.about-card').forEach((card, idx) => {
+      if (idx === 0) card.classList.add('reveal-from-left');
+      else if (idx === 1) card.classList.add('reveal-pop-up');
+      else card.classList.add('reveal-from-right');
+    });
+
+    // 4. Skills Matrix Categories (Alternating Left & Right)
+    document.querySelectorAll('.skill-category').forEach((cat, idx) => {
+      if (idx % 2 === 0) {
+        cat.classList.add('reveal-from-left');
+      } else {
+        cat.classList.add('reveal-from-right');
+      }
+    });
+
+    // 5. Experience Timeline Items (Alternating Left & Right)
+    document.querySelectorAll('.timeline-item').forEach((item, idx) => {
+      if (idx % 2 === 0) {
+        item.classList.add('reveal-from-left');
+      } else {
+        item.classList.add('reveal-from-right');
+      }
+    });
+
+    // 6. Contact Card & Form Wrapper
+    document.querySelectorAll('.contact-card-wrapper').forEach(el => {
+      el.classList.add('reveal-pop-up');
+    });
+
+    // Intersection Observer with responsive threshold & margin
     const revealObserver = new IntersectionObserver((entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('in-view');
-          // Once in view, we keep it visible for seamless performance
           observer.unobserve(entry.target);
         }
       });
     }, {
       root: null,
-      threshold: 0.1,
+      threshold: 0.12,
       rootMargin: '0px 0px -40px 0px'
     });
 
-    document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+    document.querySelectorAll('.reveal-from-left, .reveal-from-right, .reveal-pop-up, .reveal-on-scroll').forEach(el => {
       revealObserver.observe(el);
     });
   }
