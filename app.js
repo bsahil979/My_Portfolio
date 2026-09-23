@@ -2,20 +2,94 @@
  * app.js
  * Dennis Snellenberg Interactive Controller for Sahil Belchada's Portfolio
  * 
- * Performance & Architecture:
- * - 100% Native Hardware-Accelerated Scrolling (Zero hijacking, Zero stuck issues)
- * - Dennis Snellenberg Magnetic Button Physics
- * - Floating Project Cursor Modal & "View" Badge with Lerp smoothing
- * - Live Mumbai Local Time Clock (GMT+5:30)
- * - Header Scroll Observer
- * - Pure Native Anchor Navigation
+ * Architecture:
+ * 1. Dennis Snellenberg Multilingual "Hello" Preloader Curtain
+ * 2. Adaptive Dark/Light Navbar Controller based on scroll position
+ * 3. Magnetic Physics Engine for buttons & links
+ * 4. Floating Project Cursor Modal & "View" Badge with Lerp Smoothing
+ * 5. Live Mumbai Local Time Clock (GMT+5:30)
+ * 6. Pure Native Anchor Navigation (Zero scroll hijacking)
  */
 
 (function () {
   'use strict';
 
   // --------------------------------------------------------------------------
-  // 1. Dennis Snellenberg Magnetic Physics Engine
+  // 1. Dennis Snellenberg Multilingual "Hello" Preloader
+  // --------------------------------------------------------------------------
+  function initLanguagePreloader() {
+    const container = document.getElementById('loadingContainer');
+    const screen = document.getElementById('loadingScreen');
+    const wordsContainer = document.getElementById('loadingWords');
+    if (!container || !screen || !wordsContainer) return;
+
+    const words = wordsContainer.querySelectorAll('h2');
+    if (!words.length) return;
+
+    // Check reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      container.classList.add('hidden');
+      return;
+    }
+
+    let currentIndex = 0;
+    const intervalTime = 135; // milliseconds per language
+
+    const interval = setInterval(() => {
+      words[currentIndex].classList.remove('active');
+      currentIndex++;
+
+      if (currentIndex < words.length) {
+        words[currentIndex].classList.add('active');
+      } else {
+        clearInterval(interval);
+        // Complete cycle: slide the curtain up
+        setTimeout(() => {
+          screen.classList.add('done');
+          setTimeout(() => {
+            container.classList.add('hidden');
+          }, 850);
+        }, 80);
+      }
+    }, intervalTime);
+  }
+
+  // --------------------------------------------------------------------------
+  // 2. Adaptive Navbar Scroll Controller (Dark Hero -> Light Content -> Dark Footer)
+  // --------------------------------------------------------------------------
+  function initAdaptiveNavbar() {
+    const navbar = document.getElementById('navbar');
+    const hero = document.getElementById('hero');
+    const footer = document.getElementById('contact');
+    if (!navbar) return;
+
+    function handleScroll() {
+      const scrollY = window.scrollY;
+      const heroHeight = hero ? hero.offsetHeight - 50 : 600;
+      const footerTop = footer ? footer.offsetTop - 100 : 999999;
+
+      if (scrollY < 30) {
+        navbar.classList.remove('scrolled-dark', 'nav-light');
+      } else if (scrollY >= 30 && scrollY < heroHeight) {
+        navbar.classList.add('scrolled-dark');
+        navbar.classList.remove('nav-light');
+      } else if (scrollY >= heroHeight && scrollY < footerTop) {
+        navbar.classList.add('nav-light');
+        navbar.classList.remove('scrolled-dark');
+      } else {
+        // Over the footer
+        navbar.classList.add('scrolled-dark');
+        navbar.classList.remove('nav-light');
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+  }
+
+  // --------------------------------------------------------------------------
+  // 3. Dennis Snellenberg Magnetic Physics Engine
   // --------------------------------------------------------------------------
   function initMagneticPhysics() {
     const isTouch = window.innerWidth < 1024 || ('ontouchstart' in window);
@@ -48,7 +122,7 @@
   }
 
   // --------------------------------------------------------------------------
-  // 2. Dennis Snellenberg Floating Project Modal & "View" Cursor Follower
+  // 4. Dennis Snellenberg Floating Project Modal & "View" Cursor Follower
   // --------------------------------------------------------------------------
   function initProjectHoverModal() {
     const isTouch = window.innerWidth < 1024 || ('ontouchstart' in window);
@@ -109,7 +183,7 @@
   }
 
   // --------------------------------------------------------------------------
-  // 3. Live Mumbai Local Time Clock (Dennis Snellenberg Footer)
+  // 5. Live Mumbai Local Time Clock (Dennis Snellenberg Footer)
   // --------------------------------------------------------------------------
   function initLiveClock() {
     const clockEl = document.getElementById('liveClockMumbai');
@@ -127,7 +201,7 @@
         });
         clockEl.textContent = `${timeString} [GMT+5:30]`;
       } catch (e) {
-        clockEl.textContent = '11:25 PM [IST]';
+        clockEl.textContent = '11:40 PM [IST]';
       }
     }
     updateClock();
@@ -135,7 +209,7 @@
   }
 
   // --------------------------------------------------------------------------
-  // 4. Smooth Anchor Link Scrolling (Pure Native, Zero Hijacking)
+  // 6. Smooth Anchor Link Scrolling (Pure Native, Zero Hijacking)
   // --------------------------------------------------------------------------
   function initSmoothAnchors() {
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -151,28 +225,13 @@
     });
   }
 
-  // --------------------------------------------------------------------------
-  // 5. Sticky Navigation Scroll State
-  // --------------------------------------------------------------------------
-  function initNavScroll() {
-    const navbar = document.getElementById('navbar');
-    if (!navbar) return;
-
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 30) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-    }, { passive: true });
-  }
-
   // DOM Ready Initialization
   document.addEventListener('DOMContentLoaded', () => {
+    initLanguagePreloader();
+    initAdaptiveNavbar();
     initMagneticPhysics();
     initProjectHoverModal();
     initLiveClock();
     initSmoothAnchors();
-    initNavScroll();
   });
 })();

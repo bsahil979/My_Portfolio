@@ -40,10 +40,32 @@
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <!-- Dennis Snellenberg Main Stylesheet (Cache Busted v=4.0) -->
-  <link rel="stylesheet" href="style.css?v=4.0">
+  <!-- Dennis Snellenberg Dual-Contrast Stylesheet (Cache Busted v=5.0) -->
+  <link rel="stylesheet" href="style.css?v=5.0">
 </head>
 <body>
+
+  <!-- ========================================================================
+       0. DENNIS SNELLENBERG PRELOADER ("HELLO" IN MULTIPLE LANGUAGES)
+       ======================================================================== -->
+  <div class="loading-container" id="loadingContainer" aria-label="Loading portfolio">
+    <div class="loading-screen" id="loadingScreen">
+      <div class="loading-words" id="loadingWords">
+        <h2 class="active"><span class="dot"></span>Hello</h2>
+        <h2><span class="dot"></span>Bonjour</h2>
+        <h2><span class="dot"></span>नमस्ते</h2>
+        <h2><span class="dot"></span>Ciao</h2>
+        <h2><span class="dot"></span>Olá</h2>
+        <h2><span class="dot"></span>こんにちは</h2>
+        <h2><span class="dot"></span>Hallå</h2>
+        <h2><span class="dot"></span>Guten Tag</h2>
+        <h2><span class="dot"></span>Hallo</h2>
+      </div>
+      <div class="loading-rounded-div-wrap">
+        <div class="loading-rounded-div"></div>
+      </div>
+    </div>
+  </div>
 
   <!-- ========================================================================
        1. HEADER NAVIGATION (DENNIS SNELLENBERG STYLE)
@@ -91,9 +113,9 @@
 
   <main>
     <!-- ========================================================================
-         2. HERO SECTION (DENNIS SNELLENBERG PURE EDITORIAL THEME)
+         2. HERO SECTION (DARK THEME // DENNIS SNELLENBERG EDITORIAL)
          ======================================================================== -->
-    <section class="hero-section" id="hero">
+    <section class="hero-section theme-dark" id="hero">
       <!-- Top Status Row -->
       <div class="hero-top-row">
         <div class="hero-location-tag">
@@ -108,7 +130,7 @@
         </div>
       </div>
 
-      <!-- Main Editorial Headline (No Fast Flying Text, Pristine Typography) -->
+      <!-- Main Editorial Headline (Dennis Big Name Style) -->
       <div class="hero-center-content">
         <span class="hero-greeting-sub">Hi, I'm</span>
         <h1 class="hero-title-name">Sahil Belchada</h1>
@@ -129,10 +151,15 @@
       </div>
     </section>
 
+    <!-- Curved Section Transition: Dark to Light -->
+    <div class="rounded-div-wrapper to-light">
+      <div class="rounded-div"></div>
+    </div>
+
     <!-- ========================================================================
-         3. ABOUT / STATEMENT SECTION (DENNIS SNELLENBERG EDITORIAL SPLIT)
+         3. ABOUT / STATEMENT SECTION (CRISP WHITE / LIGHT GRAYISH THEME)
          ======================================================================== -->
-    <section class="about-section" id="about">
+    <section class="about-section theme-light" id="about">
       <div class="about-container">
         <div class="about-grid">
           <!-- Left Column: Big Editorial Statement -->
@@ -149,7 +176,7 @@
             </p>
 
             <div class="about-actions-wrap">
-              <a href="assets/Sahil_Belchada_Resume.pdf" download="Sahil_Belchada_Resume.pdf" target="_blank" class="magnetic-circle-btn small magnetic-target">
+              <a href="assets/Sahil_Belchada_Resume.pdf" download="Sahil_Belchada_Resume.pdf" target="_blank" class="magnetic-circle-btn small dark magnetic-target">
                 <span>Resume (PDF)</span>
               </a>
               <div class="about-contact-quick">
@@ -162,15 +189,10 @@
       </div>
     </section>
 
-    <!-- Curved Section Divider -->
-    <div class="rounded-div-wrapper">
-      <div class="rounded-div"></div>
-    </div>
-
     <!-- ========================================================================
-         4. RECENT WORK / PROJECTS (DENNIS SNELLENBERG INTERACTIVE LIST + CURSOR)
+         4. RECENT WORK / PROJECTS (WHITE / LIGHT GRAYISH WITH FLOATING MODAL)
          ======================================================================== -->
-    <section class="work-section" id="work">
+    <section class="work-section theme-light" id="work">
       <div class="work-container">
         <div class="section-label-row">
           <span class="section-label">RECENT WORK</span>
@@ -348,14 +370,14 @@
 
         <!-- Dennis Snellenberg "All Projects" Button -->
         <div class="work-footer-cta">
-          <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="magnetic-circle-btn medium magnetic-target">
+          <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="magnetic-circle-btn medium dark magnetic-target">
             <span>All Projects<br>on GitHub</span>
           </a>
         </div>
       </div>
     </section>
 
-    <!-- Dennis Snellenberg Floating Cursor Modal & "View" Badge -->
+    <!-- Floating Cursor Modal & "View" Badge (Dennis Snellenberg Signature) -->
     <div class="project-modal-container" id="projectModalContainer" aria-hidden="true">
       <div class="project-modal-slider" id="projectModalSlider">
         <div class="project-modal-slide">
@@ -377,15 +399,15 @@
     </div>
     <div class="project-cursor-badge" id="projectCursorBadge" aria-hidden="true">View</div>
 
-    <!-- Curved Section Divider -->
-    <div class="rounded-div-wrapper darker">
+    <!-- Curved Section Transition: Light to Grayish -->
+    <div class="rounded-div-wrapper to-gray">
       <div class="rounded-div"></div>
     </div>
 
     <!-- ========================================================================
-         5. WORK EXPERIENCE SECTION (DENNIS SNELLENBERG CLEAN SPLIT LAYOUT)
+         5. WORK EXPERIENCE SECTION (GRAYISH THEME // DENNIS SNELLENBERG SPLIT)
          ======================================================================== -->
-    <section class="experience-section" id="experience">
+    <section class="experience-section theme-gray" id="experience">
       <div class="experience-container">
         <div class="section-label-row">
           <span class="section-label">WORK EXPERIENCE</span>
@@ -425,15 +447,15 @@
       </div>
     </section>
 
-    <!-- Curved Section Divider -->
-    <div class="rounded-div-wrapper">
+    <!-- Curved Section Transition: Grayish to Light -->
+    <div class="rounded-div-wrapper to-light">
       <div class="rounded-div"></div>
     </div>
 
     <!-- ========================================================================
-         6. TECHNICAL SKILLS SECTION (EXACT RESUME 8 CATEGORIES)
+         6. TECHNICAL SKILLS SECTION (CRISP WHITE / LIGHT GRAYISH // 8 CATEGORIES)
          ======================================================================== -->
-    <section class="skills-section" id="skills">
+    <section class="skills-section theme-light" id="skills">
       <div class="skills-container">
         <div class="section-label-row">
           <span class="section-label">TECHNICAL SKILLS</span>
@@ -543,15 +565,15 @@
       </div>
     </section>
 
-    <!-- Curved Section Divider -->
-    <div class="rounded-div-wrapper darker">
+    <!-- Curved Section Transition: Light to Grayish -->
+    <div class="rounded-div-wrapper to-gray">
       <div class="rounded-div"></div>
     </div>
 
     <!-- ========================================================================
-         7. EDUCATION & CERTIFICATIONS (VERIFIED RESUME TRUTH)
+         7. EDUCATION & CERTIFICATIONS (GRAYISH THEME)
          ======================================================================== -->
-    <section class="education-section" id="education">
+    <section class="education-section theme-gray" id="education">
       <div class="education-container">
         <div class="section-label-row">
           <span class="section-label">EDUCATION &amp; CREDENTIALS</span>
@@ -570,7 +592,7 @@
           </div>
         </div>
 
-        <!-- Certifications Split Grid -->
+        <!-- Certifications Row -->
         <div class="certifications-row">
           <div class="cert-card">
             <div class="cert-icon-wrap"><i class="fa-brands fa-aws"></i></div>
@@ -607,15 +629,15 @@
       </div>
     </section>
 
-    <!-- Curved Section Divider to Footer -->
-    <div class="rounded-div-wrapper darker">
+    <!-- Curved Section Transition: Grayish to Dark Footer -->
+    <div class="rounded-div-wrapper to-dark">
       <div class="rounded-div"></div>
     </div>
 
     <!-- ========================================================================
-         8. DENNIS SNELLENBERG SIGNATURE FOOTER ("LET'S WORK TOGETHER")
+         8. DENNIS SNELLENBERG FOOTER (DARK THEME // "LET'S WORK TOGETHER")
          ======================================================================== -->
-    <footer class="footer-section" id="contact">
+    <footer class="footer-section theme-dark" id="contact">
       <div class="footer-container">
         
         <!-- Top Row: Avatar + Question -->
@@ -671,7 +693,7 @@
     </footer>
   </main>
 
-  <!-- Dennis Snellenberg Interactive Controller (Pure Native, Zero Hijacking) -->
-  <script src="app.js?v=4.0"></script>
+  <!-- Dennis Snellenberg Dual-Contrast Interactive Controller -->
+  <script src="app.js?v=5.0"></script>
 </body>
 </html>

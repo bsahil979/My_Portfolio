@@ -1,33 +1,33 @@
 /* ==========================================================================
    SAHIL BELCHADA // SOFTWARE ENGINEER
-   Design Language: Dennis Snellenberg (dennissnellenberg.com)
-   Data Source: 100% Verified Resume Truth Only
-   Architecture: Pure Native Hardware-Accelerated Scrolling (Zero Hijacking)
+   Theme: Dennis Snellenberg Dual-Contrast Design Language (dennissnellenberg.com)
+   Palette: Dark (#1C1D20) × Pure White (#FFFFFF) × Crisp Grayish (#F1F2F4)
+   Architecture: 100% Native Accelerated Scrolling + High-End Microinteractions
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   0. Dennis Snellenberg Design Tokens & CSS Variables
+   0. Design Tokens & CSS Variables (Dennis Snellenberg Exact Tokens)
    -------------------------------------------------------------------------- */
 :root {
   --color-dark: #1C1D20;
   --color-dark-dark: #141517;
-  --color-dark-card: #1f2024;
-  --color-surface: #26272c;
+  --color-dark-surface: #26272C;
   
-  --color-light: #FFFFFF;
   --color-white: #FFFFFF;
+  --color-lightgray: #F1F2F4;
   --color-gray: #999D9E;
-  --color-lightgray: #E9EAEB;
-  --color-dim: #6c7072;
+  --color-dim: #787B80;
+  --color-text-dark: #1C1D20;
+  --color-text-muted: #55585D;
+  --color-text-light: #FFFFFF;
 
   --color-blue: #455CE9;
   --color-blue-dark: #334BD3;
-  --color-blue-glow: rgba(69, 92, 233, 0.25);
-  --color-cyan: #38BDF8;
+  --color-blue-subtle: #EEF2FF;
 
-  --color-border: rgba(28, 29, 32, 0.175);
+  --color-border-dark: rgba(28, 29, 32, 0.14);
+  --color-border-dark-solid: #D8D9DC;
   --color-border-light: rgba(255, 255, 255, 0.16);
-  --color-border-solid-light: #3a3b40;
 
   --font-editorial: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -42,7 +42,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   1. Reset & Global Standards (100% NATIVE ACCELERATED SCROLLING)
+   1. Reset & Global Setup (Zero Scroll Hijacking)
    -------------------------------------------------------------------------- */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -91,15 +91,102 @@ body {
   background: var(--color-dark);
 }
 ::-webkit-scrollbar-thumb {
-  background: #34363d;
+  background: #444750;
   border-radius: 999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #4d5059;
+  background: #5a5e6a;
 }
 
 /* --------------------------------------------------------------------------
-   2. Header & Navigation (Dennis Snellenberg Style)
+   2. Dennis Snellenberg Language Preloader ("Hello" in Multiple Languages)
+   -------------------------------------------------------------------------- */
+.loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+  z-index: 9999;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.loading-container.hidden {
+  display: none !important;
+}
+
+.loading-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-dark-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+  transition: transform 0.85s cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+.loading-screen.done {
+  transform: translateY(-100%);
+}
+
+.loading-words {
+  position: relative;
+  text-align: center;
+  z-index: 2;
+}
+
+.loading-words h2 {
+  display: none;
+  font-family: var(--font-editorial);
+  font-size: clamp(2.4rem, 5.5vw, 4.6rem);
+  font-weight: 500;
+  color: #FFFFFF;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  letter-spacing: -0.02em;
+}
+
+.loading-words h2.active {
+  display: inline-flex;
+}
+
+.loading-words .dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-blue);
+}
+
+.loading-rounded-div-wrap {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  overflow: hidden;
+  transform: translateY(99%);
+}
+
+.loading-rounded-div {
+  width: 150%;
+  height: 750%;
+  position: absolute;
+  left: -25%;
+  top: -650%;
+  border-radius: 50%;
+  background: var(--color-dark-dark);
+}
+
+/* --------------------------------------------------------------------------
+   3. Header Navigation (Adapts between Dark & Light Scroll Zones)
    -------------------------------------------------------------------------- */
 .navbar {
   position: fixed;
@@ -112,14 +199,50 @@ body {
   align-items: center;
   padding: 0 var(--container-padding);
   background: transparent;
-  transition: background-color 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease;
+  transition: background-color 0.3s ease, backdrop-filter 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
-.navbar.scrolled {
+.navbar.scrolled-dark {
   background: rgba(28, 29, 32, 0.88);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--color-border-light);
+  color: #FFFFFF;
+}
+
+.navbar.nav-light {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--color-border-dark);
+  color: var(--color-dark);
+}
+
+.navbar.nav-light .brand-link {
+  color: var(--color-dark);
+}
+
+.navbar.nav-light .brand-name {
+  color: #6C7072;
+}
+
+.navbar.nav-light .brand-link:hover .brand-name {
+  color: var(--color-dark);
+}
+
+.navbar.nav-light .nav-item {
+  color: var(--color-dark);
+}
+
+.navbar.nav-light .nav-resume-btn {
+  border-color: var(--color-border-dark);
+  color: var(--color-dark);
+}
+
+.navbar.nav-light .nav-resume-btn:hover {
+  background: var(--color-dark);
+  color: #FFFFFF;
+  border-color: var(--color-dark);
 }
 
 .nav-container {
@@ -136,6 +259,7 @@ body {
   color: var(--color-white);
   display: inline-block;
   padding: 8px 0;
+  transition: color 0.25s ease;
 }
 
 .brand-text {
@@ -170,10 +294,6 @@ body {
   align-items: center;
   gap: 6px;
   transition: color 0.25s ease;
-}
-
-.nav-item:hover {
-  color: var(--color-white);
 }
 
 .nav-item-dot {
@@ -215,13 +335,13 @@ body {
   padding: 8px 16px;
   border: 1px solid var(--color-border-light);
   border-radius: 999px;
-  color: #fff;
+  color: inherit;
   text-decoration: none;
   font-size: 0.85rem;
 }
 
 /* --------------------------------------------------------------------------
-   3. Hero Section (Dennis Snellenberg Pure Editorial Layout)
+   4. Hero Section (Dennis Snellenberg Dark Theme)
    -------------------------------------------------------------------------- */
 .hero-section {
   position: relative;
@@ -232,6 +352,7 @@ body {
   justify-content: space-between;
   padding: calc(var(--nav-height) + 30px) var(--container-padding) 40px;
   background-color: var(--color-dark);
+  color: var(--color-white);
 }
 
 .hero-top-row {
@@ -350,11 +471,54 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   4. About Section (Dennis Snellenberg Editorial Split)
+   5. Dennis Snellenberg Curved Section Transitions (.rounded-div)
+   -------------------------------------------------------------------------- */
+.rounded-div-wrapper {
+  width: 100%;
+  position: relative;
+  height: 90px;
+  overflow: hidden;
+  margin-top: -1px;
+}
+
+.rounded-div {
+  width: 150%;
+  position: absolute;
+  left: -25%;
+  height: 750%;
+  border-radius: 50%;
+}
+
+/* Dark to Light curve */
+.rounded-div-wrapper.to-light .rounded-div {
+  background: var(--color-white);
+}
+
+/* Light to Grayish curve */
+.rounded-div-wrapper.to-gray .rounded-div {
+  background: var(--color-lightgray);
+}
+
+/* Grayish/Light to Dark curve */
+.rounded-div-wrapper.to-dark .rounded-div {
+  background: var(--color-dark);
+}
+
+/* --------------------------------------------------------------------------
+   6. About Section (Crisp White // Dennis Snellenberg Editorial Split)
    -------------------------------------------------------------------------- */
 .about-section {
   padding: var(--section-padding) var(--container-padding);
-  background-color: var(--color-dark);
+}
+
+.theme-light {
+  background-color: var(--color-white);
+  color: var(--color-text-dark);
+}
+
+.theme-gray {
+  background-color: var(--color-lightgray);
+  color: var(--color-text-dark);
 }
 
 .about-container {
@@ -375,13 +539,13 @@ body {
   font-weight: 450;
   line-height: 1.2;
   letter-spacing: -0.025em;
-  color: var(--color-white);
+  color: var(--color-text-dark);
 }
 
 .about-resume-paragraph {
   font-size: 1.12rem;
   line-height: 1.7;
-  color: var(--color-gray);
+  color: var(--color-text-muted);
   margin-bottom: 36px;
 }
 
@@ -401,7 +565,7 @@ body {
 .about-link {
   text-decoration: none;
   font-size: 0.95rem;
-  color: var(--color-white);
+  color: var(--color-text-dark);
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -413,7 +577,7 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   5. Magnetic Circle Buttons (Dennis Snellenberg Signature)
+   7. Magnetic Circle Buttons (Dennis Snellenberg Style)
    -------------------------------------------------------------------------- */
 .magnetic-circle-btn {
   border-radius: 50%;
@@ -423,13 +587,22 @@ body {
   text-align: center;
   text-decoration: none;
   cursor: pointer;
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border-light);
-  color: var(--color-white);
   font-family: var(--font-body);
   font-weight: 500;
   transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, transform 0.25s ease;
   user-select: none;
+}
+
+.magnetic-circle-btn.dark {
+  background-color: var(--color-dark);
+  border: 1px solid var(--color-dark);
+  color: #FFFFFF;
+}
+
+.magnetic-circle-btn.dark:hover {
+  background-color: var(--color-blue);
+  border-color: var(--color-blue);
+  color: #FFFFFF;
 }
 
 .magnetic-circle-btn.small {
@@ -449,42 +622,22 @@ body {
   width: 185px;
   height: 185px;
   font-size: 1.05rem;
+  background-color: var(--color-dark-surface);
+  border: 1px solid var(--color-border-light);
+  color: #FFFFFF;
 }
 
-.magnetic-circle-btn:hover {
+.magnetic-circle-btn.large:hover {
   background-color: var(--color-blue);
   border-color: var(--color-blue);
-  color: #fff;
-}
-
-/* Curved Section Divider (Dennis Snellenberg Rounded Div) */
-.rounded-div-wrapper {
-  width: 100%;
-  position: relative;
-  height: 90px;
-  overflow: hidden;
-  margin-top: -1px;
-}
-
-.rounded-div {
-  width: 150%;
-  position: absolute;
-  left: -25%;
-  height: 750%;
-  border-radius: 50%;
-  background: var(--color-dark);
-}
-
-.rounded-div-wrapper.darker .rounded-div {
-  background: var(--color-dark-dark);
+  color: #FFFFFF;
 }
 
 /* --------------------------------------------------------------------------
-   6. Recent Work / Projects (Dennis Snellenberg Interactive Row List)
+   8. Recent Work Section (Crisp White with Dark Hairline Rows)
    -------------------------------------------------------------------------- */
 .work-section {
   padding: var(--section-padding) var(--container-padding);
-  background-color: var(--color-dark);
   position: relative;
 }
 
@@ -499,7 +652,7 @@ body {
   justify-content: space-between;
   margin-bottom: 30px;
   padding-bottom: 12px;
-  border-bottom: 1px solid var(--color-border-light);
+  border-bottom: 1px solid var(--color-border-dark);
 }
 
 .section-label {
@@ -522,7 +675,7 @@ body {
 }
 
 .project-item-wrap {
-  border-bottom: 1px solid var(--color-border-light);
+  border-bottom: 1px solid var(--color-border-dark);
   padding: 40px 0;
   transition: background-color 0.25s ease;
 }
@@ -534,7 +687,7 @@ body {
   cursor: pointer;
   margin-bottom: 24px;
   text-decoration: none;
-  color: var(--color-white);
+  color: var(--color-text-dark);
   transition: transform 0.25s ease;
 }
 
@@ -561,17 +714,17 @@ body {
   font-size: clamp(2.2rem, 4.4vw, 3.6rem);
   font-weight: 500;
   letter-spacing: -0.02em;
-  color: var(--color-white);
+  color: var(--color-text-dark);
   transition: color 0.2s ease, transform 0.25s ease;
 }
 
 .project-subtitle {
   font-size: 1rem;
-  color: var(--color-gray);
+  color: var(--color-text-muted);
 }
 
 .project-row:hover .project-name {
-  color: var(--color-white);
+  color: var(--color-blue);
   transform: translateX(8px);
 }
 
@@ -592,19 +745,19 @@ body {
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  border: 1px solid var(--color-border-light);
+  border: 1px solid var(--color-border-dark);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 0.9rem;
-  color: var(--color-white);
+  color: var(--color-text-dark);
   transition: all 0.25s ease;
 }
 
 .project-row:hover .project-arrow {
-  background: var(--color-white);
-  color: var(--color-dark);
-  border-color: var(--color-white);
+  background: var(--color-dark);
+  color: #FFFFFF;
+  border-color: var(--color-dark);
   transform: rotate(45deg);
 }
 
@@ -623,7 +776,7 @@ body {
 
 .project-bullets li {
   font-size: 1.02rem;
-  color: var(--color-gray);
+  color: var(--color-text-muted);
   line-height: 1.65;
   position: relative;
   padding-left: 20px;
@@ -637,7 +790,7 @@ body {
 }
 
 .project-bullets li strong {
-  color: var(--color-white);
+  color: var(--color-text-dark);
 }
 
 .project-actions {
@@ -649,26 +802,27 @@ body {
 .project-pill {
   padding: 8px 18px;
   border-radius: 999px;
-  border: 1px solid var(--color-border-light);
+  border: 1px solid var(--color-border-dark);
   font-size: 0.85rem;
-  color: var(--color-white);
+  color: var(--color-text-dark);
   text-decoration: none;
   display: inline-flex;
   align-items: center;
   gap: 8px;
   transition: all 0.2s ease;
+  background: transparent;
 }
 
 .project-pill:hover {
-  background: var(--color-white);
-  color: var(--color-dark);
-  border-color: var(--color-white);
+  background: var(--color-dark);
+  color: #FFFFFF;
+  border-color: var(--color-dark);
 }
 
 .project-pill.primary {
   background: var(--color-blue);
   border-color: var(--color-blue);
-  color: #fff;
+  color: #FFFFFF;
 }
 
 .project-pill.primary:hover {
@@ -683,7 +837,7 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   7. Floating Cursor Modal & "View" Badge (Dennis Snellenberg Signature)
+   9. Floating Cursor Modal & "View" Badge (Dennis Snellenberg Signature)
    -------------------------------------------------------------------------- */
 .project-modal-container {
   position: fixed;
@@ -699,7 +853,7 @@ body {
   transform: translate(-50%, -50%) scale(0);
   opacity: 0;
   transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
 }
 
 .project-modal-container.active {
@@ -744,7 +898,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #ffffff;
+  color: #FFFFFF;
   font-size: 0.9rem;
   font-weight: 500;
   transform: translate(-50%, -50%) scale(0);
@@ -765,11 +919,10 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   8. Work Experience Section (Dennis Snellenberg Clean Split Layout)
+   10. Work Experience Section (Grayish Theme // Dennis Clean Split)
    -------------------------------------------------------------------------- */
 .experience-section {
   padding: var(--section-padding) var(--container-padding);
-  background-color: var(--color-dark-dark);
 }
 
 .experience-container {
@@ -797,13 +950,13 @@ body {
   font-family: var(--font-editorial);
   font-size: clamp(1.8rem, 2.6vw, 2.4rem);
   font-weight: 500;
-  color: var(--color-white);
+  color: var(--color-text-dark);
   line-height: 1.2;
 }
 
 .exp-college-sub {
   font-size: 1rem;
-  color: var(--color-gray);
+  color: var(--color-text-muted);
   margin-top: 6px;
   display: block;
 }
@@ -821,7 +974,7 @@ body {
   font-family: var(--font-editorial);
   font-size: clamp(1.6rem, 2.2vw, 2rem);
   font-weight: 500;
-  color: var(--color-white);
+  color: var(--color-text-dark);
 }
 
 .exp-project-tag {
@@ -829,16 +982,17 @@ body {
   font-size: 0.8rem;
   padding: 4px 12px;
   border-radius: 999px;
-  border: 1px solid var(--color-border-light);
-  color: var(--color-gray);
+  border: 1px solid var(--color-border-dark);
+  color: var(--color-text-muted);
+  background: var(--color-white);
 }
 
 .exp-project-desc {
   font-size: 1.05rem;
-  color: var(--color-white);
+  color: var(--color-text-dark);
   margin-bottom: 20px;
   padding-bottom: 12px;
-  border-bottom: 1px solid var(--color-border-light);
+  border-bottom: 1px solid var(--color-border-dark);
 }
 
 .resume-bullet-list {
@@ -850,7 +1004,7 @@ body {
 
 .resume-bullet-list li {
   font-size: 1.02rem;
-  color: var(--color-gray);
+  color: var(--color-text-muted);
   line-height: 1.65;
   position: relative;
   padding-left: 20px;
@@ -864,15 +1018,14 @@ body {
 }
 
 .resume-bullet-list li strong {
-  color: var(--color-white);
+  color: var(--color-text-dark);
 }
 
 /* --------------------------------------------------------------------------
-   9. Technical Skills Section (Exact 8 Categories from Resume)
+   11. Technical Skills Section (Crisp White // 8 Categories)
    -------------------------------------------------------------------------- */
 .skills-section {
   padding: var(--section-padding) var(--container-padding);
-  background-color: var(--color-dark);
 }
 
 .skills-container {
@@ -883,7 +1036,7 @@ body {
 .skills-grid {
   display: flex;
   flex-direction: column;
-  border-top: 1px solid var(--color-border-light);
+  border-top: 1px solid var(--color-border-dark);
 }
 
 .skill-category-row {
@@ -891,7 +1044,7 @@ body {
   grid-template-columns: 1fr 2.5fr;
   gap: clamp(1.5rem, 4vw, 4rem);
   padding: 32px 0;
-  border-bottom: 1px solid var(--color-border-light);
+  border-bottom: 1px solid var(--color-border-dark);
   align-items: baseline;
 }
 
@@ -899,7 +1052,7 @@ body {
   font-family: var(--font-editorial);
   font-size: 1.3rem;
   font-weight: 500;
-  color: var(--color-white);
+  color: var(--color-text-dark);
 }
 
 .skill-cat-items {
@@ -911,30 +1064,30 @@ body {
 .skill-tag {
   padding: 8px 16px;
   border-radius: 999px;
-  border: 1px solid var(--color-border-light);
-  background: var(--color-surface);
+  border: 1px solid var(--color-border-dark);
+  background: var(--color-lightgray);
   font-size: 0.9rem;
-  color: var(--color-gray);
+  color: #2C2D32;
   transition: all 0.25s ease;
 }
 
 .skill-tag:hover {
-  background: var(--color-white);
-  color: var(--color-dark);
-  border-color: var(--color-white);
+  background: var(--color-dark);
+  color: #FFFFFF;
+  border-color: var(--color-dark);
 }
 
 .skill-tag.highlight {
-  border-color: rgba(69, 92, 233, 0.45);
-  color: #b3c2ff;
+  border-color: rgba(69, 92, 233, 0.4);
+  color: var(--color-blue-dark);
+  background: var(--color-blue-subtle);
 }
 
 /* --------------------------------------------------------------------------
-   10. Education & Certifications (Verified Resume Truth)
+   12. Education & Certifications (Grayish Theme)
    -------------------------------------------------------------------------- */
 .education-section {
   padding: var(--section-padding) var(--container-padding);
-  background-color: var(--color-dark-dark);
 }
 
 .education-container {
@@ -947,7 +1100,7 @@ body {
   grid-template-columns: 1fr 2fr;
   gap: clamp(2rem, 5vw, 6rem);
   padding: 24px 0 40px;
-  border-bottom: 1px solid var(--color-border-light);
+  border-bottom: 1px solid var(--color-border-dark);
   margin-bottom: 40px;
 }
 
@@ -964,13 +1117,13 @@ body {
   font-family: var(--font-editorial);
   font-size: clamp(1.6rem, 2.4vw, 2.2rem);
   font-weight: 500;
-  color: var(--color-white);
+  color: var(--color-text-dark);
   line-height: 1.25;
 }
 
 .edu-location-sub {
   font-size: 0.95rem;
-  color: var(--color-gray);
+  color: var(--color-text-muted);
   margin-top: 4px;
   display: block;
 }
@@ -979,13 +1132,13 @@ body {
   font-family: var(--font-editorial);
   font-size: 1.6rem;
   font-weight: 500;
-  color: var(--color-white);
+  color: var(--color-text-dark);
   margin-bottom: 10px;
 }
 
 .edu-desc {
   font-size: 1.05rem;
-  color: var(--color-gray);
+  color: var(--color-text-muted);
   line-height: 1.6;
 }
 
@@ -997,23 +1150,23 @@ body {
 
 .cert-card {
   padding: 24px;
-  border: 1px solid var(--color-border-light);
+  border: 1px solid var(--color-border-dark);
   border-radius: 12px;
-  background: var(--color-dark-card);
+  background: var(--color-white);
   display: flex;
   flex-direction: column;
   gap: 12px;
-  transition: transform 0.25s ease, border-color 0.25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .cert-card:hover {
   transform: translateY(-4px);
-  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08);
 }
 
 .cert-icon-wrap i {
   font-size: 1.5rem;
-  color: var(--color-cyan);
+  color: var(--color-blue);
 }
 
 .cert-meta {
@@ -1024,7 +1177,7 @@ body {
 
 .cert-title {
   font-size: 0.95rem;
-  color: var(--color-white);
+  color: var(--color-text-dark);
   font-weight: 500;
   line-height: 1.35;
 }
@@ -1036,10 +1189,11 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   11. Dennis Snellenberg Signature Footer ("Let's work together")
+   13. Dennis Snellenberg Footer (Deep Dark // "Let's work together")
    -------------------------------------------------------------------------- */
 .footer-section {
-  background-color: var(--color-dark-dark);
+  background-color: var(--color-dark);
+  color: #FFFFFF;
   padding: clamp(6em, 18vh, 12em) var(--container-padding) 40px;
   position: relative;
   overflow: hidden;
@@ -1063,7 +1217,7 @@ body {
   width: 68px;
   height: 68px;
   border-radius: 50%;
-  background: #252830;
+  background: var(--color-dark-surface);
   border: 1px solid var(--color-border-light);
   display: flex;
   align-items: center;
@@ -1071,12 +1225,12 @@ body {
   font-family: var(--font-editorial);
   font-size: 1.3rem;
   font-weight: 500;
-  color: var(--color-white);
+  color: #FFFFFF;
 }
 
 .footer-greeting {
   font-size: 1.25rem;
-  color: var(--color-white);
+  color: #FFFFFF;
 }
 
 .footer-main-heading {
@@ -1085,7 +1239,7 @@ body {
   font-weight: 500;
   line-height: 1.02;
   letter-spacing: -0.035em;
-  color: var(--color-white);
+  color: #FFFFFF;
   margin-bottom: 70px;
 }
 
@@ -1116,7 +1270,7 @@ body {
   border: 1px solid var(--color-border-light);
   border-radius: 999px;
   font-size: 1rem;
-  color: var(--color-white);
+  color: #FFFFFF;
   text-decoration: none;
   display: inline-flex;
   align-items: center;
@@ -1126,9 +1280,9 @@ body {
 }
 
 .contact-pill:hover {
-  background: var(--color-white);
+  background: #FFFFFF;
   color: var(--color-dark);
-  border-color: var(--color-white);
+  border-color: #FFFFFF;
 }
 
 .footer-bottom-bar {
@@ -1138,7 +1292,7 @@ body {
   padding-top: 36px;
   border-top: 1px solid var(--color-border-light);
   font-size: 0.9rem;
-  color: var(--color-dim);
+  color: var(--color-gray);
   flex-wrap: wrap;
   gap: 20px;
 }
@@ -1162,7 +1316,7 @@ body {
 }
 
 .footer-nav-link {
-  color: var(--color-white);
+  color: #FFFFFF;
   text-decoration: none;
   transition: color 0.2s ease;
 }
@@ -1172,7 +1326,7 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   12. Responsive Refinements
+   14. Responsive Rules
    -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
   .about-grid {
