@@ -73,6 +73,23 @@ body {
   font-weight: 450;
 }
 
+/* Dennis Snellenberg / Lenis Smooth Scrolling Core Standards */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
 /* Dennis Snellenberg Selection Highlight */
 ::selection {
   background-color: var(--color-blue);
@@ -595,9 +612,12 @@ body {
 .rounded-div-wrapper {
   width: 100%;
   position: relative;
-  height: 90px;
+  height: 100px;
   overflow: hidden;
   margin-top: -1px;
+  margin-bottom: -1px;
+  z-index: 3;
+  will-change: height;
 }
 
 .rounded-div {
@@ -618,6 +638,48 @@ body {
 
 .rounded-div-wrapper.to-dark .rounded-div {
   background: var(--color-dark);
+}
+
+/* Dennis Snellenberg Overlapping Stacking Contexts */
+.hero-section {
+  position: relative;
+  z-index: 1;
+}
+
+.about-section {
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 -25px 60px rgba(0, 0, 0, 0.18);
+}
+
+.work-section {
+  position: relative;
+  z-index: 2;
+}
+
+.experience-section {
+  position: relative;
+  z-index: 2;
+}
+
+.more-work-section {
+  position: relative;
+  z-index: 2;
+}
+
+.skills-section {
+  position: relative;
+  z-index: 2;
+}
+
+.education-section {
+  position: relative;
+  z-index: 2;
+}
+
+.footer-section {
+  position: relative;
+  z-index: 1;
 }
 
 /* --------------------------------------------------------------------------

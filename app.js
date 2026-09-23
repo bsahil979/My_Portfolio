@@ -299,7 +299,65 @@
   }
 
   // --------------------------------------------------------------------------
-  // 6. Smooth Anchor Link Scrolling (Pure Native, Zero Hijacking)
+  // 6. Dennis Snellenberg Smooth Inertia Scroll (Lenis) & Overlapping Curves
+  // --------------------------------------------------------------------------
+  let lenisInstance = null;
+
+  function updateCurvedDividers() {
+    const wrappers = document.querySelectorAll('.rounded-div-wrapper');
+    const windowH = window.innerHeight;
+
+    wrappers.forEach((wrap) => {
+      const rect = wrap.getBoundingClientRect();
+      // Progress 0 when entering bottom of viewport (rect.top == windowH)
+      // Progress 1 when top reaches 15% of viewport (rect.top <= windowH * 0.15)
+      const start = windowH;
+      const end = windowH * 0.15;
+      const progress = Math.max(0, Math.min(1, (start - rect.top) / (start - end)));
+
+      // Height morphs smoothly from 100px down to 0px, creating the peeling curved overlap
+      const targetHeight = (100 * (1 - progress)).toFixed(1);
+      wrap.style.height = `${targetHeight}px`;
+    });
+  }
+
+  function initSmoothScroll() {
+    // If user prefers reduced motion, keep native scroll
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      window.addEventListener('scroll', updateCurvedDividers, { passive: true });
+      updateCurvedDividers();
+      return;
+    }
+
+    if (typeof Lenis !== 'undefined') {
+      lenisInstance = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1.0,
+        touchMultiplier: 1.15,
+        infinite: false,
+      });
+
+      function raf(time) {
+        lenisInstance.raf(time);
+        requestAnimationFrame(raf);
+      }
+      requestAnimationFrame(raf);
+
+      lenisInstance.on('scroll', () => {
+        updateCurvedDividers();
+      });
+    }
+
+    window.addEventListener('scroll', updateCurvedDividers, { passive: true });
+    updateCurvedDividers();
+  }
+
+  // --------------------------------------------------------------------------
+  // 7. Smooth Anchor Link Scrolling (Lenis Inertia + Native Fallback)
   // --------------------------------------------------------------------------
   function initSmoothAnchors() {
     document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -309,7 +367,11 @@
         const targetEl = document.querySelector(targetId);
         if (targetEl) {
           e.preventDefault();
-          targetEl.scrollIntoView({ behavior: 'smooth' });
+          if (lenisInstance) {
+            lenisInstance.scrollTo(targetEl, { offset: 0, duration: 1.35 });
+          } else {
+            targetEl.scrollIntoView({ behavior: 'smooth' });
+          }
         }
       });
     });
@@ -323,6 +385,7 @@
     initMagneticPhysics();
     initProjectHoverModal();
     initLiveClock();
+    initSmoothScroll();
     initSmoothAnchors();
   });
 })();
