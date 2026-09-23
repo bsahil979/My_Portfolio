@@ -2,11 +2,11 @@
    SAHIL BELCHADA // SOFTWARE ENGINEER
    Theme: Dennis Snellenberg Dual-Contrast Design Language (dennissnellenberg.com)
    Palette: Dark (#1C1D20) × Pure White (#FFFFFF) × Crisp Grayish (#F1F2F4)
-   Architecture: 100% Native Accelerated Scrolling + High-End Microinteractions
+   Architecture: Minimal Homepage with Bold Project Titles + Detailed More Work
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   0. Design Tokens & CSS Variables (Dennis Snellenberg Exact Tokens)
+   0. Design Tokens & CSS Variables
    -------------------------------------------------------------------------- */
 :root {
   --color-dark: #1C1D20;
@@ -42,7 +42,7 @@
 }
 
 /* --------------------------------------------------------------------------
-   1. Reset & Global Setup (Zero Scroll Hijacking)
+   1. Reset & Global Standards (100% Native Accelerated Scrolling)
    -------------------------------------------------------------------------- */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -281,7 +281,7 @@ body {
 .nav-links {
   display: flex;
   align-items: center;
-  gap: clamp(1.5rem, 2.5vw, 2.5rem);
+  gap: clamp(1.4rem, 2.2vw, 2.2rem);
 }
 
 .nav-item {
@@ -489,17 +489,14 @@ body {
   border-radius: 50%;
 }
 
-/* Dark to Light curve */
 .rounded-div-wrapper.to-light .rounded-div {
   background: var(--color-white);
 }
 
-/* Light to Grayish curve */
 .rounded-div-wrapper.to-gray .rounded-div {
   background: var(--color-lightgray);
 }
 
-/* Grayish/Light to Dark curve */
 .rounded-div-wrapper.to-dark .rounded-div {
   background: var(--color-dark);
 }
@@ -612,9 +609,9 @@ body {
 }
 
 .magnetic-circle-btn.medium {
-  width: 160px;
-  height: 160px;
-  font-size: 1rem;
+  width: 165px;
+  height: 165px;
+  font-size: 1.05rem;
   line-height: 1.35;
 }
 
@@ -633,8 +630,25 @@ body {
   color: #FFFFFF;
 }
 
+.badge-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--color-blue);
+  color: #FFFFFF;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-left: 6px;
+}
+
 /* --------------------------------------------------------------------------
-   8. Recent Work Section (Crisp White with Dark Hairline Rows)
+   8. Home Recent Work (Simple & Minimal Dennis Snellenberg Row Layout)
+      - Project Name in BOLD
+      - Category on right
+      - Hairline divider
    -------------------------------------------------------------------------- */
 .work-section {
   padding: var(--section-padding) var(--container-padding);
@@ -650,7 +664,7 @@ body {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  margin-bottom: 30px;
+  margin-bottom: 24px;
   padding-bottom: 12px;
   border-bottom: 1px solid var(--color-border-dark);
 }
@@ -669,81 +683,70 @@ body {
   color: var(--color-dim);
 }
 
-.project-list {
+.home-project-list {
   display: flex;
   flex-direction: column;
+  list-style: none;
 }
 
-.project-item-wrap {
+.home-project-item {
+  position: relative;
   border-bottom: 1px solid var(--color-border-dark);
-  padding: 40px 0;
-  transition: background-color 0.25s ease;
 }
 
-.project-row {
+.home-project-row {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  cursor: pointer;
-  margin-bottom: 24px;
+  padding: clamp(2.2rem, 4.4vw, 3.8rem) 0;
   text-decoration: none;
   color: var(--color-text-dark);
   transition: transform 0.25s ease;
+  cursor: pointer;
 }
 
-.project-left {
-  display: flex;
-  align-items: baseline;
-  gap: 28px;
-}
-
-.project-num {
-  font-family: var(--font-mono);
-  font-size: 0.95rem;
-  color: var(--color-dim);
-}
-
-.project-title-group {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.project-name {
-  font-family: var(--font-editorial);
-  font-size: clamp(2.2rem, 4.4vw, 3.6rem);
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  color: var(--color-text-dark);
-  transition: color 0.2s ease, transform 0.25s ease;
-}
-
-.project-subtitle {
-  font-size: 1rem;
-  color: var(--color-text-muted);
-}
-
-.project-row:hover .project-name {
-  color: var(--color-blue);
-  transform: translateX(8px);
-}
-
-.project-right {
+.home-project-left {
   display: flex;
   align-items: center;
-  gap: 24px;
 }
 
-.project-tech {
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
+/* Project Name in BOLD (Dennis Snellenberg Style) */
+.home-project-title {
+  font-family: var(--font-editorial);
+  font-size: clamp(2.4rem, 5vw, 4.4rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--color-text-dark);
+  line-height: 1.05;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease;
+}
+
+.home-project-row:hover .home-project-title {
+  color: var(--color-blue);
+  transform: translateX(14px);
+}
+
+.home-project-right {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.5vw, 2.5rem);
+}
+
+.home-project-cat {
+  font-size: clamp(0.95rem, 1.2vw, 1.15rem);
   color: var(--color-dim);
+  font-weight: 450;
   text-align: right;
+  transition: color 0.25s ease;
 }
 
-.project-arrow {
-  width: 46px;
-  height: 46px;
+.home-project-row:hover .home-project-cat {
+  color: var(--color-text-dark);
+}
+
+.home-project-arrow {
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   border: 1px solid var(--color-border-dark);
   display: flex;
@@ -751,83 +754,14 @@ body {
   justify-content: center;
   font-size: 0.9rem;
   color: var(--color-text-dark);
-  transition: all 0.25s ease;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.project-row:hover .project-arrow {
+.home-project-row:hover .home-project-arrow {
   background: var(--color-dark);
   color: #FFFFFF;
   border-color: var(--color-dark);
   transform: rotate(45deg);
-}
-
-.project-body {
-  padding-left: 56px;
-  max-width: 1060px;
-}
-
-.project-bullets {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 22px;
-}
-
-.project-bullets li {
-  font-size: 1.02rem;
-  color: var(--color-text-muted);
-  line-height: 1.65;
-  position: relative;
-  padding-left: 20px;
-}
-
-.project-bullets li::before {
-  content: '—';
-  position: absolute;
-  left: 0;
-  color: var(--color-blue);
-}
-
-.project-bullets li strong {
-  color: var(--color-text-dark);
-}
-
-.project-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.project-pill {
-  padding: 8px 18px;
-  border-radius: 999px;
-  border: 1px solid var(--color-border-dark);
-  font-size: 0.85rem;
-  color: var(--color-text-dark);
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  transition: all 0.2s ease;
-  background: transparent;
-}
-
-.project-pill:hover {
-  background: var(--color-dark);
-  color: #FFFFFF;
-  border-color: var(--color-dark);
-}
-
-.project-pill.primary {
-  background: var(--color-blue);
-  border-color: var(--color-blue);
-  color: #FFFFFF;
-}
-
-.project-pill.primary:hover {
-  background: var(--color-blue-dark);
-  border-color: var(--color-blue-dark);
 }
 
 .work-footer-cta {
@@ -919,7 +853,7 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   10. Work Experience Section (Grayish Theme // Dennis Clean Split)
+   10. Home Work Experience (Simple & Minimal Dennis Snellenberg Layout)
    -------------------------------------------------------------------------- */
 .experience-section {
   padding: var(--section-padding) var(--container-padding);
@@ -930,11 +864,12 @@ body {
   margin: 0 auto;
 }
 
-.experience-split-block {
+.experience-simple-block {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: clamp(2rem, 5vw, 6rem);
-  padding-top: 20px;
+  padding: 30px 0 10px;
+  align-items: flex-start;
 }
 
 .exp-period {
@@ -949,7 +884,7 @@ body {
 .exp-company-title {
   font-family: var(--font-editorial);
   font-size: clamp(1.8rem, 2.6vw, 2.4rem);
-  font-weight: 500;
+  font-weight: 700;
   color: var(--color-text-dark);
   line-height: 1.2;
 }
@@ -961,64 +896,46 @@ body {
   display: block;
 }
 
-.exp-role-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 14px;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
 .exp-role-title {
   font-family: var(--font-editorial);
-  font-size: clamp(1.6rem, 2.2vw, 2rem);
-  font-weight: 500;
+  font-size: clamp(1.8rem, 2.5vw, 2.2rem);
+  font-weight: 700;
   color: var(--color-text-dark);
+  margin-bottom: 6px;
 }
 
-.exp-project-tag {
-  font-family: var(--font-mono);
-  font-size: 0.8rem;
-  padding: 4px 12px;
-  border-radius: 999px;
-  border: 1px solid var(--color-border-dark);
-  color: var(--color-text-muted);
-  background: var(--color-white);
-}
-
-.exp-project-desc {
+.exp-project-name {
   font-size: 1.05rem;
   color: var(--color-text-dark);
-  margin-bottom: 20px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--color-border-dark);
+  margin-bottom: 14px;
 }
 
-.resume-bullet-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.resume-bullet-list li {
-  font-size: 1.02rem;
+.exp-simple-desc {
+  font-size: 1.08rem;
   color: var(--color-text-muted);
-  line-height: 1.65;
-  position: relative;
-  padding-left: 20px;
+  line-height: 1.7;
+  margin-bottom: 24px;
 }
 
-.resume-bullet-list li::before {
-  content: '—';
-  position: absolute;
-  left: 0;
-  color: var(--color-blue);
-}
-
-.resume-bullet-list li strong {
+.exp-detail-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 24px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border-dark);
   color: var(--color-text-dark);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  background: var(--color-white);
+  transition: all 0.25s ease;
+}
+
+.exp-detail-pill:hover {
+  background: var(--color-dark);
+  color: #FFFFFF;
+  border-color: var(--color-dark);
 }
 
 /* --------------------------------------------------------------------------
@@ -1051,7 +968,7 @@ body {
 .skill-cat-title {
   font-family: var(--font-editorial);
   font-size: 1.3rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--color-text-dark);
 }
 
@@ -1116,7 +1033,7 @@ body {
 .edu-college-name {
   font-family: var(--font-editorial);
   font-size: clamp(1.6rem, 2.4vw, 2.2rem);
-  font-weight: 500;
+  font-weight: 600;
   color: var(--color-text-dark);
   line-height: 1.25;
 }
@@ -1131,7 +1048,7 @@ body {
 .edu-degree-title {
   font-family: var(--font-editorial);
   font-size: 1.6rem;
-  font-weight: 500;
+  font-weight: 600;
   color: var(--color-text-dark);
   margin-bottom: 10px;
 }
@@ -1178,7 +1095,7 @@ body {
 .cert-title {
   font-size: 0.95rem;
   color: var(--color-text-dark);
-  font-weight: 500;
+  font-weight: 600;
   line-height: 1.35;
 }
 
@@ -1189,7 +1106,164 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   13. Dennis Snellenberg Footer (Deep Dark // "Let's work together")
+   13. "More Work" Comprehensive Detailed Case Studies Section
+   -------------------------------------------------------------------------- */
+.detailed-work-section {
+  padding: var(--section-padding) var(--container-padding);
+}
+
+.detailed-work-container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+}
+
+.case-studies-stack {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(3rem, 5vw, 4.5rem);
+  margin-top: 40px;
+}
+
+.case-study-card {
+  padding: clamp(2rem, 4vw, 3.5rem);
+  border: 1px solid var(--color-border-dark);
+  border-radius: 18px;
+  background: #FAFAFC;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.case-study-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+  border-color: var(--color-border-dark-solid);
+}
+
+.case-study-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--color-border-dark);
+  margin-bottom: 24px;
+}
+
+.case-study-num {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--color-blue);
+  letter-spacing: 0.1em;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.case-study-title {
+  font-family: var(--font-editorial);
+  font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+  font-weight: 700;
+  color: var(--color-text-dark);
+  letter-spacing: -0.025em;
+}
+
+.case-study-tagline {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  display: block;
+  margin-top: 4px;
+}
+
+.case-study-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.link-pill {
+  padding: 9px 20px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border-dark);
+  font-size: 0.88rem;
+  color: var(--color-text-dark);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  background: var(--color-white);
+}
+
+.link-pill:hover {
+  background: var(--color-dark);
+  color: #FFFFFF;
+  border-color: var(--color-dark);
+}
+
+.link-pill.primary {
+  background: var(--color-blue);
+  border-color: var(--color-blue);
+  color: #FFFFFF;
+}
+
+.link-pill.primary:hover {
+  background: var(--color-blue-dark);
+  border-color: var(--color-blue-dark);
+}
+
+.case-study-tech-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.tech-tag {
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-family: var(--font-mono);
+  background: #EEF0F4;
+  color: #2C2D32;
+  border: 1px solid var(--color-border-dark);
+}
+
+.case-study-subheading {
+  font-family: var(--font-editorial);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text-dark);
+  margin-bottom: 16px;
+}
+
+.case-study-bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.case-study-bullets li {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  line-height: 1.65;
+  position: relative;
+  padding-left: 22px;
+}
+
+.case-study-bullets li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--color-blue);
+  font-weight: 600;
+}
+
+.case-study-bullets li strong {
+  color: var(--color-text-dark);
+}
+
+/* --------------------------------------------------------------------------
+   14. Dennis Snellenberg Footer (Deep Dark // "Let's work together")
    -------------------------------------------------------------------------- */
 .footer-section {
   background-color: var(--color-dark);
@@ -1326,13 +1400,13 @@ body {
 }
 
 /* --------------------------------------------------------------------------
-   14. Responsive Rules
+   15. Responsive Refinements
    -------------------------------------------------------------------------- */
 @media (max-width: 1024px) {
   .about-grid {
     grid-template-columns: 1fr;
   }
-  .experience-split-block,
+  .experience-simple-block,
   .education-split-block {
     grid-template-columns: 1fr;
     gap: 20px;
@@ -1359,17 +1433,17 @@ body {
   .mobile-resume-pill {
     display: inline-flex;
   }
-  .project-body {
-    padding-left: 0;
-  }
-  .project-row {
+  .home-project-row {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
   }
-  .project-right {
+  .home-project-right {
     width: 100%;
     justify-content: space-between;
+  }
+  .home-project-cat {
+    text-align: left;
   }
   .certifications-row {
     grid-template-columns: 1fr;

@@ -35,13 +35,13 @@
   <!-- Fonts: Space Grotesk, Plus Jakarta Sans & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,450;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,450;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <!-- Dennis Snellenberg Dual-Contrast Stylesheet (Cache Busted v=5.0) -->
-  <link rel="stylesheet" href="style.css?v=5.0">
+  <!-- Dennis Snellenberg Dual-Contrast Stylesheet (Cache Busted v=6.0) -->
+  <link rel="stylesheet" href="style.css?v=6.0">
 </head>
 <body>
 
@@ -80,6 +80,10 @@
       <nav class="nav-links" id="navLinks" aria-label="Primary Navigation">
         <a href="#work" class="nav-item magnetic-target">
           <span>Work</span>
+          <span class="nav-item-dot"></span>
+        </a>
+        <a href="#more-work" class="nav-item magnetic-target">
+          <span>More Work</span>
           <span class="nav-item-dot"></span>
         </a>
         <a href="#about" class="nav-item magnetic-target">
@@ -190,188 +194,98 @@
     </section>
 
     <!-- ========================================================================
-         4. RECENT WORK / PROJECTS (WHITE / LIGHT GRAYISH WITH FLOATING MODAL)
+         4. RECENT WORK ON HOME (SIMPLE & MINIMAL LIKE DENNIS SNELLENBERG)
+            - Project Name in BOLD
+            - Category on the right
+            - Floating Cursor Preview Modal
+            - "More work (5)" Button linking to the full detailed case studies
          ======================================================================== -->
     <section class="work-section theme-light" id="work">
       <div class="work-container">
         <div class="section-label-row">
           <span class="section-label">RECENT WORK</span>
-          <span class="section-label-dim">Verified Projects from Resume</span>
+          <span class="section-label-dim">Featured Projects</span>
         </div>
 
-        <!-- Project Rows List -->
-        <div class="project-list" id="projectList">
+        <!-- Clean Dennis Snellenberg Project Rows List (Name in BOLD) -->
+        <ul class="home-project-list" id="projectList">
           
           <!-- Project 01: MarketMind AI -->
-          <div class="project-item-wrap" data-index="0">
-            <div class="project-row magnetic-target">
-              <div class="project-left">
-                <span class="project-num">01</span>
-                <div class="project-title-group">
-                  <h3 class="project-name">MarketMind AI</h3>
-                  <span class="project-subtitle">Real-Time Financial Analytics &amp; Market Prediction Platform</span>
-                </div>
+          <li class="home-project-item" data-index="0">
+            <div class="stripe"></div>
+            <a href="#case-study-01" class="home-project-row magnetic-target">
+              <div class="home-project-left">
+                <h3 class="home-project-title">MarketMind AI</h3>
               </div>
-              <div class="project-right">
-                <span class="project-tech">Java • Python • React • Kafka • Redis</span>
-                <div class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+              <div class="home-project-right">
+                <p class="home-project-cat">Real-Time Financial Analytics &amp; Event Streaming</p>
+                <div class="home-project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
               </div>
-            </div>
-            <!-- Verified Resume Details -->
-            <div class="project-body">
-              <ul class="project-bullets">
-                <li>Designed a microservices architecture with a <strong>Spring Boot (Java)</strong> ingestion service, a <strong>FastAPI (Python)</strong> analytics service, and a <strong>React 19/Vite</strong> dashboard, communicating via <strong>Apache Kafka</strong> event streaming.</li>
-                <li>Built an automated data pipeline ingesting live stock prices every 30 seconds from the <strong>Yahoo Finance API</strong>, with producer-consumer Kafka streaming, broker-failure fallback logic, and raw JSON persistence.</li>
-                <li>Developed an Extract-Validate-Clean-Load (ETL) pipeline orchestrated with <strong>Apache Airflow</strong>, feeding a dimensional star-schema <strong>PostgreSQL</strong> warehouse optimized for financial time-series queries.</li>
-                <li>Implemented multiple forecasting models (Linear Regression, Prophet, LSTM) and a risk analytics module (Beta, Sharpe Ratio, VaR) with a model registry tracking <strong>RMSE, MAPE, and R²</strong> for model comparison.</li>
-                <li>Built a news sentiment-analysis pipeline with confidence scoring, and an AI Copilot enabling natural-language queries over market data.</li>
-                <li>Added <strong>Redis caching</strong> for high-performance query optimization, JWT authentication, live <strong>WebSocket</strong> price streaming, and <strong>Prometheus/Grafana</strong> monitoring, containerized with <strong>Docker Compose</strong>.</li>
-              </ul>
-              <div class="project-actions">
-                <a href="https://market-mind-ai-q1kl.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-pill primary">
-                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Live App: market-mind-ai-q1kl.vercel.app
-                </a>
-                <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="project-pill">
-                  <i class="fa-brands fa-github"></i> GitHub Repository
-                </a>
-              </div>
-            </div>
-          </div>
+            </a>
+          </li>
 
           <!-- Project 02: MoM Generator -->
-          <div class="project-item-wrap" data-index="1">
-            <div class="project-row magnetic-target">
-              <div class="project-left">
-                <span class="project-num">02</span>
-                <div class="project-title-group">
-                  <h3 class="project-name">MoM Generator</h3>
-                  <span class="project-subtitle">AI-Powered Meeting Minutes &amp; Transcription Tool</span>
-                </div>
+          <li class="home-project-item" data-index="1">
+            <div class="stripe"></div>
+            <a href="#case-study-02" class="home-project-row magnetic-target">
+              <div class="home-project-left">
+                <h3 class="home-project-title">MoM Generator</h3>
               </div>
-              <div class="project-right">
-                <span class="project-tech">Flutter • FastAPI • Faster-Whisper • ChromaDB</span>
-                <div class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+              <div class="home-project-right">
+                <p class="home-project-cat">AI Transcription &amp; RAG Vector Architecture</p>
+                <div class="home-project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
               </div>
-            </div>
-            <!-- Verified Resume Details -->
-            <div class="project-body">
-              <ul class="project-bullets">
-                <li>Built a RAG-based chatbot vector store in Python (rag.py) using <strong>ChromaDB</strong> and <strong>LangChain</strong>, with fast-fallback logic to clean and route data reliably and prevent request timeouts.</li>
-                <li>Implemented an offline, local <strong>Faster-Whisper</strong> fallback in Python (transcribe.py) for reliable speech-to-text transcription without dependency on internet connectivity.</li>
-                <li>Built <strong>FastAPI</strong> backend services in Python with psycopg2 for <strong>PostgreSQL</strong> integration, handling data storage, retrieval, and normalization for meeting records.</li>
-                <li>Integrated the <strong>Gemini API</strong> and <strong>Groq</strong> for AI-powered summarization and NLP-driven data extraction from unstructured meeting transcripts.</li>
-                <li>Optimized backend CPU/GPU resource usage by designing client disconnection monitors in main.py, improving pipeline efficiency.</li>
-                <li>Implemented JWT and bcrypt-based security layers, and containerized services with <strong>Docker and Docker Compose</strong>.</li>
-                <li>Developed the <strong>Flutter frontend</strong> with Provider for state management, integrating Firebase Auth and Google Sign-In.</li>
-                <li>Programmed native mono WAV audio chunk merging on the client side (meeting_provider.dart) to support speaker diarization.</li>
-              </ul>
-              <div class="project-actions">
-                <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="project-pill">
-                  <i class="fa-brands fa-github"></i> View Repository on GitHub
-                </a>
-              </div>
-            </div>
-          </div>
+            </a>
+          </li>
 
           <!-- Project 03: HaritKranti -->
-          <div class="project-item-wrap" data-index="2">
-            <div class="project-row magnetic-target">
-              <div class="project-left">
-                <span class="project-num">03</span>
-                <div class="project-title-group">
-                  <h3 class="project-name">HaritKranti</h3>
-                  <span class="project-subtitle">Farmers' Platform — MERN Stack (Aug 2025 – Nov 2025)</span>
-                </div>
+          <li class="home-project-item" data-index="2">
+            <div class="stripe"></div>
+            <a href="#case-study-03" class="home-project-row magnetic-target">
+              <div class="home-project-left">
+                <h3 class="home-project-title">HaritKranti</h3>
               </div>
-              <div class="project-right">
-                <span class="project-tech">MongoDB Atlas • Express • React • Node.js</span>
-                <div class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+              <div class="home-project-right">
+                <p class="home-project-cat">Farmers' Platform &amp; MERN Stack</p>
+                <div class="home-project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
               </div>
-            </div>
-            <!-- Verified Resume Details -->
-            <div class="project-body">
-              <ul class="project-bullets">
-                <li>Built a full MERN stack platform with product listings, crop guidance features, and secure JWT-based authentication.</li>
-                <li>Developed REST APIs using Node.js and Express, and integrated <strong>MongoDB Atlas</strong> with optimized Mongoose schemas for scalable data storage.</li>
-                <li>Implemented multilingual support using a translation API, enabling real-time UI translation into multiple regional languages.</li>
-              </ul>
-              <div class="project-actions">
-                <a href="https://haritkranti-s-3m17.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-pill primary">
-                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Live App: haritkranti-s-3m17.vercel.app
-                </a>
-                <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="project-pill">
-                  <i class="fa-brands fa-github"></i> GitHub Repository
-                </a>
-              </div>
-            </div>
-          </div>
+            </a>
+          </li>
 
           <!-- Project 04: Aurizen -->
-          <div class="project-item-wrap" data-index="3">
-            <div class="project-row magnetic-target">
-              <div class="project-left">
-                <span class="project-num">04</span>
-                <div class="project-title-group">
-                  <h3 class="project-name">Aurizen</h3>
-                  <span class="project-subtitle">Social Habit Tracking Application — Flutter + Supabase</span>
-                </div>
+          <li class="home-project-item" data-index="3">
+            <div class="stripe"></div>
+            <a href="#case-study-04" class="home-project-row magnetic-target">
+              <div class="home-project-left">
+                <h3 class="home-project-title">Aurizen</h3>
               </div>
-              <div class="project-right">
-                <span class="project-tech">Flutter • Dart • Supabase • SQLite</span>
-                <div class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+              <div class="home-project-right">
+                <p class="home-project-cat">Social Habit Tracker &amp; Supabase Offline Sync</p>
+                <div class="home-project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
               </div>
-            </div>
-            <!-- Verified Resume Details -->
-            <div class="project-body">
-              <ul class="project-bullets">
-                <li>Built a Flutter/Dart app with <strong>Supabase</strong> (PostgreSQL, Auth, Realtime, Storage) and an offline-first architecture using <strong>SQLite</strong> with automatic synchronization.</li>
-                <li>Applied Repository and Service layer patterns with Row Level Security (RLS) and conflict resolution for reliable offline/online data sync.</li>
-                <li>Implemented Firebase Cloud Messaging and Supabase Realtime subscriptions for live cross-device notifications.</li>
-              </ul>
-              <div class="project-actions">
-                <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="project-pill">
-                  <i class="fa-brands fa-github"></i> View Repository on GitHub
-                </a>
-              </div>
-            </div>
-          </div>
+            </a>
+          </li>
 
           <!-- Project 05: AI Personal Finance App -->
-          <div class="project-item-wrap" data-index="4">
-            <div class="project-row magnetic-target">
-              <div class="project-left">
-                <span class="project-num">05</span>
-                <div class="project-title-group">
-                  <h3 class="project-name">AI Personal Finance App</h3>
-                  <span class="project-subtitle">Full-Stack Expense Tracker &amp; Ingestion Pipeline</span>
-                </div>
+          <li class="home-project-item" data-index="4">
+            <div class="stripe"></div>
+            <a href="#case-study-05" class="home-project-row magnetic-target">
+              <div class="home-project-left">
+                <h3 class="home-project-title">AI Finance App</h3>
               </div>
-              <div class="project-right">
-                <span class="project-tech">Next.js • Node.js • MongoDB • ETL</span>
-                <div class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+              <div class="home-project-right">
+                <p class="home-project-cat">Full-Stack Expense Tracker &amp; CSV ETL Pipeline</p>
+                <div class="home-project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
               </div>
-            </div>
-            <!-- Verified Resume Details -->
-            <div class="project-body">
-              <ul class="project-bullets">
-                <li>Built a full-stack personal finance tracker using Next.js, Node.js, and MongoDB to manage expenses, budgets, and subscriptions.</li>
-                <li>Designed a CSV ingestion pipeline with auto-categorization of bank transactions — an ETL-style workflow for cleaning and structuring raw financial data.</li>
-                <li>Integrated AI-powered insights to automatically summarize monthly spending patterns and generate personalized financial suggestions.</li>
-              </ul>
-              <div class="project-actions">
-                <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="project-pill">
-                  <i class="fa-brands fa-github"></i> View Repository on GitHub
-                </a>
-              </div>
-            </div>
-          </div>
+            </a>
+          </li>
 
-        </div>
+        </ul>
 
-        <!-- Dennis Snellenberg "All Projects" Button -->
+        <!-- Dennis Snellenberg "More work (5)" Button -->
         <div class="work-footer-cta">
-          <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="magnetic-circle-btn medium dark magnetic-target">
-            <span>All Projects<br>on GitHub</span>
+          <a href="#more-work" class="magnetic-circle-btn medium dark magnetic-target" id="moreWorkTriggerBtn">
+            <span>More work <span class="badge-count">5</span></span>
           </a>
         </div>
       </div>
@@ -405,43 +319,37 @@
     </div>
 
     <!-- ========================================================================
-         5. WORK EXPERIENCE SECTION (GRAYISH THEME // DENNIS SNELLENBERG SPLIT)
+         5. WORK EXPERIENCE ON HOME (SIMPLE & MINIMAL LIKE DENNIS SNELLENBERG)
+            - Bold Company & Role
+            - Clean single-paragraph overview
+            - Link to full detailed engineering case study
          ======================================================================== -->
     <section class="experience-section theme-gray" id="experience">
       <div class="experience-container">
         <div class="section-label-row">
           <span class="section-label">WORK EXPERIENCE</span>
-          <span class="section-label-dim">Software Development Cell (SwDC)</span>
+          <span class="section-label-dim">Software Development Cell</span>
         </div>
 
-        <div class="experience-split-block">
-          <div class="exp-left-col">
+        <div class="experience-simple-block">
+          <div class="exp-simple-left">
             <span class="exp-period">INTERNSHIP</span>
             <h3 class="exp-company-title">Software Development Cell (SwDC)</h3>
             <span class="exp-college-sub">K.J. Somaiya School of Engineering</span>
           </div>
 
-          <div class="exp-right-col">
-            <div class="exp-role-header">
-              <h4 class="exp-role-title">Flutter &amp; Backend Developer Intern</h4>
-              <span class="exp-project-tag">MoM Generator</span>
-            </div>
-
-            <p class="exp-project-desc">
-              <strong>Project:</strong> MoM Generator — an AI-powered meeting minutes and transcription tool designed for institutional use.
+          <div class="exp-simple-right">
+            <h4 class="exp-role-title">Flutter &amp; Backend Developer Intern</h4>
+            <p class="exp-project-name"><strong>Project:</strong> MoM Generator — AI-Powered Meeting Minutes Tool</p>
+            <p class="exp-simple-desc">
+              Engineered a RAG-based vector search chatbot using <strong>ChromaDB</strong> &amp; <strong>LangChain</strong>, implemented local offline <strong>Faster-Whisper</strong> speech-to-text, developed high-throughput <strong>FastAPI</strong> microservices with <strong>PostgreSQL</strong>, and delivered the production <strong>Flutter</strong> mobile client.
             </p>
-
-            <ul class="resume-bullet-list">
-              <li>Built a RAG-based chatbot vector store in Python (rag.py) using <strong>ChromaDB</strong> and <strong>LangChain</strong>, with fast-fallback logic to clean and route data reliably and prevent request timeouts.</li>
-              <li>Implemented an offline, local <strong>Faster-Whisper</strong> fallback in Python (transcribe.py) for reliable speech-to-text transcription without dependency on internet connectivity.</li>
-              <li>Built <strong>FastAPI</strong> backend services in Python with psycopg2 for <strong>PostgreSQL</strong> integration, handling data storage, retrieval, and normalization for meeting records.</li>
-              <li>Integrated the <strong>Gemini API</strong> and <strong>Groq</strong> for AI-powered summarization and NLP-driven data extraction from unstructured meeting transcripts.</li>
-              <li>Optimized backend CPU/GPU resource usage by designing client disconnection monitors in main.py, improving pipeline efficiency.</li>
-              <li>Implemented <strong>JWT and bcrypt-based security layers</strong> to protect sensitive data, and containerized services with <strong>Docker and Docker Compose</strong> for consistent cloud deployment.</li>
-              <li>Developed the <strong>Flutter frontend</strong> with Provider for state management, integrating Firebase Auth and Google Sign-In for secure authentication.</li>
-              <li>Programmed native mono WAV audio chunk merging on the client side (meeting_provider.dart) to support speaker diarization.</li>
-              <li>Took ownership of diagnosing and fixing backend timeout and disconnection issues end-to-end, following Git-based version control and code review practices within the SDLC.</li>
-            </ul>
+            <div class="exp-actions-row">
+              <a href="#case-study-swdc" class="exp-detail-pill magnetic-target">
+                <span>View Full Internship Details</span>
+                <i class="fa-solid fa-arrow-down"></i>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -453,7 +361,7 @@
     </div>
 
     <!-- ========================================================================
-         6. TECHNICAL SKILLS SECTION (CRISP WHITE / LIGHT GRAYISH // 8 CATEGORIES)
+         6. TECHNICAL SKILLS SECTION (CRISP WHITE // 8 RESUME CATEGORIES)
          ======================================================================== -->
     <section class="skills-section theme-light" id="skills">
       <div class="skills-container">
@@ -629,13 +537,272 @@
       </div>
     </section>
 
-    <!-- Curved Section Transition: Grayish to Dark Footer -->
+    <!-- Curved Section Transition: Grayish to Light -->
+    <div class="rounded-div-wrapper to-light">
+      <div class="rounded-div"></div>
+    </div>
+
+    <!-- ========================================================================
+         8. "MORE WORK" — COMPREHENSIVE DETAILED CASE STUDIES SECTION
+            All 5 Projects & SwDC Internship in Full Verified Technical Detail
+         ======================================================================== -->
+    <section class="detailed-work-section theme-light" id="more-work">
+      <div class="detailed-work-container">
+        
+        <div class="section-label-row">
+          <span class="section-label">MORE WORK &amp; CASE STUDIES</span>
+          <span class="section-label-dim">Full Technical Architecture &amp; Verified Resume Details</span>
+        </div>
+
+        <div class="case-studies-stack">
+          
+          <!-- Detailed Case Study 01: MarketMind AI -->
+          <article class="case-study-card" id="case-study-01">
+            <div class="case-study-header">
+              <div class="case-study-title-wrap">
+                <span class="case-study-num">01 / ARCHITECTURE</span>
+                <h3 class="case-study-title">MarketMind AI</h3>
+                <span class="case-study-tagline">Real-Time Financial Analytics &amp; Market Prediction Platform</span>
+              </div>
+              <div class="case-study-links">
+                <a href="https://market-mind-ai-q1kl.vercel.app/" target="_blank" rel="noopener noreferrer" class="link-pill primary">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Live App: market-mind-ai-q1kl.vercel.app
+                </a>
+                <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="link-pill">
+                  <i class="fa-brands fa-github"></i> GitHub Repo
+                </a>
+              </div>
+            </div>
+
+            <div class="case-study-body">
+              <div class="case-study-tech-pills">
+                <span class="tech-tag">Spring Boot (Java)</span>
+                <span class="tech-tag">FastAPI (Python)</span>
+                <span class="tech-tag">React 19 / Vite</span>
+                <span class="tech-tag">Apache Kafka</span>
+                <span class="tech-tag">Apache Airflow</span>
+                <span class="tech-tag">PostgreSQL (Star Schema)</span>
+                <span class="tech-tag">Redis Caching</span>
+                <span class="tech-tag">WebSockets</span>
+                <span class="tech-tag">Docker Compose</span>
+              </div>
+
+              <div class="case-study-content">
+                <h4 class="case-study-subheading">Architecture &amp; Technical Highlights</h4>
+                <ul class="case-study-bullets">
+                  <li>Designed a microservices architecture with a <strong>Spring Boot (Java)</strong> ingestion service, a <strong>FastAPI (Python)</strong> analytics service, and a <strong>React 19/Vite</strong> dashboard, communicating via <strong>Apache Kafka</strong> event streaming.</li>
+                  <li>Built an automated data pipeline ingesting live stock prices every 30 seconds from the <strong>Yahoo Finance API</strong>, with producer-consumer Kafka streaming, broker-failure fallback logic, and raw JSON persistence.</li>
+                  <li>Developed an Extract-Validate-Clean-Load (ETL) pipeline orchestrated with <strong>Apache Airflow</strong>, feeding a dimensional star-schema <strong>PostgreSQL</strong> warehouse optimized for financial time-series queries.</li>
+                  <li>Implemented multiple forecasting models (Linear Regression, Prophet, LSTM) and a risk analytics module (Beta, Sharpe Ratio, VaR) with a model registry tracking <strong>RMSE, MAPE, and R²</strong> for model comparison.</li>
+                  <li>Built a news sentiment-analysis pipeline with confidence scoring, and an AI Copilot enabling natural-language queries over market data.</li>
+                  <li>Added <strong>Redis caching</strong> for high-performance query optimization, JWT authentication, live <strong>WebSocket</strong> price streaming, and <strong>Prometheus/Grafana</strong> monitoring, containerized with <strong>Docker Compose</strong>.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- Detailed Case Study 02: MoM Generator -->
+          <article class="case-study-card" id="case-study-02">
+            <div class="case-study-header">
+              <div class="case-study-title-wrap">
+                <span class="case-study-num">02 / AI &amp; TRANSCRIPTION</span>
+                <h3 class="case-study-title">MoM Generator</h3>
+                <span class="case-study-tagline">AI-Powered Meeting Minutes &amp; Transcription Tool</span>
+              </div>
+              <div class="case-study-links">
+                <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="link-pill">
+                  <i class="fa-brands fa-github"></i> GitHub Repo
+                </a>
+              </div>
+            </div>
+
+            <div class="case-study-body">
+              <div class="case-study-tech-pills">
+                <span class="tech-tag">Flutter &amp; Dart</span>
+                <span class="tech-tag">FastAPI (Python)</span>
+                <span class="tech-tag">ChromaDB Vector Store</span>
+                <span class="tech-tag">LangChain</span>
+                <span class="tech-tag">Faster-Whisper (Offline STT)</span>
+                <span class="tech-tag">Gemini API &amp; Groq</span>
+                <span class="tech-tag">PostgreSQL</span>
+                <span class="tech-tag">Docker</span>
+              </div>
+
+              <div class="case-study-content">
+                <h4 class="case-study-subheading">Architecture &amp; Technical Highlights</h4>
+                <ul class="case-study-bullets">
+                  <li>Built a RAG-based chatbot vector store in Python (rag.py) using <strong>ChromaDB</strong> and <strong>LangChain</strong>, with fast-fallback logic to clean and route data reliably and prevent request timeouts.</li>
+                  <li>Implemented an offline, local <strong>Faster-Whisper</strong> fallback in Python (transcribe.py) for reliable speech-to-text transcription without dependency on internet connectivity.</li>
+                  <li>Built <strong>FastAPI</strong> backend services in Python with psycopg2 for <strong>PostgreSQL</strong> integration, handling data storage, retrieval, and normalization for meeting records.</li>
+                  <li>Integrated the <strong>Gemini API</strong> and <strong>Groq</strong> for AI-powered summarization and NLP-driven data extraction from unstructured meeting transcripts.</li>
+                  <li>Optimized backend CPU/GPU resource usage by designing client disconnection monitors in main.py, improving pipeline efficiency.</li>
+                  <li>Implemented JWT and bcrypt-based security layers, and containerized services with <strong>Docker and Docker Compose</strong>.</li>
+                  <li>Developed the <strong>Flutter frontend</strong> with Provider for state management, integrating Firebase Auth and Google Sign-In.</li>
+                  <li>Programmed native mono WAV audio chunk merging on the client side (meeting_provider.dart) to support speaker diarization.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- Detailed Case Study 03: HaritKranti -->
+          <article class="case-study-card" id="case-study-03">
+            <div class="case-study-header">
+              <div class="case-study-title-wrap">
+                <span class="case-study-num">03 / FULL-STACK PLATFORM</span>
+                <h3 class="case-study-title">HaritKranti</h3>
+                <span class="case-study-tagline">Farmers' Platform — MERN Stack (Aug 2025 – Nov 2025)</span>
+              </div>
+              <div class="case-study-links">
+                <a href="https://haritkranti-s-3m17.vercel.app/" target="_blank" rel="noopener noreferrer" class="link-pill primary">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Live App: haritkranti-s-3m17.vercel.app
+                </a>
+                <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="link-pill">
+                  <i class="fa-brands fa-github"></i> GitHub Repo
+                </a>
+              </div>
+            </div>
+
+            <div class="case-study-body">
+              <div class="case-study-tech-pills">
+                <span class="tech-tag">MongoDB Atlas</span>
+                <span class="tech-tag">Express.js</span>
+                <span class="tech-tag">React.js</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">Translation API</span>
+                <span class="tech-tag">JWT Authentication</span>
+              </div>
+
+              <div class="case-study-content">
+                <h4 class="case-study-subheading">Architecture &amp; Technical Highlights</h4>
+                <ul class="case-study-bullets">
+                  <li>Built a full MERN stack platform with product listings, crop guidance features, and secure JWT-based authentication.</li>
+                  <li>Developed REST APIs using Node.js and Express, and integrated <strong>MongoDB Atlas</strong> with optimized Mongoose schemas for scalable data storage.</li>
+                  <li>Implemented multilingual support using a translation API, enabling real-time UI translation into multiple regional Indian languages.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- Detailed Case Study 04: Aurizen -->
+          <article class="case-study-card" id="case-study-04">
+            <div class="case-study-header">
+              <div class="case-study-title-wrap">
+                <span class="case-study-num">04 / MOBILE &amp; OFFLINE-SYNC</span>
+                <h3 class="case-study-title">Aurizen</h3>
+                <span class="case-study-tagline">Social Habit Tracking Application — Flutter + Supabase</span>
+              </div>
+              <div class="case-study-links">
+                <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="link-pill">
+                  <i class="fa-brands fa-github"></i> GitHub Repo
+                </a>
+              </div>
+            </div>
+
+            <div class="case-study-body">
+              <div class="case-study-tech-pills">
+                <span class="tech-tag">Flutter &amp; Dart</span>
+                <span class="tech-tag">Supabase</span>
+                <span class="tech-tag">PostgreSQL (RLS)</span>
+                <span class="tech-tag">SQLite (Offline DB)</span>
+                <span class="tech-tag">Firebase Cloud Messaging</span>
+              </div>
+
+              <div class="case-study-content">
+                <h4 class="case-study-subheading">Architecture &amp; Technical Highlights</h4>
+                <ul class="case-study-bullets">
+                  <li>Built a Flutter/Dart app with <strong>Supabase</strong> (PostgreSQL, Auth, Realtime, Storage) and an offline-first architecture using <strong>SQLite</strong> with automatic synchronization.</li>
+                  <li>Applied Repository and Service layer patterns with Row Level Security (RLS) and conflict resolution for reliable offline/online data sync.</li>
+                  <li>Implemented Firebase Cloud Messaging and Supabase Realtime subscriptions for live cross-device notifications.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- Detailed Case Study 05: AI Personal Finance App -->
+          <article class="case-study-card" id="case-study-05">
+            <div class="case-study-header">
+              <div class="case-study-title-wrap">
+                <span class="case-study-num">05 / DATA INGESTION &amp; ETL</span>
+                <h3 class="case-study-title">AI Personal Finance App</h3>
+                <span class="case-study-tagline">Full-Stack Expense Tracker &amp; CSV Ingestion Pipeline</span>
+              </div>
+              <div class="case-study-links">
+                <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="link-pill">
+                  <i class="fa-brands fa-github"></i> GitHub Repo
+                </a>
+              </div>
+            </div>
+
+            <div class="case-study-body">
+              <div class="case-study-tech-pills">
+                <span class="tech-tag">Next.js</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">MongoDB</span>
+                <span class="tech-tag">ETL Workflow</span>
+                <span class="tech-tag">AI Categorization</span>
+              </div>
+
+              <div class="case-study-content">
+                <h4 class="case-study-subheading">Architecture &amp; Technical Highlights</h4>
+                <ul class="case-study-bullets">
+                  <li>Built a full-stack personal finance tracker using Next.js, Node.js, and MongoDB to manage expenses, budgets, and subscriptions.</li>
+                  <li>Designed a CSV ingestion pipeline with auto-categorization of bank transactions — an ETL-style workflow for cleaning and structuring raw financial data.</li>
+                  <li>Integrated AI-powered insights to automatically summarize monthly spending patterns and generate personalized financial suggestions.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+          <!-- Detailed Case Study 06: SwDC Internship -->
+          <article class="case-study-card" id="case-study-swdc">
+            <div class="case-study-header">
+              <div class="case-study-title-wrap">
+                <span class="case-study-num">06 / PROFESSIONAL INTERNSHIP</span>
+                <h3 class="case-study-title">Software Development Cell (SwDC)</h3>
+                <span class="case-study-tagline">Flutter &amp; Backend Developer Intern • K.J. Somaiya School of Engineering</span>
+              </div>
+            </div>
+
+            <div class="case-study-body">
+              <div class="case-study-tech-pills">
+                <span class="tech-tag">Python &amp; FastAPI</span>
+                <span class="tech-tag">ChromaDB &amp; LangChain</span>
+                <span class="tech-tag">Faster-Whisper</span>
+                <span class="tech-tag">PostgreSQL &amp; psycopg2</span>
+                <span class="tech-tag">Flutter Provider</span>
+                <span class="tech-tag">Docker Compose</span>
+                <span class="tech-tag">Speaker Diarization</span>
+                <span class="tech-tag">Git Version Control</span>
+              </div>
+
+              <div class="case-study-content">
+                <h4 class="case-study-subheading">Comprehensive Responsibilities &amp; Outcomes</h4>
+                <ul class="case-study-bullets">
+                  <li>Built a RAG-based chatbot vector store in Python (rag.py) using <strong>ChromaDB</strong> and <strong>LangChain</strong>, with fast-fallback logic to clean and route data reliably and prevent request timeouts.</li>
+                  <li>Implemented an offline, local <strong>Faster-Whisper</strong> fallback in Python (transcribe.py) for reliable speech-to-text transcription without dependency on internet connectivity.</li>
+                  <li>Built <strong>FastAPI</strong> backend services in Python with psycopg2 for <strong>PostgreSQL</strong> integration, handling data storage, retrieval, and normalization for meeting records.</li>
+                  <li>Integrated the <strong>Gemini API</strong> and <strong>Groq</strong> for AI-powered summarization and NLP-driven data extraction from unstructured meeting transcripts.</li>
+                  <li>Optimized backend CPU/GPU resource usage by designing client disconnection monitors in main.py, improving pipeline efficiency.</li>
+                  <li>Implemented <strong>JWT and bcrypt-based security layers</strong> to protect sensitive data, and containerized services with <strong>Docker and Docker Compose</strong> for consistent cloud deployment.</li>
+                  <li>Developed the <strong>Flutter frontend</strong> with Provider for state management, integrating Firebase Auth and Google Sign-In for secure authentication.</li>
+                  <li>Programmed native mono WAV audio chunk merging on the client side (meeting_provider.dart) to support speaker diarization.</li>
+                  <li>Took ownership of diagnosing and fixing backend timeout and disconnection issues end-to-end, following Git-based version control and code review practices within the SDLC.</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Curved Section Transition: Light to Dark Footer -->
     <div class="rounded-div-wrapper to-dark">
       <div class="rounded-div"></div>
     </div>
 
     <!-- ========================================================================
-         8. DENNIS SNELLENBERG FOOTER (DARK THEME // "LET'S WORK TOGETHER")
+         9. DENNIS SNELLENBERG FOOTER (DARK THEME // "LET'S WORK TOGETHER")
          ======================================================================== -->
     <footer class="footer-section theme-dark" id="contact">
       <div class="footer-container">
@@ -693,7 +860,7 @@
     </footer>
   </main>
 
-  <!-- Dennis Snellenberg Dual-Contrast Interactive Controller -->
-  <script src="app.js?v=5.0"></script>
+  <!-- Dennis Snellenberg Interactive Controller -->
+  <script src="app.js?v=6.0"></script>
 </body>
 </html>
