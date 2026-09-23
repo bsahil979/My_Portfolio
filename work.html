@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>Work • Sahil Belchada — Software Developer</title>
+  <meta name="description" content="Featured software engineering projects, system architectures, and technical case studies by Sahil Belchada. © Code by Sahil">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Syne, Space Grotesk, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Lenis Inertia Smooth Scroll -->
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="page-work" data-barba="wrapper">
+
+  <!-- ========================================================================
+       DENNIS SNELLENBERG FLUID CURVED PAGE TRANSITION OVERLAY
+       ======================================================================== -->
+  <div class="loading-container is-active is-exiting" id="loadingContainer" aria-label="Loading page">
+    <div class="loading-screen" id="loadingScreen">
+      <div class="loading-words" id="loadingWords">
+        <h2 class="active"><span class="dot"></span> <span id="pageTransitionText">Work</span></h2>
+      </div>
+      <div class="loading-rounded-div-wrap">
+        <div class="loading-rounded-div"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       1. HEADER NAVIGATION
+       ======================================================================== -->
+  <header class="navbar nav-light" id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand-link magnetic-target page-transition-link" data-transition-word="Home" aria-label="Sahil Belchada Home">
+        <span class="btn-text-inner brand-text">© Code by <span class="brand-name">Sahil</span></span>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="nav-links" id="navLinks" aria-label="Primary Navigation">
+        <a href="work.html" class="nav-item active magnetic-target" aria-current="page">
+          <span class="btn-text-inner">Work</span>
+          <span class="nav-item-dot"></span>
+        </a>
+        <a href="index.html#about" class="nav-item magnetic-target page-transition-link" data-transition-word="Home">
+          <span class="btn-text-inner">About</span>
+          <span class="nav-item-dot"></span>
+        </a>
+        <a href="index.html#experience" class="nav-item magnetic-target page-transition-link" data-transition-word="Home">
+          <span class="btn-text-inner">Experience</span>
+          <span class="nav-item-dot"></span>
+        </a>
+        <a href="index.html#skills" class="nav-item magnetic-target page-transition-link" data-transition-word="Home">
+          <span class="btn-text-inner">Skills</span>
+          <span class="nav-item-dot"></span>
+        </a>
+        <a href="#contact" class="nav-item magnetic-target">
+          <span class="btn-text-inner">Contact</span>
+          <span class="nav-item-dot"></span>
+        </a>
+        <a href="assets/Sahil_Belchada_Resume.pdf" download="Sahil_Belchada_Resume.pdf" target="_blank" class="nav-resume-btn magnetic-target" title="Download Verified Resume">
+          <i class="fa-solid fa-file-arrow-down"></i>
+          <span class="btn-text-inner">Resume</span>
+        </a>
+      </nav>
+
+      <!-- Mobile Resume Quick Link -->
+      <a href="assets/Sahil_Belchada_Resume.pdf" download="Sahil_Belchada_Resume.pdf" target="_blank" class="mobile-resume-pill" title="Download Resume">
+        <i class="fa-solid fa-file-arrow-down"></i> Resume
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ========================================================================
+         2. WORK PAGE HERO (DENNIS SNELLENBERG EDITORIAL HEADLINE)
+         ======================================================================== -->
+    <header class="section default-header work-header" id="work-top">
+      <div class="work-header-container">
+        <div class="work-hero-meta">
+          <span class="work-hero-tag">Archive &amp; Technical Case Studies</span>
+          <span class="work-hero-count">6 Projects &amp; Experience</span>
+        </div>
+        <h1 class="work-hero-title">
+          <span>Creating next level</span>
+          <span>software &amp; systems</span>
+        </h1>
+      </div>
+    </header>
+
+    <!-- ========================================================================
+         3. FILTERS & VIEW MODE SWITCHER (DENNIS SNELLENBERG WORK FILTERS)
+         ======================================================================== -->
+    <section class="section work-filters-section">
+      <div class="work-filters-container">
+        <div class="filter-pills-row">
+          <button class="filter-pill-btn active magnetic-target" data-filter="all">
+            <span class="btn-text-inner">All <span class="count-badge">6</span></span>
+          </button>
+          <button class="filter-pill-btn magnetic-target" data-filter="fullstack">
+            <span class="btn-text-inner">Full-Stack <span class="count-badge">3</span></span>
+          </button>
+          <button class="filter-pill-btn magnetic-target" data-filter="ai-systems">
+            <span class="btn-text-inner">AI &amp; Systems <span class="count-badge">3</span></span>
+          </button>
+          <button class="filter-pill-btn magnetic-target" data-filter="mobile">
+            <span class="btn-text-inner">Mobile <span class="count-badge">2</span></span>
+          </button>
+        </div>
+
+        <div class="view-mode-row">
+          <button class="view-mode-btn active magnetic-target" id="viewRowsBtn" aria-label="Rows View" title="Rows View">
+            <span class="btn-text-inner">
+              <svg width="18" height="18" viewBox="0 0 20 19" fill="currentColor">
+                <path d="M0 6h20v2H0zM0 0h20v2H0zM0 12h20v2H0zM0 18h20v2H0z"/>
+              </svg>
+            </span>
+          </button>
+          <button class="view-mode-btn magnetic-target" id="viewGridBtn" aria-label="Columns View" title="Columns View">
+            <span class="btn-text-inner">
+              <svg width="18" height="18" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M8 0H0v8h8V0zM7 1v6H1V1h6zM8 12H0v8h8v-8zm-1 1v6H1v-6h6zM20 0h-8v8h8V0zm-1 1v6h-6V1h6zM20 12h-8v8h8v-8zm-1 1v6h-6v-6h6z"/>
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         4. WORK ITEMS: ROWS VIEW (DENNIS SNELLENBERG HOVER MODAL LIST)
+         ======================================================================== -->
+    <section class="section work-list-section" id="workListView">
+      <div class="work-list-container">
+        <ul class="work-items-list" id="projectList">
+
+          <!-- 01: MarketMind AI -->
+          <li class="work-row-item visible" data-category="fullstack ai-systems" data-project-index="0">
+            <div class="work-row-stripe"></div>
+            <div class="work-row-main" tabindex="0" role="button" aria-expanded="false">
+              <div class="work-row-col title-col">
+                <h3 class="work-row-title">MarketMind AI</h3>
+                <span class="work-row-mobile-meta">Spring Boot • FastAPI • Kafka • React 19 • 2024</span>
+              </div>
+              <div class="work-row-col tech-col">
+                <p>Spring Boot • FastAPI • React 19 • Kafka • Docker</p>
+              </div>
+              <div class="work-row-col year-col">
+                <span class="work-year">2024</span>
+                <span class="work-expand-indicator"><i class="fa-solid fa-plus"></i></span>
+              </div>
+            </div>
+
+            <!-- Expandable Detailed Technical Architecture Drawer -->
+            <div class="work-row-drawer">
+              <div class="drawer-inner">
+                <div class="drawer-header-row">
+                  <span class="drawer-tagline">Real-Time Financial Analytics &amp; Market Prediction Platform</span>
+                  <div class="drawer-links">
+                    <a href="https://market-mind-ai-q1kl.vercel.app/" target="_blank" rel="noopener noreferrer" class="link-pill primary">
+                      <i class="fa-solid fa-arrow-up-right-from-square"></i> Live App
+                    </a>
+                    <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="link-pill">
+                      <i class="fa-brands fa-github"></i> GitHub Repo
+                    </a>
+                  </div>
+                </div>
+
+                <div class="drawer-tech-stack">
+                  <span class="tech-tag">Spring Boot (Java)</span>
+                  <span class="tech-tag">FastAPI (Python)</span>
+                  <span class="tech-tag">React 19 / Vite</span>
+                  <span class="tech-tag">Apache Kafka</span>
+                  <span class="tech-tag">Apache Airflow</span>
+                  <span class="tech-tag">PostgreSQL (Star Schema)</span>
+                  <span class="tech-tag">Redis Caching</span>
+                  <span class="tech-tag">WebSockets</span>
+                  <span class="tech-tag">Docker Compose</span>
+                </div>
+
+                <div class="drawer-body">
+                  <h4 class="drawer-subheading">Technical Highlights &amp; Architecture:</h4>
+                  <ul class="drawer-bullets">
+                    <li>Designed a microservices architecture with a <strong>Spring Boot (Java)</strong> ingestion service, a <strong>FastAPI (Python)</strong> analytics service, and a <strong>React 19/Vite</strong> dashboard, communicating via <strong>Apache Kafka</strong> event streaming.</li>
+                    <li>Built an automated data pipeline ingesting live stock prices every 30 seconds from the <strong>Yahoo Finance API</strong>, with producer-consumer Kafka streaming, broker-failure fallback logic, and raw JSON persistence.</li>
+                    <li>Developed an Extract-Validate-Clean-Load (ETL) pipeline orchestrated with <strong>Apache Airflow</strong>, feeding a dimensional star-schema <strong>PostgreSQL</strong> warehouse optimized for financial time-series queries.</li>
+                    <li>Implemented multiple forecasting models (Linear Regression, Prophet, LSTM) and a risk analytics module (Beta, Sharpe Ratio, VaR) with a model registry tracking <strong>RMSE, MAPE, and R²</strong> for model comparison.</li>
+                    <li>Built a news sentiment-analysis pipeline with confidence scoring, and an AI Copilot enabling natural-language queries over market data.</li>
+                    <li>Added <strong>Redis caching</strong> for high-performance query optimization, JWT authentication, live <strong>WebSocket</strong> price streaming, and <strong>Prometheus/Grafana</strong> monitoring, containerized with <strong>Docker Compose</strong>.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- 02: MoM Generator -->
+          <li class="work-row-item visible" data-category="ai-systems mobile" data-project-index="1">
+            <div class="work-row-stripe"></div>
+            <div class="work-row-main" tabindex="0" role="button" aria-expanded="false">
+              <div class="work-row-col title-col">
+                <h3 class="work-row-title">MoM Generator</h3>
+                <span class="work-row-mobile-meta">Flutter • FastAPI • ChromaDB • Whisper • 2024</span>
+              </div>
+              <div class="work-row-col tech-col">
+                <p>Flutter • FastAPI • ChromaDB • LangChain • Whisper</p>
+              </div>
+              <div class="work-row-col year-col">
+                <span class="work-year">2024</span>
+                <span class="work-expand-indicator"><i class="fa-solid fa-plus"></i></span>
+              </div>
+            </div>
+
+            <div class="work-row-drawer">
+              <div class="drawer-inner">
+                <div class="drawer-header-row">
+                  <span class="drawer-tagline">AI-Powered Meeting Minutes &amp; Transcription Tool</span>
+                  <div class="drawer-links">
+                    <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="link-pill">
+                      <i class="fa-brands fa-github"></i> GitHub Repo
+                    </a>
+                  </div>
+                </div>
+
+                <div class="drawer-tech-stack">
+                  <span class="tech-tag">Flutter &amp; Dart</span>
+                  <span class="tech-tag">FastAPI (Python)</span>
+                  <span class="tech-tag">ChromaDB Vector Store</span>
+                  <span class="tech-tag">LangChain</span>
+                  <span class="tech-tag">Faster-Whisper (Offline STT)</span>
+                  <span class="tech-tag">Gemini API &amp; Groq</span>
+                  <span class="tech-tag">PostgreSQL</span>
+                  <span class="tech-tag">Docker</span>
+                </div>
+
+                <div class="drawer-body">
+                  <h4 class="drawer-subheading">Technical Highlights &amp; Architecture:</h4>
+                  <ul class="drawer-bullets">
+                    <li>Built a RAG-based chatbot vector store in Python (rag.py) using <strong>ChromaDB</strong> and <strong>LangChain</strong>, with fast-fallback logic to clean and route data reliably and prevent request timeouts.</li>
+                    <li>Implemented an offline, local <strong>Faster-Whisper</strong> fallback in Python (transcribe.py) for reliable speech-to-text transcription without dependency on internet connectivity.</li>
+                    <li>Built <strong>FastAPI</strong> backend services in Python with psycopg2 for <strong>PostgreSQL</strong> integration, handling data storage, retrieval, and normalization for meeting records.</li>
+                    <li>Integrated the <strong>Gemini API</strong> and <strong>Groq</strong> for AI-powered summarization and NLP-driven data extraction from unstructured meeting transcripts.</li>
+                    <li>Optimized backend CPU/GPU resource usage by designing client disconnection monitors in main.py, improving pipeline efficiency.</li>
+                    <li>Implemented JWT and bcrypt-based security layers, and containerized services with <strong>Docker and Docker Compose</strong>.</li>
+                    <li>Developed the <strong>Flutter frontend</strong> with Provider for state management, integrating Firebase Auth and Google Sign-In.</li>
+                    <li>Programmed native mono WAV audio chunk merging on the client side (meeting_provider.dart) to support speaker diarization.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- 03: HaritKranti -->
+          <li class="work-row-item visible" data-category="fullstack" data-project-index="2">
+            <div class="work-row-stripe"></div>
+            <div class="work-row-main" tabindex="0" role="button" aria-expanded="false">
+              <div class="work-row-col title-col">
+                <h3 class="work-row-title">HaritKranti</h3>
+                <span class="work-row-mobile-meta">MERN Stack • Translation API • JWT • 2025</span>
+              </div>
+              <div class="work-row-col tech-col">
+                <p>MongoDB • Express • React • Node • Translation API</p>
+              </div>
+              <div class="work-row-col year-col">
+                <span class="work-year">2025</span>
+                <span class="work-expand-indicator"><i class="fa-solid fa-plus"></i></span>
+              </div>
+            </div>
+
+            <div class="work-row-drawer">
+              <div class="drawer-inner">
+                <div class="drawer-header-row">
+                  <span class="drawer-tagline">Farmers' Platform — MERN Stack (Aug 2025 – Nov 2025)</span>
+                  <div class="drawer-links">
+                    <a href="https://haritkranti-s-3m17.vercel.app/" target="_blank" rel="noopener noreferrer" class="link-pill primary">
+                      <i class="fa-solid fa-arrow-up-right-from-square"></i> Live App
+                    </a>
+                    <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="link-pill">
+                      <i class="fa-brands fa-github"></i> GitHub Repo
+                    </a>
+                  </div>
+                </div>
+
+                <div class="drawer-tech-stack">
+                  <span class="tech-tag">MongoDB Atlas</span>
+                  <span class="tech-tag">Express.js</span>
+                  <span class="tech-tag">React.js</span>
+                  <span class="tech-tag">Node.js</span>
+                  <span class="tech-tag">Translation API</span>
+                  <span class="tech-tag">JWT Authentication</span>
+                </div>
+
+                <div class="drawer-body">
+                  <h4 class="drawer-subheading">Technical Highlights &amp; Architecture:</h4>
+                  <ul class="drawer-bullets">
+                    <li>Built a full MERN stack platform with product listings, crop guidance features, and secure JWT-based authentication.</li>
+                    <li>Developed REST APIs using Node.js and Express, and integrated <strong>MongoDB Atlas</strong> with optimized Mongoose schemas for scalable data storage.</li>
+                    <li>Implemented multilingual support using a translation API, enabling real-time UI translation into multiple regional Indian languages.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- 04: Aurizen -->
+          <li class="work-row-item visible" data-category="mobile" data-project-index="3">
+            <div class="work-row-stripe"></div>
+            <div class="work-row-main" tabindex="0" role="button" aria-expanded="false">
+              <div class="work-row-col title-col">
+                <h3 class="work-row-title">Aurizen</h3>
+                <span class="work-row-mobile-meta">Flutter • Supabase • SQLite Offline-Sync • 2024</span>
+              </div>
+              <div class="work-row-col tech-col">
+                <p>Flutter • Supabase • SQLite • PostgreSQL (RLS)</p>
+              </div>
+              <div class="work-row-col year-col">
+                <span class="work-year">2024</span>
+                <span class="work-expand-indicator"><i class="fa-solid fa-plus"></i></span>
+              </div>
+            </div>
+
+            <div class="work-row-drawer">
+              <div class="drawer-inner">
+                <div class="drawer-header-row">
+                  <span class="drawer-tagline">Social Habit Tracking Application — Flutter + Supabase</span>
+                  <div class="drawer-links">
+                    <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="link-pill">
+                      <i class="fa-brands fa-github"></i> GitHub Repo
+                    </a>
+                  </div>
+                </div>
+
+                <div class="drawer-tech-stack">
+                  <span class="tech-tag">Flutter &amp; Dart</span>
+                  <span class="tech-tag">Supabase</span>
+                  <span class="tech-tag">PostgreSQL (RLS)</span>
+                  <span class="tech-tag">SQLite (Offline DB)</span>
+                  <span class="tech-tag">Firebase Cloud Messaging</span>
+                </div>
+
+                <div class="drawer-body">
+                  <h4 class="drawer-subheading">Technical Highlights &amp; Architecture:</h4>
+                  <ul class="drawer-bullets">
+                    <li>Built a Flutter/Dart app with <strong>Supabase</strong> (PostgreSQL, Auth, Realtime, Storage) and an offline-first architecture using <strong>SQLite</strong> with automatic synchronization.</li>
+                    <li>Applied Repository and Service layer patterns with Row Level Security (RLS) and conflict resolution for reliable offline/online data sync.</li>
+                    <li>Implemented Firebase Cloud Messaging and Supabase Realtime subscriptions for live cross-device notifications.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- 05: AI Personal Finance App -->
+          <li class="work-row-item visible" data-category="fullstack" data-project-index="4">
+            <div class="work-row-stripe"></div>
+            <div class="work-row-main" tabindex="0" role="button" aria-expanded="false">
+              <div class="work-row-col title-col">
+                <h3 class="work-row-title">AI Personal Finance App</h3>
+                <span class="work-row-mobile-meta">Next.js • Node.js • MongoDB • CSV ETL • 2024</span>
+              </div>
+              <div class="work-row-col tech-col">
+                <p>Next.js • Node.js • MongoDB • CSV ETL • AI</p>
+              </div>
+              <div class="work-row-col year-col">
+                <span class="work-year">2024</span>
+                <span class="work-expand-indicator"><i class="fa-solid fa-plus"></i></span>
+              </div>
+            </div>
+
+            <div class="work-row-drawer">
+              <div class="drawer-inner">
+                <div class="drawer-header-row">
+                  <span class="drawer-tagline">Full-Stack Expense Tracker &amp; CSV Ingestion Pipeline</span>
+                  <div class="drawer-links">
+                    <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="link-pill">
+                      <i class="fa-brands fa-github"></i> GitHub Repo
+                    </a>
+                  </div>
+                </div>
+
+                <div class="drawer-tech-stack">
+                  <span class="tech-tag">Next.js</span>
+                  <span class="tech-tag">Node.js</span>
+                  <span class="tech-tag">MongoDB</span>
+                  <span class="tech-tag">ETL Workflow</span>
+                  <span class="tech-tag">AI Categorization</span>
+                </div>
+
+                <div class="drawer-body">
+                  <h4 class="drawer-subheading">Technical Highlights &amp; Architecture:</h4>
+                  <ul class="drawer-bullets">
+                    <li>Built a full-stack personal finance tracker using Next.js, Node.js, and MongoDB to manage expenses, budgets, and subscriptions.</li>
+                    <li>Designed a CSV ingestion pipeline with auto-categorization of bank transactions — an ETL-style workflow for cleaning and structuring raw financial data.</li>
+                    <li>Integrated AI-powered insights to automatically summarize monthly spending patterns and generate personalized financial suggestions.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- 06: SwDC Internship -->
+          <li class="work-row-item visible" data-category="ai-systems mobile" data-project-index="5">
+            <div class="work-row-stripe"></div>
+            <div class="work-row-main" tabindex="0" role="button" aria-expanded="false">
+              <div class="work-row-col title-col">
+                <h3 class="work-row-title">Software Development Cell</h3>
+                <span class="work-row-mobile-meta">Flutter &amp; Backend Intern • SwDC KJSCE • 2024 - 2025</span>
+              </div>
+              <div class="work-row-col tech-col">
+                <p>Python • FastAPI • ChromaDB • Whisper • Docker</p>
+              </div>
+              <div class="work-row-col year-col">
+                <span class="work-year">2024–25</span>
+                <span class="work-expand-indicator"><i class="fa-solid fa-plus"></i></span>
+              </div>
+            </div>
+
+            <div class="work-row-drawer">
+              <div class="drawer-inner">
+                <div class="drawer-header-row">
+                  <span class="drawer-tagline">Flutter &amp; Backend Developer Intern • K.J. Somaiya College of Engineering</span>
+                </div>
+
+                <div class="drawer-tech-stack">
+                  <span class="tech-tag">Python &amp; FastAPI</span>
+                  <span class="tech-tag">ChromaDB &amp; LangChain</span>
+                  <span class="tech-tag">Faster-Whisper</span>
+                  <span class="tech-tag">PostgreSQL &amp; psycopg2</span>
+                  <span class="tech-tag">Flutter Provider</span>
+                  <span class="tech-tag">Docker Compose</span>
+                  <span class="tech-tag">Speaker Diarization</span>
+                </div>
+
+                <div class="drawer-body">
+                  <h4 class="drawer-subheading">Comprehensive Responsibilities &amp; Outcomes:</h4>
+                  <ul class="drawer-bullets">
+                    <li>Built a RAG-based chatbot vector store in Python (rag.py) using <strong>ChromaDB</strong> and <strong>LangChain</strong>, with fast-fallback logic to clean and route data reliably and prevent request timeouts.</li>
+                    <li>Implemented an offline, local <strong>Faster-Whisper</strong> fallback in Python (transcribe.py) for reliable speech-to-text transcription without dependency on internet connectivity.</li>
+                    <li>Built <strong>FastAPI</strong> backend services in Python with psycopg2 for <strong>PostgreSQL</strong> integration, handling data storage, retrieval, and normalization for meeting records.</li>
+                    <li>Integrated the <strong>Gemini API</strong> and <strong>Groq</strong> for AI-powered summarization and NLP-driven data extraction from unstructured meeting transcripts.</li>
+                    <li>Optimized backend CPU/GPU resource usage by designing client disconnection monitors in main.py, improving pipeline efficiency.</li>
+                    <li>Implemented <strong>JWT and bcrypt-based security layers</strong> to protect sensitive data, and containerized services with <strong>Docker and Docker Compose</strong>.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <div class="work-row-stripe last"></div>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         5. WORK ITEMS: GRID / COLUMNS VIEW (DENNIS SNELLENBERG 2-COL TILES)
+         ======================================================================== -->
+    <section class="section work-grid-section is-hidden" id="workGridView">
+      <div class="work-grid-container">
+        <div class="work-tiles-grid">
+
+          <!-- Tile 01: MarketMind AI -->
+          <article class="work-tile-card" data-category="fullstack ai-systems">
+            <div class="work-tile-image-wrap">
+              <img src="assets/projects/fitpulse.png" alt="MarketMind AI" class="work-tile-img" loading="lazy">
+              <div class="work-tile-badge">2024</div>
+            </div>
+            <div class="work-tile-content">
+              <div class="work-tile-top">
+                <span class="work-tile-cat">Full-Stack &amp; Streaming Architecture</span>
+                <h3 class="work-tile-title">MarketMind AI</h3>
+                <p class="work-tile-desc">Real-Time Financial Analytics &amp; Market Prediction Platform. Built with Spring Boot, FastAPI, Kafka, and React 19.</p>
+              </div>
+              <div class="work-tile-pills">
+                <span class="tech-tag">Spring Boot</span>
+                <span class="tech-tag">FastAPI</span>
+                <span class="tech-tag">Kafka</span>
+                <span class="tech-tag">PostgreSQL</span>
+                <span class="tech-tag">Docker</span>
+              </div>
+              <div class="work-tile-links">
+                <a href="https://market-mind-ai-q1kl.vercel.app/" target="_blank" rel="noopener noreferrer" class="link-pill primary">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Live App
+                </a>
+                <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="link-pill">
+                  <i class="fa-brands fa-github"></i> GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tile 02: MoM Generator -->
+          <article class="work-tile-card" data-category="ai-systems mobile">
+            <div class="work-tile-image-wrap">
+              <img src="assets/projects/cryptovault.png" alt="MoM Generator" class="work-tile-img" loading="lazy">
+              <div class="work-tile-badge">2024</div>
+            </div>
+            <div class="work-tile-content">
+              <div class="work-tile-top">
+                <span class="work-tile-cat">AI &amp; Speech-to-Text</span>
+                <h3 class="work-tile-title">MoM Generator</h3>
+                <p class="work-tile-desc">AI-Powered Meeting Minutes tool with offline Faster-Whisper, ChromaDB vector store, and Gemini summarization.</p>
+              </div>
+              <div class="work-tile-pills">
+                <span class="tech-tag">Flutter</span>
+                <span class="tech-tag">FastAPI</span>
+                <span class="tech-tag">ChromaDB</span>
+                <span class="tech-tag">Whisper</span>
+                <span class="tech-tag">Docker</span>
+              </div>
+              <div class="work-tile-links">
+                <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="link-pill">
+                  <i class="fa-brands fa-github"></i> GitHub Repo
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tile 03: HaritKranti -->
+          <article class="work-tile-card" data-category="fullstack">
+            <div class="work-tile-image-wrap">
+              <img src="assets/projects/smartcampus.png" alt="HaritKranti" class="work-tile-img" loading="lazy">
+              <div class="work-tile-badge">2025</div>
+            </div>
+            <div class="work-tile-content">
+              <div class="work-tile-top">
+                <span class="work-tile-cat">Full-Stack MERN Platform</span>
+                <h3 class="work-tile-title">HaritKranti</h3>
+                <p class="work-tile-desc">Farmers' e-commerce and crop advisory platform with real-time multilingual translation for regional Indian languages.</p>
+              </div>
+              <div class="work-tile-pills">
+                <span class="tech-tag">MongoDB</span>
+                <span class="tech-tag">Express</span>
+                <span class="tech-tag">React</span>
+                <span class="tech-tag">Node</span>
+                <span class="tech-tag">Translation API</span>
+              </div>
+              <div class="work-tile-links">
+                <a href="https://haritkranti-s-3m17.vercel.app/" target="_blank" rel="noopener noreferrer" class="link-pill primary">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Live App
+                </a>
+                <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="link-pill">
+                  <i class="fa-brands fa-github"></i> GitHub
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tile 04: Aurizen -->
+          <article class="work-tile-card" data-category="mobile">
+            <div class="work-tile-image-wrap">
+              <img src="assets/projects/devflow.png" alt="Aurizen" class="work-tile-img" loading="lazy">
+              <div class="work-tile-badge">2024</div>
+            </div>
+            <div class="work-tile-content">
+              <div class="work-tile-top">
+                <span class="work-tile-cat">Mobile &amp; Offline Sync</span>
+                <h3 class="work-tile-title">Aurizen</h3>
+                <p class="work-tile-desc">Social habit tracking application featuring offline-first SQLite synchronization, Supabase PostgreSQL, and FCM notifications.</p>
+              </div>
+              <div class="work-tile-pills">
+                <span class="tech-tag">Flutter</span>
+                <span class="tech-tag">Supabase</span>
+                <span class="tech-tag">PostgreSQL (RLS)</span>
+                <span class="tech-tag">SQLite</span>
+                <span class="tech-tag">FCM</span>
+              </div>
+              <div class="work-tile-links">
+                <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="link-pill">
+                  <i class="fa-brands fa-github"></i> GitHub Repo
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tile 05: AI Personal Finance App -->
+          <article class="work-tile-card" data-category="fullstack">
+            <div class="work-tile-image-wrap">
+              <img src="assets/projects/fitpulse.png" alt="AI Personal Finance App" class="work-tile-img" loading="lazy">
+              <div class="work-tile-badge">2024</div>
+            </div>
+            <div class="work-tile-content">
+              <div class="work-tile-top">
+                <span class="work-tile-cat">Full-Stack &amp; ETL Workflow</span>
+                <h3 class="work-tile-title">AI Personal Finance App</h3>
+                <p class="work-tile-desc">Next.js &amp; MongoDB expense tracking platform featuring CSV data ingestion pipeline and AI-driven categorization.</p>
+              </div>
+              <div class="work-tile-pills">
+                <span class="tech-tag">Next.js</span>
+                <span class="tech-tag">Node.js</span>
+                <span class="tech-tag">MongoDB</span>
+                <span class="tech-tag">CSV ETL</span>
+                <span class="tech-tag">AI Analytics</span>
+              </div>
+              <div class="work-tile-links">
+                <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="link-pill">
+                  <i class="fa-brands fa-github"></i> GitHub Repo
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Tile 06: SwDC Internship -->
+          <article class="work-tile-card" data-category="ai-systems mobile">
+            <div class="work-tile-image-wrap">
+              <img src="assets/projects/cryptovault.png" alt="SwDC Internship" class="work-tile-img" loading="lazy">
+              <div class="work-tile-badge">2024 - 2025</div>
+            </div>
+            <div class="work-tile-content">
+              <div class="work-tile-top">
+                <span class="work-tile-cat">Professional Experience</span>
+                <h3 class="work-tile-title">Software Development Cell</h3>
+                <p class="work-tile-desc">Flutter &amp; Backend Developer Intern at KJSCE. Engineered RAG vector pipelines, speech-to-text systems, and Docker microservices.</p>
+              </div>
+              <div class="work-tile-pills">
+                <span class="tech-tag">Python &amp; FastAPI</span>
+                <span class="tech-tag">ChromaDB</span>
+                <span class="tech-tag">Faster-Whisper</span>
+                <span class="tech-tag">PostgreSQL</span>
+                <span class="tech-tag">Flutter</span>
+              </div>
+              <div class="work-tile-links">
+                <a href="assets/Sahil_Belchada_Resume.pdf" download="Sahil_Belchada_Resume.pdf" target="_blank" class="link-pill">
+                  <i class="fa-solid fa-file-arrow-down"></i> Resume Details
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         6. FLOATING PROJECT IMAGE MODAL & "VIEW" CURSOR FOLLOWER
+         ======================================================================== -->
+    <div class="project-modal-container" id="projectModalContainer" aria-hidden="true">
+      <div class="project-modal-slider" id="projectModalSlider">
+        <div class="project-modal-slide" style="background-color: #2b303c;">
+          <img src="assets/projects/fitpulse.png" alt="MarketMind AI preview" loading="lazy">
+        </div>
+        <div class="project-modal-slide" style="background-color: #1e2638;">
+          <img src="assets/projects/cryptovault.png" alt="MoM Generator preview" loading="lazy">
+        </div>
+        <div class="project-modal-slide" style="background-color: #22322d;">
+          <img src="assets/projects/smartcampus.png" alt="HaritKranti preview" loading="lazy">
+        </div>
+        <div class="project-modal-slide" style="background-color: #282436;">
+          <img src="assets/projects/devflow.png" alt="Aurizen preview" loading="lazy">
+        </div>
+        <div class="project-modal-slide" style="background-color: #2b303c;">
+          <img src="assets/projects/fitpulse.png" alt="AI Personal Finance App preview" loading="lazy">
+        </div>
+        <div class="project-modal-slide" style="background-color: #1e2638;">
+          <img src="assets/projects/cryptovault.png" alt="SwDC Internship preview" loading="lazy">
+        </div>
+      </div>
+    </div>
+    <div class="project-cursor-badge" id="projectCursorBadge" aria-hidden="true">
+      <span>View</span>
+    </div>
+
+    <!-- Curved Section Transition: Light to Dark -->
+    <div class="rounded-div-wrapper to-dark">
+      <div class="rounded-div"></div>
+    </div>
+
+    <!-- ========================================================================
+         7. FOOTER SECTION (DENNIS SNELLENBERG SIGNATURE DARK FOOTER)
+         ======================================================================== -->
+    <footer class="footer-section theme-dark" id="contact">
+      <div class="footer-container">
+        <!-- Floating Profile Avatar -->
+        <div class="footer-profile-wrap">
+          <div class="footer-avatar-circle">
+            <span class="avatar-initials">SB</span>
+          </div>
+          <span class="footer-status-pill"><span class="status-pulse-dot"></span> Available for Opportunities</span>
+        </div>
+
+        <!-- Giant Dennis Snellenberg Editorial Heading -->
+        <h2 class="footer-giant-title">
+          <span>Let's work</span>
+          <span>together</span>
+        </h2>
+
+        <!-- Dennis Snellenberg Giant Round Magnetic CTA Button -->
+        <div class="footer-cta-container">
+          <div class="footer-divider-stripe"></div>
+          <div class="footer-btn-anchor">
+            <a href="mailto:bsahil979@gmail.com" class="magnetic-circle-btn large dark magnetic-target" id="footerContactBtn">
+              <span class="btn-text-inner">Get in touch</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Contact Info Pills -->
+        <div class="footer-contact-pills">
+          <a href="mailto:bsahil979@gmail.com" class="contact-pill-btn magnetic-target">
+            <span class="btn-text-inner"><i class="fa-solid fa-envelope"></i> bsahil979@gmail.com</span>
+          </a>
+          <a href="tel:+919324545227" class="contact-pill-btn magnetic-target">
+            <span class="btn-text-inner"><i class="fa-solid fa-phone"></i> +91 9324545227</span>
+          </a>
+        </div>
+
+        <!-- Bottom Meta Bar -->
+        <div class="footer-bottom-bar">
+          <div class="footer-col">
+            <span class="footer-meta-label">VERSION</span>
+            <span class="footer-meta-val">2026 © Edition</span>
+          </div>
+          <div class="footer-col">
+            <span class="footer-meta-label">LOCAL TIME</span>
+            <span class="footer-meta-val"><span id="mumbaiTime">--:-- -- GMT+5:30</span> • Mumbai, IN</span>
+          </div>
+          <div class="footer-col">
+            <span class="footer-meta-label">SOCIALS</span>
+            <div class="footer-social-links">
+              <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="footer-social-link magnetic-target">
+                <span class="btn-text-inner">GitHub</span>
+              </a>
+              <a href="https://linkedin.com/in/sahil-belchada-6b3a0928a/" target="_blank" rel="noopener noreferrer" class="footer-social-link magnetic-target">
+                <span class="btn-text-inner">LinkedIn</span>
+              </a>
+              <a href="https://leetcode.com/u/bsahil979/" target="_blank" rel="noopener noreferrer" class="footer-social-link magnetic-target">
+                <span class="btn-text-inner">LeetCode</span>
+              </a>
+              <a href="https://www.codechef.com/users/bsahil979" target="_blank" rel="noopener noreferrer" class="footer-social-link magnetic-target">
+                <span class="btn-text-inner">CodeChef</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Interactive Logic -->
+  <script src="app.js"></script>
+</body>
+</html>

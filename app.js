@@ -23,6 +23,12 @@
     const wordsContainer = document.getElementById('loadingWords');
     if (!container || !screen || !wordsContainer) return;
 
+    // Yield to page transition engine if on work page or transitioning
+    const pageTransitionTo = sessionStorage.getItem('dennis_page_transition');
+    if (pageTransitionTo || document.body.classList.contains('page-work')) {
+      return;
+    }
+
     const words = wordsContainer.querySelectorAll('h2');
     if (!words.length) return;
 
@@ -184,7 +190,7 @@
 
     if (!projectList || !modalContainer || !modalSlider || !cursorBadge) return;
 
-    const projectItems = projectList.querySelectorAll('.home-project-item');
+    const projectItems = projectList.querySelectorAll('.home-project-item, .work-row-item');
     if (!projectItems.length) return;
 
     let mouseX = window.innerWidth / 2;
@@ -244,9 +250,9 @@
 
     // Attach listeners directly to each project item
     projectItems.forEach((item, idx) => {
-      const slideIndex = item.hasAttribute('data-index') 
-        ? parseInt(item.getAttribute('data-index'), 10) 
-        : idx;
+      const slideIndex = item.hasAttribute('data-project-index')
+        ? parseInt(item.getAttribute('data-project-index'), 10)
+        : (item.hasAttribute('data-index') ? parseInt(item.getAttribute('data-index'), 10) : idx);
 
       item.addEventListener('mouseenter', () => {
         showItemModal(slideIndex);
@@ -276,7 +282,7 @@
   // 5. Live Mumbai Local Time Clock (Dennis Snellenberg Footer)
   // --------------------------------------------------------------------------
   function initLiveClock() {
-    const clockEl = document.getElementById('liveClockMumbai');
+    const clockEl = document.getElementById('liveClockMumbai') || document.getElementById('mumbaiTime');
     if (!clockEl) return;
 
     function updateClock() {
@@ -377,13 +383,195 @@
     });
   }
 
+  // --------------------------------------------------------------------------
+  // 8. Dennis Snellenberg Fluid Curved Page Transition Engine
+  // --------------------------------------------------------------------------
+  function initPageTransitions() {
+    const container = document.getElementById('loadingContainer');
+    const screen = document.getElementById('loadingScreen');
+    const wordText = document.getElementById('pageTransitionText');
+    if (!container || !screen) return;
+
+    // 1. Entrance animation (Exiting the transition curtain upon landing)
+    const isTransitioning = sessionStorage.getItem('dennis_page_transition');
+    const isWorkPage = document.body.classList.contains('page-work');
+
+    if (isTransitioning || isWorkPage) {
+      sessionStorage.removeItem('dennis_page_transition');
+      container.classList.remove('hidden');
+      container.classList.add('is-active', 'is-exiting');
+
+      if (wordText) {
+        wordText.textContent = isWorkPage ? 'Work' : 'Home';
+      }
+
+      // Smoothly remove overlay once the curtain has swept off
+      setTimeout(() => {
+        container.classList.remove('is-active', 'is-exiting');
+        screen.classList.add('done');
+      }, 700);
+    }
+
+    // 2. Intercept page navigation links
+    const transitionLinks = document.querySelectorAll('.page-transition-link, a[href="work.html"], a[href="index.html"]');
+
+    transitionLinks.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || link.target === '_blank') {
+          return;
+        }
+
+        // Avoid re-transitioning to same page
+        const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+        const targetPage = href.split('#')[0];
+        if (targetPage === currentPage) return;
+
+        e.preventDefault();
+        const targetWord = link.getAttribute('data-transition-word') || (href.includes('work') ? 'Work' : 'Home');
+
+        if (wordText) {
+          wordText.textContent = targetWord;
+        }
+
+        // Reset classes and trigger entrance wipe
+        container.classList.remove('hidden', 'is-exiting');
+        screen.classList.remove('done');
+        container.classList.add('is-active', 'is-entering');
+        sessionStorage.setItem('dennis_page_transition', targetWord);
+
+        setTimeout(() => {
+          window.location.href = href;
+        }, 520);
+      });
+    });
+
+    // Reset overlay if page restored from bfcache
+    window.addEventListener('pageshow', (e) => {
+      if (e.persisted) {
+        container.classList.remove('is-active', 'is-entering', 'is-exiting');
+      }
+    });
+  }
+
+  // --------------------------------------------------------------------------
+  // 9. Dennis Snellenberg Work Page Filter Controller
+  // --------------------------------------------------------------------------
+  function initWorkFilters() {
+    const filterButtons = document.querySelectorAll('.filter-pill-btn');
+    const rowItems = document.querySelectorAll('.work-row-item');
+    const gridCards = document.querySelectorAll('.work-tile-card');
+    if (!filterButtons.length) return;
+
+    filterButtons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        filterButtons.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filterVal = btn.getAttribute('data-filter');
+
+        // Filter Rows View
+        rowItems.forEach((item) => {
+          const itemCat = item.getAttribute('data-category') || '';
+          if (filterVal === 'all' || itemCat.includes(filterVal)) {
+            item.classList.remove('is-filtered-out');
+          } else {
+            item.classList.add('is-filtered-out');
+            item.classList.remove('is-expanded');
+          }
+        });
+
+        // Filter Grid View
+        gridCards.forEach((card) => {
+          const cardCat = card.getAttribute('data-category') || '';
+          if (filterVal === 'all' || cardCat.includes(filterVal)) {
+            card.classList.remove('is-filtered-out');
+          } else {
+            card.classList.add('is-filtered-out');
+          }
+        });
+
+        // Update Lenis scroll container
+        if (lenisInstance) {
+          lenisInstance.resize();
+        }
+      });
+    });
+  }
+
+  // --------------------------------------------------------------------------
+  // 10. Dennis Snellenberg Work Page View Mode Switcher (Rows vs Grid)
+  // --------------------------------------------------------------------------
+  function initWorkViewToggle() {
+    const rowsBtn = document.getElementById('viewRowsBtn');
+    const gridBtn = document.getElementById('viewGridBtn');
+    const listView = document.getElementById('workListView');
+    const gridView = document.getElementById('workGridView');
+
+    if (!rowsBtn || !gridBtn || !listView || !gridView) return;
+
+    rowsBtn.addEventListener('click', () => {
+      rowsBtn.classList.add('active');
+      gridBtn.classList.remove('active');
+      listView.classList.remove('is-hidden');
+      gridView.classList.add('is-hidden');
+      if (lenisInstance) lenisInstance.resize();
+    });
+
+    gridBtn.addEventListener('click', () => {
+      gridBtn.classList.add('active');
+      rowsBtn.classList.remove('active');
+      gridView.classList.remove('is-hidden');
+      listView.classList.add('is-hidden');
+      if (lenisInstance) lenisInstance.resize();
+    });
+  }
+
+  // --------------------------------------------------------------------------
+  // 11. Dennis Snellenberg Expandable Case Study Drawers
+  // --------------------------------------------------------------------------
+  function initWorkRowAccordions() {
+    const rowMains = document.querySelectorAll('.work-row-main');
+    if (!rowMains.length) return;
+
+    rowMains.forEach((main) => {
+      main.addEventListener('click', (e) => {
+        // Prevent toggle if clicking on interactive links
+        if (e.target.closest('a')) return;
+
+        const parentItem = main.closest('.work-row-item');
+        if (!parentItem) return;
+
+        const isExpanded = parentItem.classList.contains('is-expanded');
+        parentItem.classList.toggle('is-expanded', !isExpanded);
+        main.setAttribute('aria-expanded', !isExpanded);
+
+        // Update Lenis scroll layout
+        setTimeout(() => {
+          if (lenisInstance) lenisInstance.resize();
+        }, 350);
+      });
+
+      main.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          main.click();
+        }
+      });
+    });
+  }
+
   // DOM Ready Initialization
   document.addEventListener('DOMContentLoaded', () => {
     initLanguagePreloader();
+    initPageTransitions();
     initHeroMarquee();
     initAdaptiveNavbar();
     initMagneticPhysics();
     initProjectHoverModal();
+    initWorkFilters();
+    initWorkViewToggle();
+    initWorkRowAccordions();
     initLiveClock();
     initSmoothScroll();
     initSmoothAnchors();
