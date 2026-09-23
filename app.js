@@ -23,9 +23,13 @@
     const wordsContainer = document.getElementById('loadingWords');
     if (!container || !screen || !wordsContainer) return;
 
-    // Yield to page transition engine if on work page or transitioning
+    // Yield to page transition engine if on work page, transitioning, or already visited
     const pageTransitionTo = sessionStorage.getItem('dennis_page_transition');
-    if (pageTransitionTo || document.body.classList.contains('page-work')) {
+    const alreadyVisited = sessionStorage.getItem('dennis_preloader_done');
+
+    if (pageTransitionTo || document.body.classList.contains('page-work') || alreadyVisited) {
+      container.classList.add('hidden');
+      screen.classList.add('done');
       return;
     }
 
@@ -35,7 +39,9 @@
     // Check reduced motion preference
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) {
+      sessionStorage.setItem('dennis_preloader_done', 'true');
       container.classList.add('hidden');
+      screen.classList.add('done');
       return;
     }
 
@@ -50,6 +56,7 @@
         words[currentIndex].classList.add('active');
       } else {
         clearInterval(interval);
+        sessionStorage.setItem('dennis_preloader_done', 'true');
         // Complete cycle: slide the curtain up
         setTimeout(() => {
           screen.classList.add('done');
@@ -446,14 +453,23 @@
       container.classList.add('is-active', 'is-exiting');
 
       if (wordText) {
-        wordText.textContent = isWorkPage ? 'Work' : 'Home';
+        wordText.textContent = isWorkPage ? 'Work' : (isTransitioning || 'Home');
       }
 
       // Smoothly remove overlay once the curtain has swept off
       setTimeout(() => {
         container.classList.remove('is-active', 'is-exiting');
         screen.classList.add('done');
+        container.classList.add('hidden');
       }, 700);
+    } else {
+      // If user navigated back without active transition, immediately dismiss any dark overlay
+      const alreadyDone = sessionStorage.getItem('dennis_preloader_done');
+      if (alreadyDone) {
+        screen.classList.add('done');
+        container.classList.add('hidden');
+        container.classList.remove('is-active', 'is-entering', 'is-exiting');
+      }
     }
 
     // 2. Intercept page navigation links
@@ -490,11 +506,11 @@
       });
     });
 
-    // Reset overlay if page restored from bfcache
-    window.addEventListener('pageshow', (e) => {
-      if (e.persisted) {
-        container.classList.remove('is-active', 'is-entering', 'is-exiting');
-      }
+    // 3. Bulletproof reset for bfcache and browser back/forward navigation
+    window.addEventListener('pageshow', () => {
+      container.classList.remove('is-active', 'is-entering', 'is-exiting');
+      screen.classList.add('done');
+      container.classList.add('hidden');
     });
   }
 

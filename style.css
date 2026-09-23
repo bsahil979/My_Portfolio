@@ -348,7 +348,14 @@ html.lenis, html.lenis body {
   border-color: var(--color-white);
 }
 
-.mobile-resume-pill {
+.mobile-nav-actions {
+  display: none;
+  align-items: center;
+  gap: 8px;
+}
+
+.mobile-resume-pill,
+.mobile-home-pill {
   display: none;
   padding: 8px 16px;
   border: 1px solid var(--color-border-light);
@@ -356,6 +363,43 @@ html.lenis, html.lenis body {
   color: inherit;
   text-decoration: none;
   font-size: 0.85rem;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.25s ease;
+}
+
+.nav-light .mobile-home-pill,
+.nav-light .mobile-resume-pill {
+  border-color: var(--color-border-dark);
+}
+
+.mobile-home-pill:hover,
+.mobile-resume-pill:hover {
+  background: var(--color-dark);
+  color: #FFFFFF;
+}
+
+.work-back-home-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border-dark);
+  color: var(--color-text-dark);
+  text-decoration: none;
+  font-family: var(--font-editorial);
+  font-size: 0.9rem;
+  font-weight: 500;
+  background: var(--color-white);
+  transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.work-back-home-pill:hover {
+  background: var(--color-dark);
+  color: #FFFFFF;
+  border-color: var(--color-dark);
+  transform: translateY(-2px);
 }
 
 /* --------------------------------------------------------------------------
@@ -2200,7 +2244,11 @@ html.lenis, html.lenis body {
   .nav-links {
     display: none;
   }
-  .mobile-resume-pill {
+  .mobile-nav-actions {
+    display: inline-flex;
+  }
+  .mobile-resume-pill,
+  .mobile-home-pill {
     display: inline-flex;
   }
   .home-project-row {
