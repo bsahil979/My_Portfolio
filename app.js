@@ -92,8 +92,7 @@
   // 3. Dennis Snellenberg Magnetic Physics Engine (2.5D Dual-Layer Text Parallax)
   // --------------------------------------------------------------------------
   function initMagneticPhysics() {
-    const isTouch = window.innerWidth < 1024 || ('ontouchstart' in window);
-    if (isTouch) return;
+    if (window.innerWidth <= 540) return;
 
     const magneticElements = document.querySelectorAll('.magnetic-target');
 
@@ -175,8 +174,8 @@
   // 4. Dennis Snellenberg Floating Project Modal & "View" Cursor Follower
   // --------------------------------------------------------------------------
   function initProjectHoverModal() {
-    const isTouch = window.innerWidth < 1024 || ('ontouchstart' in window);
-    if (isTouch) return;
+    // Only disable on narrow mobile screens (<= 540px, matching Dennis Snellenberg)
+    if (window.innerWidth <= 540) return;
 
     const projectList = document.getElementById('projectList');
     const modalContainer = document.getElementById('projectModalContainer');
@@ -188,62 +187,88 @@
     const projectItems = projectList.querySelectorAll('.home-project-item');
     if (!projectItems.length) return;
 
-    let mouseX = -300, mouseY = -300;
-    let modalX = -300, modalY = -300;
-    let badgeX = -300, badgeY = -300;
-    let isHoveringList = false;
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let modalX = mouseX;
+    let modalY = mouseY;
+    let badgeX = mouseX;
+    let badgeY = mouseY;
+    let hasMoved = false;
 
+    // Track mouse globally across the window
     window.addEventListener('mousemove', (e) => {
       mouseX = e.clientX;
       mouseY = e.clientY;
+      if (!hasMoved) {
+        modalX = mouseX;
+        modalY = mouseY;
+        badgeX = mouseX;
+        badgeY = mouseY;
+        modalContainer.style.left = `${modalX.toFixed(1)}px`;
+        modalContainer.style.top = `${modalY.toFixed(1)}px`;
+        cursorBadge.style.left = `${badgeX.toFixed(1)}px`;
+        cursorBadge.style.top = `${badgeY.toFixed(1)}px`;
+        hasMoved = true;
+      }
     }, { passive: true });
 
-    // Smooth Lerp Physics Loop
+    // Smooth continuous lerp loop (Dennis Snellenberg cursor follower physics)
     function renderModal() {
-      if (isHoveringList) {
+      if (hasMoved) {
+        // Modal lerp factor: 0.12 for smooth floating motion
         modalX += (mouseX - modalX) * 0.12;
         modalY += (mouseY - modalY) * 0.12;
-        modalContainer.style.left = `${modalX}px`;
-        modalContainer.style.top = `${modalY}px`;
+        modalContainer.style.left = `${modalX.toFixed(1)}px`;
+        modalContainer.style.top = `${modalY.toFixed(1)}px`;
 
+        // Badge lerp factor: 0.22 for responsive foreground tracking
         badgeX += (mouseX - badgeX) * 0.22;
         badgeY += (mouseY - badgeY) * 0.22;
-        cursorBadge.style.left = `${badgeX}px`;
-        cursorBadge.style.top = `${badgeY}px`;
+        cursorBadge.style.left = `${badgeX.toFixed(1)}px`;
+        cursorBadge.style.top = `${badgeY.toFixed(1)}px`;
       }
       requestAnimationFrame(renderModal);
     }
     requestAnimationFrame(renderModal);
 
-    projectList.addEventListener('mouseenter', (e) => {
-      isHoveringList = true;
-      if (e.clientX && e.clientY) {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        modalX = e.clientX;
-        modalY = e.clientY;
-        badgeX = e.clientX;
-        badgeY = e.clientY;
-        modalContainer.style.left = `${modalX}px`;
-        modalContainer.style.top = `${modalY}px`;
-        cursorBadge.style.left = `${badgeX}px`;
-        cursorBadge.style.top = `${badgeY}px`;
-      }
+    function showItemModal(slideIndex) {
+      modalSlider.style.transform = `translate3d(0, -${slideIndex * 100}%, 0)`;
       modalContainer.classList.add('active');
       cursorBadge.classList.add('active');
-    });
+    }
 
-    projectList.addEventListener('mouseleave', () => {
-      isHoveringList = false;
+    function hideItemModal() {
       modalContainer.classList.remove('active');
       cursorBadge.classList.remove('active');
+    }
+
+    // Attach listeners directly to each project item
+    projectItems.forEach((item, idx) => {
+      const slideIndex = item.hasAttribute('data-index') 
+        ? parseInt(item.getAttribute('data-index'), 10) 
+        : idx;
+
+      item.addEventListener('mouseenter', () => {
+        showItemModal(slideIndex);
+      });
+
+      item.addEventListener('mousemove', () => {
+        if (!modalContainer.classList.contains('active')) {
+          showItemModal(slideIndex);
+        }
+      });
+
+      item.addEventListener('mouseleave', (e) => {
+        const related = e.relatedTarget;
+        if (!related || !projectList.contains(related)) {
+          hideItemModal();
+        }
+      });
     });
 
-    projectItems.forEach((item, idx) => {
-      const slideIndex = item.hasAttribute('data-index') ? parseInt(item.getAttribute('data-index'), 10) : idx;
-      item.addEventListener('mouseenter', () => {
-        modalSlider.style.transform = `translate3d(0, -${slideIndex * 100}%, 0)`;
-      });
+    // Guard against leaving project list entirely
+    projectList.addEventListener('mouseleave', () => {
+      hideItemModal();
     });
   }
 
