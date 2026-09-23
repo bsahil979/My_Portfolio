@@ -139,35 +139,29 @@
   }
 
   // --------------------------------------------------------------------------
-  // Dennis Snellenberg Calm Drifting Hero Marquee with Scroll Velocity Link
+  // Dennis Snellenberg Calm Drifting Hero Marquee (Steady, Smooth & Slow)
   // --------------------------------------------------------------------------
   function initHeroMarquee() {
     const track = document.getElementById('heroMarqueeTrack');
     if (!track) return;
 
     let xPercent = 0;
-    const baseSpeed = 0.055;
-    let scrollSpeedBoost = 0;
-    let lastScrollY = window.scrollY;
+    // Slow, serene speed: ~2% per second constant drift, completely independent of scrolling
+    const speedPerMs = 0.0022;
+    let lastTime = performance.now();
 
-    function onScroll() {
-      const currentScrollY = window.scrollY;
-      const delta = currentScrollY - lastScrollY;
-      lastScrollY = currentScrollY;
-      scrollSpeedBoost += delta * 0.035;
-    }
+    function renderMarquee(currentTime) {
+      const delta = currentTime - lastTime;
+      lastTime = currentTime;
 
-    window.addEventListener('scroll', onScroll, { passive: true });
+      // Safe delta clamp to prevent jump if user switches tabs
+      const safeDelta = Math.min(delta, 100);
 
-    function renderMarquee() {
-      xPercent -= (baseSpeed + scrollSpeedBoost);
-      scrollSpeedBoost *= 0.92;
+      xPercent -= speedPerMs * safeDelta;
 
       // Wrap cleanly at -50% for seamless looping
       if (xPercent <= -50) {
         xPercent += 50;
-      } else if (xPercent > 0) {
-        xPercent -= 50;
       }
 
       track.style.transform = `translate3d(${xPercent}%, 0, 0)`;
