@@ -507,10 +507,12 @@
     });
 
     // 3. Bulletproof reset for bfcache and browser back/forward navigation
-    window.addEventListener('pageshow', () => {
-      container.classList.remove('is-active', 'is-entering', 'is-exiting');
-      screen.classList.add('done');
-      container.classList.add('hidden');
+    window.addEventListener('pageshow', (event) => {
+      if (event.persisted || sessionStorage.getItem('dennis_preloader_done')) {
+        container.classList.remove('is-active', 'is-entering', 'is-exiting');
+        screen.classList.add('done');
+        container.classList.add('hidden');
+      }
     });
   }
 
