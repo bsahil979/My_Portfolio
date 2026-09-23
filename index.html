@@ -3,892 +3,675 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sahil Belchada | AI Engineer & Full-Stack Architect</title>
-  <meta name="description" content="Portfolio of Sahil Belchada — B.Tech Computer Engineering graduate specializing in AI-powered solutions, real-time data pipelines (Kafka, Airflow), and full-stack architectures.">
-  <meta name="keywords" content="Sahil Belchada, AI Engineer, Data Engineering, MarketMind AI, MoM Generator, Kafka, FastAPI, React, Python, Java">
-  <meta name="google-site-verification" content="googlef8035c1f1703c66d">
+  <title>Sahil Belchada • Software Engineer</title>
   
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="Sahil Belchada • Software Engineer">
+  <meta name="description" content="Portfolio of Sahil Belchada — Software Engineer with hands-on experience building AI-powered solutions, microservices, and data engineering systems in Python and Java. Located in Mumbai, India.">
+  <meta name="keywords" content="Sahil Belchada, Software Engineer, Python, Java, FastAPI, Spring Boot, Apache Kafka, Apache Airflow, PostgreSQL, React, Docker, AWS, MarketMind AI, MoM Generator">
+  <meta name="author" content="Sahil Belchada">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://sahilbelchada.dev">
+
+  <!-- Google Search Console Site Verification -->
+  <meta name="google-site-verification" content="googlef8035c1f1703c66d">
+
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  
-  <!-- OpenGraph / Social Sharing Preview -->
+
+  <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Sahil Belchada | AI Engineer & Full-Stack Architect">
-  <meta property="og:description" content="Portfolio of Sahil Belchada — B.Tech Computer Engineering graduate specializing in AI-powered solutions, real-time data pipelines (Kafka, Airflow), and full-stack architectures.">
+  <meta property="og:url" content="https://sahilbelchada.dev">
+  <meta property="og:title" content="Sahil Belchada • Software Engineer">
+  <meta property="og:description" content="Software Engineer with hands-on experience building AI-powered solutions and data engineering systems in Python and Java.">
   <meta property="og:image" content="assets/marketmind-preview.png">
+
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Sahil Belchada | AI Engineer & Full-Stack Architect">
-  <meta name="twitter:description" content="Portfolio of Sahil Belchada — AI Engineering, Real-Time Data Pipelines (Kafka, Airflow), and Full-Stack Architectures.">
+  <meta name="twitter:title" content="Sahil Belchada • Software Engineer">
+  <meta name="twitter:description" content="Software Engineer with hands-on experience building AI-powered solutions and data engineering systems in Python and Java.">
   <meta name="twitter:image" content="assets/marketmind-preview.png">
-  
-  <!-- Fonts -->
+
+  <!-- Fonts: Space Grotesk, Plus Jakarta Sans & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,450;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="style.css">
+
+  <!-- Dennis Snellenberg Main Stylesheet (Cache Busted v=4.0) -->
+  <link rel="stylesheet" href="style.css?v=4.0">
 </head>
 <body>
 
-  <!-- Site Preloader (0% - 100% Circular Progress Counter & Cursive Greeting) -->
-  <div class="site-preloader" id="sitePreloader">
-    <div class="preloader-content">
-      <div class="preloader-ring-wrapper" id="preloaderRingWrapper">
-        <svg class="preloader-svg" viewBox="0 0 120 120">
-          <defs>
-            <linearGradient id="preloaderFlameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#ffb703" />
-              <stop offset="50%" stop-color="#ff7b25" />
-              <stop offset="100%" stop-color="#ea580c" />
-            </linearGradient>
-          </defs>
-          <circle class="preloader-track" cx="60" cy="60" r="50"></circle>
-          <circle class="preloader-bar" id="preloaderBar" cx="60" cy="60" r="50"></circle>
-        </svg>
-        <span class="preloader-counter" id="preloaderCounter">0%</span>
-      </div>
-      <div class="preloader-greeting" id="preloaderGreeting">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -800 1710 1000" class="hello-svg" id="helloSvg">
-          <defs>
-            <linearGradient id="helloFlameGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stop-color="#ffffff" />
-              <stop offset="35%" stop-color="#fde047" />
-              <stop offset="70%" stop-color="#ff9500" />
-              <stop offset="100%" stop-color="#ea580c" />
-            </linearGradient>
-          </defs>
-          <g transform="scale(1, -1) translate(50, 0)" id="helloSvgMainGroup">
-            <g transform="translate(0, 0)" class="letter-group letter-0">
-              <path d="M145 -88Q145 -88 137.5 -85.5Q130 -83 121.0 -80.5Q112 -78 106 -78Q90 -74 83.0 -60.5Q76 -47 80 -31Q84 -27 86.0 -14.0Q88 -1 88 7Q92 15 93.0 18.5Q94 22 98 38Q101 55 108.5 85.5Q116 116 125.5 151.0Q135 186 144.0 218.0Q153 250 160.5 272.0Q168 294 171 297Q171 297 171.0 300.5Q171 304 171 308Q171 308 172.5 317.5Q174 327 182 339Q186 350 189.0 363.0Q192 376 192 380Q196 385 203.5 404.5Q211 424 218 443Q224 459 231.5 477.0Q239 495 244.5 508.0Q250 521 250 521Q250 525 250.0 525.5Q250 526 250 526Q254 530 269.5 566.5Q285 603 312 661Q316 669 323.0 684.0Q330 699 330 703Q342 716 354.5 712.5Q367 709 378.0 698.5Q389 688 394 677L404 661L368 589Q351 561 340.0 538.0Q329 515 329 511Q329 511 324.0 497.5Q319 484 312.5 464.5Q306 445 300 427Q289 396 279.0 375.5Q269 355 269 351Q269 353 290.0 354.0Q311 355 343.0 355.0Q375 355 408.5 355.5Q442 356 468.5 356.5Q495 357 505 359L557 364L587 458Q595 486 608.0 526.0Q621 566 631 594Q647 640 662.0 656.0Q677 672 689 672Q692 672 699.5 668.0Q707 664 715.0 658.0Q723 652 725 646Q737 635 736.5 621.0Q736 607 720 584Q704 557 693.5 525.5Q683 494 675 474Q675 462 672.0 454.5Q669 447 665 443Q663 441 657.0 428.0Q651 415 646.0 402.0Q641 389 641 386Q641 379 638.0 369.0Q635 359 631 355Q629 349 622.0 325.0Q615 301 606.0 268.5Q597 236 587.0 205.5Q577 175 569 155Q569 148 564.0 137.5Q559 127 559 119Q555 107 549.0 89.0Q543 71 543 66Q538 43 532.5 15.0Q527 -13 523.5 -34.0Q520 -55 520 -58Q501 -62 489.5 -54.0Q478 -46 467 -42Q448 -31 444.5 -16.0Q441 -1 452 22Q457 30 464.5 61.5Q472 93 480 124Q486 139 493.0 163.0Q500 187 507.0 210.5Q514 234 519.0 251.0Q524 268 526 270Q526 274 526.0 277.0Q526 280 526 280Q524 282 504.0 283.5Q484 285 454.5 284.5Q425 284 391.5 282.5Q358 281 329 277Q318 277 299.5 277.0Q281 277 273 277Q262 277 254.5 277.0Q247 277 247 277Q246 274 240.0 256.5Q234 239 226.5 214.5Q219 190 211.0 164.5Q203 139 197.5 118.0Q192 97 190 89Q186 71 179.5 44.0Q173 17 165.5 -11.5Q158 -40 152.5 -61.0Q147 -82 145 -88Z" class="hello-char-path" data-char="H" />
-            </g>
-            <g transform="translate(570, 0)" class="letter-group letter-1">
-              <path d="M287 25Q260 8 228.5 5.0Q197 2 169.0 13.5Q141 25 124 49Q111 65 103.5 93.5Q96 122 101 170Q106 213 128.5 257.5Q151 302 183.5 336.5Q216 371 252 384Q267 390 280.0 391.5Q293 393 316 391Q339 388 355.0 380.5Q371 373 379 363Q394 347 399.0 332.5Q404 318 404 304Q399 275 375.0 240.0Q351 205 309 186Q290 179 266.0 178.0Q242 177 210 186Q188 192 181.0 182.0Q174 172 173 139Q173 115 180.5 100.0Q188 85 206 81Q228 77 238.5 78.5Q249 80 264 88Q275 95 281.5 99.5Q288 104 293.5 109.0Q299 114 306 119Q312 124 316.5 126.0Q321 128 326 128Q335 127 343.0 118.0Q351 109 354 102Q358 97 349.5 83.0Q341 69 324.5 53.5Q308 38 287 25ZM278 244Q287 248 300.0 258.5Q313 269 323.0 281.0Q333 293 333 301Q333 313 319.0 321.5Q305 330 281 324Q272 322 260.0 312.0Q248 302 236.5 289.5Q225 277 217.0 266.5Q209 256 208 251Q212 246 224.5 243.5Q237 241 252.5 241.0Q268 241 278 244Z" class="hello-char-path" data-char="e" />
-            </g>
-            <g transform="translate(901, 0)" class="letter-group letter-2">
-              <path d="M138 -7Q119 -12 105.0 2.5Q91 17 86.5 46.0Q82 75 90 112Q95 124 98.0 135.5Q101 147 101 154Q103 164 109.0 183.5Q115 203 122.0 224.0Q129 245 135.5 261.5Q142 278 144 282Q148 282 151.0 289.0Q154 296 154 303Q154 311 157.5 321.0Q161 331 165 335Q165 340 167.5 346.5Q170 353 170 357Q170 361 172.5 365.0Q175 369 175 373Q182 386 193.5 414.5Q205 443 218.5 478.0Q232 513 244.0 547.0Q256 581 263.5 604.5Q271 628 271 633Q271 641 276.5 647.0Q282 653 290 653Q293 656 301.5 657.5Q310 659 314 659Q314 659 318.0 655.0Q322 651 330 643Q338 636 343.5 627.0Q349 618 349 606Q349 593 346.0 581.5Q343 570 334.0 550.0Q325 530 306 490Q298 470 289.0 452.5Q280 435 280 431Q280 427 276.5 419.0Q273 411 269 399Q265 391 258.0 375.5Q251 360 243.5 342.5Q236 325 231.0 312.5Q226 300 226 298Q226 294 225.5 290.0Q225 286 221 282Q217 282 216.5 276.5Q216 271 216 271Q216 261 200 218Q184 163 170.5 117.0Q157 71 157 43Q157 19 151.5 8.0Q146 -3 138 -7Z" class="hello-char-path" data-char="l" />
-            </g>
-            <g transform="translate(1076, 0)" class="letter-group letter-3">
-              <path d="M138 -7Q119 -12 105.0 2.5Q91 17 86.5 46.0Q82 75 90 112Q95 124 98.0 135.5Q101 147 101 154Q103 164 109.0 183.5Q115 203 122.0 224.0Q129 245 135.5 261.5Q142 278 144 282Q148 282 151.0 289.0Q154 296 154 303Q154 311 157.5 321.0Q161 331 165 335Q165 340 167.5 346.5Q170 353 170 357Q170 361 172.5 365.0Q175 369 175 373Q182 386 193.5 414.5Q205 443 218.5 478.0Q232 513 244.0 547.0Q256 581 263.5 604.5Q271 628 271 633Q271 641 276.5 647.0Q282 653 290 653Q293 656 301.5 657.5Q310 659 314 659Q314 659 318.0 655.0Q322 651 330 643Q338 636 343.5 627.0Q349 618 349 606Q349 593 346.0 581.5Q343 570 334.0 550.0Q325 530 306 490Q298 470 289.0 452.5Q280 435 280 431Q280 427 276.5 419.0Q273 411 269 399Q265 391 258.0 375.5Q251 360 243.5 342.5Q236 325 231.0 312.5Q226 300 226 298Q226 294 225.5 290.0Q225 286 221 282Q217 282 216.5 276.5Q216 271 216 271Q216 261 200 218Q184 163 170.5 117.0Q157 71 157 43Q157 19 151.5 8.0Q146 -3 138 -7Z" class="hello-char-path" data-char="l" />
-            </g>
-            <g transform="translate(1251, 0)" class="letter-group letter-4">
-              <path d="M168 10Q155 10 147.5 15.0Q140 20 129 29Q110 49 100.0 70.5Q90 92 93 109Q96 117 95.5 124.5Q95 132 95 132Q90 137 92.0 138.5Q94 140 96 144Q102 144 100 155Q98 163 107.0 189.5Q116 216 131 240Q137 250 149.0 266.5Q161 283 175.5 299.5Q190 316 202 326Q227 347 247.5 359.0Q268 371 290 376Q312 381 330.5 381.0Q349 381 364 365Q387 355 397.0 339.0Q407 323 410 296Q413 266 404.5 224.0Q396 182 356 125Q331 89 308.0 70.0Q285 51 256 34Q235 20 213.0 16.0Q191 12 168 10ZM268 126Q291 148 302.0 171.5Q313 195 325 228Q329 235 330.5 250.0Q332 265 330.5 279.0Q329 293 323 295Q313 302 301.5 298.5Q290 295 274 283Q244 258 219.0 223.5Q194 189 180 141Q173 112 181.5 96.5Q190 81 212.5 87.0Q235 93 268 126Z" class="hello-char-path" data-char="o" />
-            </g>
-            <circle class="ember-pen-spark" id="emberPenSpark" r="14" cx="-200" cy="-200"></circle>
-          </g>
-        </svg>
-      </div>
-    </div>
-  </div>
-
-  <!-- Ambient Atmospheric Background Canvas -->
-  <canvas id="atmosphereCanvas"></canvas>
-
-  <!-- Ground & Campfire Glow Overlay -->
-  <div class="campfire-ambient-glow"></div>
-
-  <!-- Scroll Progress Indicator -->
-  <div class="scroll-progress-container">
-    <div class="scroll-progress-bar" id="scrollProgressBar"></div>
-  </div>
-
-  <!-- Header / Navigation -->
+  <!-- ========================================================================
+       1. HEADER NAVIGATION (DENNIS SNELLENBERG STYLE)
+       ======================================================================== -->
   <header class="navbar" id="navbar">
     <div class="nav-container">
-      <a href="#hero" class="brand-logo">
-        <span class="logo-mark">SB</span>
-        <span class="logo-text">Sahil<span class="accent-dot">.</span></span>
+      <a href="#hero" class="brand-link magnetic-target" aria-label="Sahil Belchada">
+        <span class="brand-text">© Code by <span class="brand-name">Sahil</span></span>
       </a>
 
-      <nav class="nav-links" id="navLinks">
-        <a href="#about" class="nav-link">About</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#experience" class="nav-link">Experience</a>
-        <a href="#skills" class="nav-link">Skills</a>
-        <a href="#contact" class="nav-link">Contact</a>
-        <a href="assets/Sahil_Belchada_Resume.pdf" download="Sahil_Belchada_Resume.pdf" target="_blank" class="nav-link mobile-resume-link">
-          <i class="fa-solid fa-file-arrow-down"></i>
-          <span>Download Resume</span>
+      <!-- Desktop Nav Links -->
+      <nav class="nav-links" id="navLinks" aria-label="Primary Navigation">
+        <a href="#work" class="nav-item magnetic-target">
+          <span>Work</span>
+          <span class="nav-item-dot"></span>
         </a>
-      </nav>
-
-      <div class="nav-actions">
-        <!-- Resume Download Button -->
-        <a href="assets/Sahil_Belchada_Resume.pdf" download="Sahil_Belchada_Resume.pdf" target="_blank" class="action-pill resume-btn" title="Download Sahil's Resume">
+        <a href="#about" class="nav-item magnetic-target">
+          <span>About</span>
+          <span class="nav-item-dot"></span>
+        </a>
+        <a href="#experience" class="nav-item magnetic-target">
+          <span>Experience</span>
+          <span class="nav-item-dot"></span>
+        </a>
+        <a href="#skills" class="nav-item magnetic-target">
+          <span>Skills</span>
+          <span class="nav-item-dot"></span>
+        </a>
+        <a href="#contact" class="nav-item magnetic-target">
+          <span>Contact</span>
+          <span class="nav-item-dot"></span>
+        </a>
+        <a href="assets/Sahil_Belchada_Resume.pdf" download="Sahil_Belchada_Resume.pdf" target="_blank" class="nav-resume-btn magnetic-target" title="Download Verified Resume">
           <i class="fa-solid fa-file-arrow-down"></i>
           <span>Resume</span>
         </a>
+      </nav>
 
-        <!-- Sound Toggle -->
-        <button id="audioToggleBtn" class="action-pill sound-btn" title="Toggle campfire & ambient audio" aria-label="Toggle sound">
-          <i class="fa-solid fa-volume-xmark" id="audioIcon"></i>
-          <span class="sound-text">Campfire Audio</span>
-          <span class="sound-waves" id="soundWaves">
-            <span></span><span></span><span></span>
-          </span>
-        </button>
-
-        <!-- Ask AI Button -->
-        <button id="openAiBtn" class="action-pill ai-btn" title="Chat with Sahil" aria-label="Chat with Sahil">
-          <i class="fa-solid fa-wand-magic-sparkles"></i>
-          <span>Chat with Sahil</span>
-        </button>
-
-        <!-- Mobile Menu Toggle -->
-        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle mobile menu">
-          <i class="fa-solid fa-bars"></i>
-        </button>
-      </div>
+      <!-- Mobile Resume Quick Link -->
+      <a href="assets/Sahil_Belchada_Resume.pdf" download="Sahil_Belchada_Resume.pdf" target="_blank" class="mobile-resume-pill" title="Download Resume">
+        <i class="fa-solid fa-file-arrow-down"></i> Resume
+      </a>
     </div>
   </header>
 
-  <!-- Main Content Wrapper -->
-  <main class="main-wrapper">
-    <!-- Hero Section -->
+  <main>
+    <!-- ========================================================================
+         2. HERO SECTION (DENNIS SNELLENBERG PURE EDITORIAL THEME)
+         ======================================================================== -->
     <section class="hero-section" id="hero">
-      <div class="hero-content">
-        <h1 class="hero-name">
-          <span class="name-first">Sahil</span>
-          <span class="name-last">Belchada</span>
-        </h1>
+      <!-- Top Status Row -->
+      <div class="hero-top-row">
+        <div class="hero-location-tag">
+          <div class="globe-wrap">
+            <i class="fa-solid fa-globe"></i>
+          </div>
+          <span class="hero-loc-text">Located in Mumbai, India</span>
+        </div>
+        <div class="hero-role-tag">
+          <i class="fa-solid fa-arrow-down-right"></i>
+          <span>Software Engineer</span>
+        </div>
       </div>
 
+      <!-- Main Editorial Headline (No Fast Flying Text, Pristine Typography) -->
+      <div class="hero-center-content">
+        <span class="hero-greeting-sub">Hi, I'm</span>
+        <h1 class="hero-title-name">Sahil Belchada</h1>
+        <div class="hero-title-role">Software Engineer</div>
+      </div>
 
-      <!-- Scroll to Explore Motion Indicator (from Waqas video) -->
-      <a href="#about" class="scroll-explore-indicator" aria-label="Scroll to explore">
-        <span class="scroll-explore-text">Scroll to explore</span>
-        <div class="scroll-explore-mouse">
-          <span class="scroll-explore-wheel"></span>
+      <!-- Bottom Info Row -->
+      <div class="hero-bottom-row">
+        <a href="#work" class="hero-scroll-btn magnetic-target">
+          <div class="scroll-arrow-circle">
+            <i class="fa-solid fa-arrow-down"></i>
+          </div>
+          <span>Scroll to explore</span>
+        </a>
+        <div class="hero-education-tag">
+          <span>B.Tech in Computer Engineering (2027) • K.J. Somaiya College of Engineering</span>
         </div>
-      </a>
+      </div>
     </section>
 
-    <!-- About Section -->
-    <section class="section about-section" id="about">
-      <div class="section-container">
-        <div class="section-header">
-          <span class="section-badge"><i class="fa-solid fa-user-astronaut"></i> The Engineer</span>
-          <h2 class="section-title">Bridging Intelligence &amp; Data Infrastructure</h2>
-          <p class="section-subtitle">A quick glimpse into my architectural focus and problem-solving mindset.</p>
-        </div>
-
+    <!-- ========================================================================
+         3. ABOUT / STATEMENT SECTION (DENNIS SNELLENBERG EDITORIAL SPLIT)
+         ======================================================================== -->
+    <section class="about-section" id="about">
+      <div class="about-container">
         <div class="about-grid">
-          <div class="about-card glass-panel">
-            <div class="card-icon"><i class="fa-solid fa-brain"></i></div>
-            <h3>AI &amp; RAG Systems</h3>
-            <p>
-              Specialized in production LLM integrations (Gemini, Groq), LangChain workflows, and ChromaDB vector stores with offline-resilient fallbacks (Faster-Whisper) for mission-critical apps.
-            </p>
+          <!-- Left Column: Big Editorial Statement -->
+          <div class="about-statement-col">
+            <h2 class="about-statement-text">
+              Building AI-powered solutions, event-driven microservices, and reliable data pipelines with scalable architecture.
+            </h2>
           </div>
 
-          <div class="about-card glass-panel">
-            <div class="card-icon"><i class="fa-solid fa-network-wired"></i></div>
-            <h3>Real-Time Data Pipelines</h3>
-            <p>
-              Architect of high-throughput Extract-Validate-Clean-Load (ETL) pipelines using Apache Kafka event streaming, Apache Airflow DAGs, and dimensional star-schema PostgreSQL warehouses.
+          <!-- Right Column: Exact Resume Summary + Magnetic Circular Button -->
+          <div class="about-details-col">
+            <p class="about-resume-paragraph">
+              B.Tech Computer Engineering graduate with hands-on experience building AI-powered solutions and data engineering systems in Python and Java, including a microservices-based, event-driven financial analytics platform with real-time ETL pipelines, dimensional data modeling, and ML forecasting. Skilled in designing data pipelines that clean, normalize, and process data from multiple sources, integrating LLMs (Gemini, Groq) and RAG architectures, and working with relational, analytical, and NoSQL databases.
             </p>
-          </div>
 
-          <div class="about-card glass-panel">
-            <div class="card-icon"><i class="fa-solid fa-cubes"></i></div>
-            <h3>Scalable Microservices</h3>
-            <p>
-              Experienced building polyglot backends with FastAPI (Python) and Spring Boot (Java), Redis caching, Docker containerization, and real-time WebSocket communication.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="section projects-section" id="projects">
-      <div class="section-container">
-        <div class="section-header">
-          <span class="section-badge"><i class="fa-solid fa-code-branch"></i> Built &amp; Deployed</span>
-          <h2 class="section-title">Featured Projects</h2>
-          <p class="section-subtitle">Real-world production systems, platforms, and interactive applications.</p>
-        </div>
-
-        <!-- Filter Tabs -->
-        <div class="filter-tabs">
-          <button class="filter-btn active" data-filter="all">All Projects</button>
-          <button class="filter-btn" data-filter="deployed"><i class="fa-solid fa-circle" style="color: #10b981; font-size: 0.65rem;"></i> Live Deployed</button>
-          <button class="filter-btn" data-filter="ai">AI &amp; Data</button>
-          <button class="filter-btn" data-filter="fullstack">Full-Stack</button>
-          <button class="filter-btn" data-filter="mobile">Mobile &amp; App</button>
-        </div>
-
-        <!-- Projects Showcase: Sequential One After The Other -->
-        <div class="projects-grid">
-          
-          <!-- Project 1: MarketMind AI (LIVE DEPLOYED) -->
-          <div class="project-card glass-panel highlight-card" data-category="deployed ai fullstack">
-            <div class="project-browser-bar">
-              <div class="browser-dots">
-                <span class="browser-dot red"></span>
-                <span class="browser-dot yellow"></span>
-                <span class="browser-dot green"></span>
-              </div>
-              <div class="browser-address">
-                <i class="fa-solid fa-lock"></i> https://market-mind-ai-q1kl.vercel.app/
-              </div>
-              <div class="browser-actions">
-                <button class="preview-mode-btn active" data-target="marketmind" data-mode="iframe" title="Switch to Live Interactive App">
-                  <i class="fa-solid fa-play"></i> Live App
-                </button>
-                <button class="preview-mode-btn" data-target="marketmind" data-mode="image" title="Switch to Snapshot View">
-                  <i class="fa-regular fa-image"></i> Snapshot
-                </button>
-                <a href="https://market-mind-ai-q1kl.vercel.app/" target="_blank" rel="noopener noreferrer" class="browser-external-btn">
-                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Open App
-                </a>
-              </div>
-            </div>
-
-            <!-- Live Visual Preview Viewport -->
-            <div class="project-preview-viewport">
-              <iframe class="live-preview-iframe" id="marketmind-iframe" src="https://market-mind-ai-q1kl.vercel.app/" title="MarketMind AI Live Preview" loading="lazy"></iframe>
-              <img class="live-preview-image hidden" id="marketmind-image" src="assets/marketmind-preview.png" alt="MarketMind AI Live Dashboard Preview">
-              <div class="preview-live-indicator">
-                <span class="pulse-dot"></span> Live in Production
-              </div>
-              <a href="https://market-mind-ai-q1kl.vercel.app/" target="_blank" rel="noopener noreferrer" class="preview-direct-link" title="Open Full Screen">
-                <i class="fa-solid fa-expand"></i>
+            <div class="about-actions-wrap">
+              <a href="assets/Sahil_Belchada_Resume.pdf" download="Sahil_Belchada_Resume.pdf" target="_blank" class="magnetic-circle-btn small magnetic-target">
+                <span>Resume (PDF)</span>
               </a>
-            </div>
-
-            <div class="project-card-body">
-              <div class="project-badge-row">
-                <span class="badge live-badge"><i class="fa-solid fa-circle pulse-dot"></i> Live in Production</span>
-                <span class="badge featured-badge"><i class="fa-solid fa-star"></i> Flagship Platform</span>
-              </div>
-              <div class="project-header">
-                <h3 class="project-title">MarketMind AI</h3>
-                <p class="project-tagline">Real-Time Financial Analytics &amp; Market Prediction Platform</p>
-              </div>
-              <p class="project-desc">
-                A high-performance microservices architecture powering real-time financial market analytics, ML forecasting, and automated ETL pipelines:
-              </p>
-              <ul class="project-bullets">
-                <li><strong>Microservices Engine:</strong> Spring Boot (Java) ingestion service + FastAPI (Python) analytics service connected via Apache Kafka streaming.</li>
-                <li><strong>Data Ingestion:</strong> Ingests live prices every 30s from Yahoo Finance API with Kafka producer-consumer streaming and broker-failure fallback.</li>
-                <li><strong>ETL &amp; Warehousing:</strong> Orchestrated with Apache Airflow DAGs feeding a dimensional star-schema PostgreSQL warehouse.</li>
-                <li><strong>ML Forecasting &amp; Risk:</strong> Linear Regression, Prophet, LSTM models with a model registry (RMSE, MAPE, R²) and financial risk metrics (Beta, Sharpe, VaR).</li>
-                <li><strong>Real-Time &amp; Monitoring:</strong> Redis query cache, WebSocket live price feeds, Prometheus/Grafana metrics, containerized with Docker Compose.</li>
-              </ul>
-              <div class="tech-tags">
-                <span>Java</span><span>Spring Boot</span><span>Python</span><span>FastAPI</span><span>Apache Kafka</span><span>PostgreSQL</span><span>Apache Airflow</span><span>Redis</span><span>Docker</span><span>React 19</span>
-              </div>
-              <div class="project-actions">
-                <a href="https://market-mind-ai-q1kl.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary">
-                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Visit Live App
-                </a>
-                <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-ghost">
-                  <i class="fa-brands fa-github"></i> Repository
-                </a>
-                <button class="btn btn-sm btn-ghost ask-ai-project-btn" data-project="MarketMind AI">
-                  <i class="fa-solid fa-wand-magic-sparkles"></i> Ask AI About This
-                </button>
+              <div class="about-contact-quick">
+                <a href="mailto:bsahil979@gmail.com" class="about-link"><i class="fa-solid fa-envelope"></i> bsahil979@gmail.com</a>
+                <a href="tel:+918828049078" class="about-link"><i class="fa-solid fa-phone"></i> +91 8828049078</a>
               </div>
             </div>
           </div>
-
-          <!-- Project 2: HaritKranti (LIVE DEPLOYED) -->
-          <div class="project-card glass-panel highlight-card" data-category="deployed fullstack">
-            <div class="project-browser-bar">
-              <div class="browser-dots">
-                <span class="browser-dot red"></span>
-                <span class="browser-dot yellow"></span>
-                <span class="browser-dot green"></span>
-              </div>
-              <div class="browser-address">
-                <i class="fa-solid fa-lock"></i> https://haritkranti-s-3m17.vercel.app/
-              </div>
-              <div class="browser-actions">
-                <a href="https://haritkranti-s-3m17.vercel.app/" target="_blank" rel="noopener noreferrer" class="browser-external-btn">
-                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Open App
-                </a>
-              </div>
-            </div>
-
-            <!-- Live Visual Preview Viewport -->
-            <div class="project-preview-viewport has-image">
-              <div class="preview-scroll-container">
-                <img class="live-preview-image" src="assets/haritkranti-preview.png" alt="HaritKranti Live Platform Preview">
-              </div>
-              <div class="preview-hover-overlay">
-                <a href="https://haritkranti-s-3m17.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
-                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Launch Live Storefront
-                </a>
-              </div>
-              <div class="preview-live-indicator">
-                <span class="pulse-dot"></span> Live in Production
-              </div>
-              <a href="https://haritkranti-s-3m17.vercel.app/" target="_blank" rel="noopener noreferrer" class="preview-direct-link" title="Open Full Screen">
-                <i class="fa-solid fa-arrow-up-right-from-square"></i>
-              </a>
-            </div>
-
-            <div class="project-card-body">
-              <div class="project-badge-row">
-                <span class="badge live-badge"><i class="fa-solid fa-circle pulse-dot"></i> Live in Production</span>
-                <span class="badge swdc-badge"><i class="fa-solid fa-wheat-awn"></i> Agricultural Marketplace</span>
-              </div>
-              <div class="project-header">
-                <h3 class="project-title">HaritKranti</h3>
-                <p class="project-tagline">Farmers' Marketplace &amp; Real-Time Crop Guidance Platform</p>
-              </div>
-              <p class="project-desc">
-                A comprehensive MERN stack platform designed to empower agricultural communities with fair trade and technical advisory:
-              </p>
-              <ul class="project-bullets">
-                <li><strong>Marketplace &amp; Guidance:</strong> Direct product listing hub with dynamic crop management advisories and disease prevention guides.</li>
-                <li><strong>Multilingual Engine:</strong> Real-time translation API integration enabling seamless UI localization into multiple regional Indian languages.</li>
-                <li><strong>Robust Architecture:</strong> Node.js and Express REST APIs with MongoDB Atlas and optimized indexing schemas for fast queries.</li>
-                <li><strong>Security:</strong> Secure JWT-based authentication and role-based access for farmers and buyers.</li>
-              </ul>
-              <div class="tech-tags">
-                <span>MongoDB Atlas</span><span>Express.js</span><span>React.js</span><span>Node.js</span><span>Translation API</span><span>JWT</span>
-              </div>
-              <div class="project-actions">
-                <a href="https://haritkranti-s-3m17.vercel.app/" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary">
-                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Visit Live App
-                </a>
-                <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-ghost">
-                  <i class="fa-brands fa-github"></i> Repository
-                </a>
-                <button class="btn btn-sm btn-ghost ask-ai-project-btn" data-project="HaritKranti">
-                  <i class="fa-solid fa-wand-magic-sparkles"></i> Ask AI About This
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 3: MoM Generator -->
-          <div class="project-card glass-panel" data-category="ai">
-            <div class="project-card-body">
-              <div class="project-badge-row">
-                <span class="badge swdc-badge"><i class="fa-solid fa-building-columns"></i> SwDC K.J. Somaiya</span>
-              </div>
-              <div class="project-header">
-                <h3 class="project-title">MoM Generator</h3>
-                <p class="project-tagline">AI-Powered Meeting Minutes, Transcription &amp; RAG Copilot</p>
-              </div>
-              <p class="project-desc">
-                Intelligent enterprise transcription and summarization platform engineered during internship at the Software Development Cell:
-              </p>
-              <ul class="project-bullets">
-                <li><strong>RAG Chatbot:</strong> Built ChromaDB vector store and LangChain agent in Python with robust fallback routing to prevent timeouts.</li>
-                <li><strong>Offline Whisper Fallback:</strong> Local Faster-Whisper pipeline in Python for resilient speech-to-text without network dependency.</li>
-                <li><strong>LLM Pipeline:</strong> Integrated Gemini &amp; Groq for structured action item extraction and executive summary generation.</li>
-                <li><strong>Audio Chunk Merging:</strong> Programmed client-side native mono WAV chunk merging in Dart/Flutter for speaker diarization.</li>
-                <li><strong>Secure Backend:</strong> FastAPI with psycopg2/PostgreSQL, client disconnection monitors, JWT authentication, and Docker deployment.</li>
-              </ul>
-              <div class="tech-tags">
-                <span>Python</span><span>FastAPI</span><span>LangChain</span><span>ChromaDB</span><span>Gemini API</span><span>Groq</span><span>Faster-Whisper</span><span>Flutter</span><span>Docker</span>
-              </div>
-              <div class="project-actions">
-                <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-ghost">
-                  <i class="fa-brands fa-github"></i> View Details
-                </a>
-                <button class="btn btn-sm btn-ghost ask-ai-project-btn" data-project="MoM Generator">
-                  <i class="fa-solid fa-wand-magic-sparkles"></i> Ask AI About This
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 4: Aurizen -->
-          <div class="project-card glass-panel" data-category="mobile">
-            <div class="project-card-body">
-              <div class="project-badge-row">
-                <span class="badge mobile-badge"><i class="fa-solid fa-mobile-screen"></i> Flutter + Supabase</span>
-              </div>
-              <div class="project-header">
-                <h3 class="project-title">Aurizen</h3>
-                <p class="project-tagline">Social Habit Tracking App with Offline-First Architecture</p>
-              </div>
-              <p class="project-desc">
-                A modern habit formation platform engineered with offline-first synchronization and real-time social accountability:
-              </p>
-              <ul class="project-bullets">
-                <li><strong>Offline-First SQLite:</strong> Built local SQLite database caching with automated bidirectional sync and conflict resolution.</li>
-                <li><strong>Supabase Cloud:</strong> Utilized PostgreSQL, Row Level Security (RLS) policies, and Realtime WebSocket subscriptions.</li>
-                <li><strong>Live Notifications:</strong> Firebase Cloud Messaging (FCM) integration for habit reminders and social cheer feeds.</li>
-              </ul>
-              <div class="tech-tags">
-                <span>Flutter</span><span>Dart</span><span>Supabase</span><span>PostgreSQL</span><span>SQLite</span><span>Firebase FCM</span><span>RLS</span>
-              </div>
-              <div class="project-actions">
-                <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-ghost">
-                  <i class="fa-brands fa-github"></i> View on GitHub
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Project 5: AI Personal Finance App -->
-          <div class="project-card glass-panel" data-category="ai fullstack">
-            <div class="project-card-body">
-              <div class="project-badge-row">
-                <span class="badge etl-badge"><i class="fa-solid fa-robot"></i> AI &amp; ETL Workflow</span>
-              </div>
-              <div class="project-header">
-                <h3 class="project-title">AI Personal Finance Tracker</h3>
-                <p class="project-tagline">Automated Bank CSV Ingestion &amp; Spending Insights</p>
-              </div>
-              <p class="project-desc">
-                Full-stack personal finance application eliminating manual entry through automated data pipelines and AI spending analysis:
-              </p>
-              <ul class="project-bullets">
-                <li><strong>Automated Ingestion ETL:</strong> Ingests raw bank statement CSVs, cleans and deduplicates records, and auto-categorizes transactions.</li>
-                <li><strong>AI Financial Copilot:</strong> Synthesizes monthly spending habits to suggest actionable budget savings.</li>
-                <li><strong>Stack:</strong> Built with Next.js modern app router, Node.js API routes, and MongoDB aggregation pipelines.</li>
-              </ul>
-              <div class="tech-tags">
-                <span>Next.js</span><span>Node.js</span><span>MongoDB</span><span>ETL Pipelines</span><span>LLM Summarization</span><span>Tailwind CSS</span>
-              </div>
-              <div class="project-actions">
-                <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-ghost">
-                  <i class="fa-brands fa-github"></i> View on GitHub
-                </a>
-              </div>
-            </div>
-          </div>
-
-
         </div>
       </div>
     </section>
 
-    <!-- Skills Section -->
-    <section class="section skills-section" id="skills">
-      <div class="section-container">
-        <div class="section-header">
-          <span class="section-badge"><i class="fa-solid fa-microchip"></i> Expertise</span>
-          <h2 class="section-title">Technical Constellation</h2>
-          <p class="section-subtitle">Categorized competencies across AI engineering, distributed data pipelines, and full-stack development.</p>
+    <!-- Curved Section Divider -->
+    <div class="rounded-div-wrapper">
+      <div class="rounded-div"></div>
+    </div>
+
+    <!-- ========================================================================
+         4. RECENT WORK / PROJECTS (DENNIS SNELLENBERG INTERACTIVE LIST + CURSOR)
+         ======================================================================== -->
+    <section class="work-section" id="work">
+      <div class="work-container">
+        <div class="section-label-row">
+          <span class="section-label">RECENT WORK</span>
+          <span class="section-label-dim">Verified Projects from Resume</span>
         </div>
 
-        <div class="skills-matrix">
+        <!-- Project Rows List -->
+        <div class="project-list" id="projectList">
           
-          <div class="skill-category glass-panel">
-            <div class="skill-cat-header">
-              <i class="fa-solid fa-brain cat-icon"></i>
-              <h3>AI &amp; Machine Learning</h3>
-            </div>
-            <div class="skill-chips">
-              <span class="skill-chip glow-chip">LLM Integration (Gemini, Groq)</span>
-              <span class="skill-chip glow-chip">RAG Architectures</span>
-              <span class="skill-chip">LangChain</span>
-              <span class="skill-chip">ChromaDB Vector Stores</span>
-              <span class="skill-chip">Prompt Engineering</span>
-              <span class="skill-chip">NLP Sentiment Analysis</span>
-              <span class="skill-chip">LSTM Networks</span>
-              <span class="skill-chip">Prophet Forecasting</span>
-              <span class="skill-chip">Linear Regression</span>
-            </div>
-          </div>
-
-          <div class="skill-category glass-panel">
-            <div class="skill-cat-header">
-              <i class="fa-solid fa-stream cat-icon"></i>
-              <h3>Data Pipelines &amp; ETL</h3>
-            </div>
-            <div class="skill-chips">
-              <span class="skill-chip glow-chip">Apache Kafka Streaming</span>
-              <span class="skill-chip glow-chip">Apache Airflow DAGs</span>
-              <span class="skill-chip">Extract-Validate-Clean-Load (ETL)</span>
-              <span class="skill-chip">Data Normalization &amp; Deduplication</span>
-              <span class="skill-chip">Dimensional (Star Schema) Modeling</span>
-              <span class="skill-chip">Time-Series Querying</span>
-            </div>
-          </div>
-
-          <div class="skill-category glass-panel">
-            <div class="skill-cat-header">
-              <i class="fa-solid fa-server cat-icon"></i>
-              <h3>Backend &amp; Microservices</h3>
-            </div>
-            <div class="skill-chips">
-              <span class="skill-chip glow-chip">FastAPI (Python)</span>
-              <span class="skill-chip glow-chip">Spring Boot (Java)</span>
-              <span class="skill-chip">Node.js</span>
-              <span class="skill-chip">Express.js</span>
-              <span class="skill-chip">WebSockets</span>
-              <span class="skill-chip">JWT &amp; bcrypt Security</span>
-              <span class="skill-chip">Microservices Architecture</span>
-            </div>
-          </div>
-
-          <div class="skill-category glass-panel">
-            <div class="skill-cat-header">
-              <i class="fa-solid fa-database cat-icon"></i>
-              <h3>Databases &amp; Caching</h3>
-            </div>
-            <div class="skill-chips">
-              <span class="skill-chip glow-chip">PostgreSQL (Star Schema)</span>
-              <span class="skill-chip glow-chip">Redis Caching</span>
-              <span class="skill-chip">MongoDB Atlas</span>
-              <span class="skill-chip">SQLite Offline Sync</span>
-              <span class="skill-chip">Supabase</span>
-            </div>
-          </div>
-
-          <div class="skill-category glass-panel">
-            <div class="skill-cat-header">
-              <i class="fa-solid fa-cloud cat-icon"></i>
-              <h3>Cloud, DevOps &amp; Monitoring</h3>
-            </div>
-            <div class="skill-chips">
-              <span class="skill-chip glow-chip">Docker &amp; Docker Compose</span>
-              <span class="skill-chip">AWS (Cloud Technical Essentials)</span>
-              <span class="skill-chip">Google Cloud</span>
-              <span class="skill-chip">Prometheus</span>
-              <span class="skill-chip">Grafana</span>
-              <span class="skill-chip">Git &amp; GitHub Version Control</span>
-              <span class="skill-chip">Pytest &amp; JUnit</span>
-            </div>
-          </div>
-
-          <div class="skill-category glass-panel">
-            <div class="skill-cat-header">
-              <i class="fa-solid fa-laptop-code cat-icon"></i>
-              <h3>Languages &amp; Frontend</h3>
-            </div>
-            <div class="skill-chips">
-              <span class="skill-chip glow-chip">Python</span>
-              <span class="skill-chip glow-chip">Java</span>
-              <span class="skill-chip glow-chip">JavaScript</span>
-              <span class="skill-chip glow-chip">SQL</span>
-              <span class="skill-chip">React 19 / Vite</span>
-              <span class="skill-chip">Next.js</span>
-              <span class="skill-chip">Flutter &amp; Dart</span>
-              <span class="skill-chip">Tailwind CSS</span>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- Experience & Education Section -->
-    <section class="section experience-section" id="experience">
-      <div class="section-container">
-        <div class="section-header">
-          <span class="section-badge"><i class="fa-solid fa-briefcase"></i> Journey</span>
-          <h2 class="section-title">Experience &amp; Education</h2>
-          <p class="section-subtitle">Real-world institutional development experience, academic foundation, and certifications.</p>
-        </div>
-
-        <div class="timeline">
-          
-          <!-- Experience Item: SwDC -->
-          <div class="timeline-item">
-            <div class="timeline-marker">
-              <i class="fa-solid fa-briefcase"></i>
-            </div>
-            <div class="timeline-content glass-panel">
-              <div class="timeline-header">
-                <div>
-                  <h3 class="role-title">Flutter &amp; Backend Developer Intern</h3>
-                  <h4 class="company-name">Software Development Cell (SwDC) &bull; K.J. Somaiya School of Engineering</h4>
+          <!-- Project 01: MarketMind AI -->
+          <div class="project-item-wrap" data-index="0">
+            <div class="project-row magnetic-target">
+              <div class="project-left">
+                <span class="project-num">01</span>
+                <div class="project-title-group">
+                  <h3 class="project-name">MarketMind AI</h3>
+                  <span class="project-subtitle">Real-Time Financial Analytics &amp; Market Prediction Platform</span>
                 </div>
-                <span class="timeline-date">Internship</span>
               </div>
-              <p class="timeline-project-highlight">
-                <strong>Lead Project:</strong> <em>MoM Generator</em> — Enterprise AI Meeting Minutes &amp; Audio Transcription Tool
-              </p>
-              <ul class="timeline-list">
-                <li>Built a RAG-based chatbot vector store in Python using <strong>ChromaDB</strong> and <strong>LangChain</strong> with fast-fallback routing logic.</li>
-                <li>Implemented offline, local <strong>Faster-Whisper</strong> speech-to-text transcription fallback without internet dependence.</li>
-                <li>Built FastAPI backend services with psycopg2 for PostgreSQL integration handling storage and meeting record normalization.</li>
-                <li>Integrated <strong>Gemini API</strong> and <strong>Groq</strong> for automated summarization and NLP-driven action item extraction.</li>
-                <li>Programmed client-side native mono WAV chunk merging in Flutter/Dart to empower speaker diarization.</li>
-                <li>Optimized CPU/GPU resource usage via custom client disconnection monitors in main.py, containerizing with Docker Compose.</li>
+              <div class="project-right">
+                <span class="project-tech">Java • Python • React • Kafka • Redis</span>
+                <div class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+              </div>
+            </div>
+            <!-- Verified Resume Details -->
+            <div class="project-body">
+              <ul class="project-bullets">
+                <li>Designed a microservices architecture with a <strong>Spring Boot (Java)</strong> ingestion service, a <strong>FastAPI (Python)</strong> analytics service, and a <strong>React 19/Vite</strong> dashboard, communicating via <strong>Apache Kafka</strong> event streaming.</li>
+                <li>Built an automated data pipeline ingesting live stock prices every 30 seconds from the <strong>Yahoo Finance API</strong>, with producer-consumer Kafka streaming, broker-failure fallback logic, and raw JSON persistence.</li>
+                <li>Developed an Extract-Validate-Clean-Load (ETL) pipeline orchestrated with <strong>Apache Airflow</strong>, feeding a dimensional star-schema <strong>PostgreSQL</strong> warehouse optimized for financial time-series queries.</li>
+                <li>Implemented multiple forecasting models (Linear Regression, Prophet, LSTM) and a risk analytics module (Beta, Sharpe Ratio, VaR) with a model registry tracking <strong>RMSE, MAPE, and R²</strong> for model comparison.</li>
+                <li>Built a news sentiment-analysis pipeline with confidence scoring, and an AI Copilot enabling natural-language queries over market data.</li>
+                <li>Added <strong>Redis caching</strong> for high-performance query optimization, JWT authentication, live <strong>WebSocket</strong> price streaming, and <strong>Prometheus/Grafana</strong> monitoring, containerized with <strong>Docker Compose</strong>.</li>
               </ul>
-            </div>
-          </div>
-
-          <!-- Education Item -->
-          <div class="timeline-item">
-            <div class="timeline-marker education-marker">
-              <i class="fa-solid fa-graduation-cap"></i>
-            </div>
-            <div class="timeline-content glass-panel">
-              <div class="timeline-header">
-                <div>
-                  <h3 class="role-title">B.Tech in Computer Engineering</h3>
-                  <h4 class="company-name">K.J. Somaiya College of Engineering, Mumbai</h4>
-                </div>
-                <span class="timeline-date">Expected Graduation: 2027</span>
-              </div>
-              <p class="education-details">
-                Focused coursework in Data Structures &amp; Algorithms, Distributed Systems, Database Management Systems, Computer Networks, and Artificial Intelligence.
-              </p>
-            </div>
-          </div>
-
-          <!-- Certifications Item -->
-          <div class="timeline-item">
-            <div class="timeline-marker cert-marker">
-              <i class="fa-solid fa-certificate"></i>
-            </div>
-            <div class="timeline-content glass-panel">
-              <div class="timeline-header">
-                <div>
-                  <h3 class="role-title">Professional Certifications</h3>
-                  <h4 class="company-name">Cloud Architecture &amp; Product Design</h4>
-                </div>
-              </div>
-              <div class="cert-grid">
-                <div class="cert-card">
-                  <i class="fa-brands fa-aws cert-icon"></i>
-                  <div>
-                    <strong>AWS Cloud Technical Essentials</strong>
-                    <span>Amazon Web Services &bull; 2026</span>
-                  </div>
-                </div>
-                <div class="cert-card">
-                  <i class="fa-solid fa-pen-nib cert-icon"></i>
-                  <div>
-                    <strong>UX Design Fundamentals</strong>
-                    <span>Coursera &bull; 2025</span>
-                  </div>
-                </div>
-                <div class="cert-card">
-                  <i class="fa-solid fa-palette cert-icon"></i>
-                  <div>
-                    <strong>Create Your UX Portfolio with Adobe</strong>
-                    <span>Coursera &bull; 2025</span>
-                  </div>
-                </div>
-                <div class="cert-card">
-                  <i class="fa-solid fa-shapes cert-icon"></i>
-                  <div>
-                    <strong>Fundamentals of Graphic Design</strong>
-                    <span>Coursera &bull; 2025</span>
-                  </div>
-                </div>
+              <div class="project-actions">
+                <a href="https://market-mind-ai-q1kl.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-pill primary">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Live App: market-mind-ai-q1kl.vercel.app
+                </a>
+                <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="project-pill">
+                  <i class="fa-brands fa-github"></i> GitHub Repository
+                </a>
               </div>
             </div>
           </div>
 
+          <!-- Project 02: MoM Generator -->
+          <div class="project-item-wrap" data-index="1">
+            <div class="project-row magnetic-target">
+              <div class="project-left">
+                <span class="project-num">02</span>
+                <div class="project-title-group">
+                  <h3 class="project-name">MoM Generator</h3>
+                  <span class="project-subtitle">AI-Powered Meeting Minutes &amp; Transcription Tool</span>
+                </div>
+              </div>
+              <div class="project-right">
+                <span class="project-tech">Flutter • FastAPI • Faster-Whisper • ChromaDB</span>
+                <div class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+              </div>
+            </div>
+            <!-- Verified Resume Details -->
+            <div class="project-body">
+              <ul class="project-bullets">
+                <li>Built a RAG-based chatbot vector store in Python (rag.py) using <strong>ChromaDB</strong> and <strong>LangChain</strong>, with fast-fallback logic to clean and route data reliably and prevent request timeouts.</li>
+                <li>Implemented an offline, local <strong>Faster-Whisper</strong> fallback in Python (transcribe.py) for reliable speech-to-text transcription without dependency on internet connectivity.</li>
+                <li>Built <strong>FastAPI</strong> backend services in Python with psycopg2 for <strong>PostgreSQL</strong> integration, handling data storage, retrieval, and normalization for meeting records.</li>
+                <li>Integrated the <strong>Gemini API</strong> and <strong>Groq</strong> for AI-powered summarization and NLP-driven data extraction from unstructured meeting transcripts.</li>
+                <li>Optimized backend CPU/GPU resource usage by designing client disconnection monitors in main.py, improving pipeline efficiency.</li>
+                <li>Implemented JWT and bcrypt-based security layers, and containerized services with <strong>Docker and Docker Compose</strong>.</li>
+                <li>Developed the <strong>Flutter frontend</strong> with Provider for state management, integrating Firebase Auth and Google Sign-In.</li>
+                <li>Programmed native mono WAV audio chunk merging on the client side (meeting_provider.dart) to support speaker diarization.</li>
+              </ul>
+              <div class="project-actions">
+                <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="project-pill">
+                  <i class="fa-brands fa-github"></i> View Repository on GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 03: HaritKranti -->
+          <div class="project-item-wrap" data-index="2">
+            <div class="project-row magnetic-target">
+              <div class="project-left">
+                <span class="project-num">03</span>
+                <div class="project-title-group">
+                  <h3 class="project-name">HaritKranti</h3>
+                  <span class="project-subtitle">Farmers' Platform — MERN Stack (Aug 2025 – Nov 2025)</span>
+                </div>
+              </div>
+              <div class="project-right">
+                <span class="project-tech">MongoDB Atlas • Express • React • Node.js</span>
+                <div class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+              </div>
+            </div>
+            <!-- Verified Resume Details -->
+            <div class="project-body">
+              <ul class="project-bullets">
+                <li>Built a full MERN stack platform with product listings, crop guidance features, and secure JWT-based authentication.</li>
+                <li>Developed REST APIs using Node.js and Express, and integrated <strong>MongoDB Atlas</strong> with optimized Mongoose schemas for scalable data storage.</li>
+                <li>Implemented multilingual support using a translation API, enabling real-time UI translation into multiple regional languages.</li>
+              </ul>
+              <div class="project-actions">
+                <a href="https://haritkranti-s-3m17.vercel.app/" target="_blank" rel="noopener noreferrer" class="project-pill primary">
+                  <i class="fa-solid fa-arrow-up-right-from-square"></i> Live App: haritkranti-s-3m17.vercel.app
+                </a>
+                <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="project-pill">
+                  <i class="fa-brands fa-github"></i> GitHub Repository
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 04: Aurizen -->
+          <div class="project-item-wrap" data-index="3">
+            <div class="project-row magnetic-target">
+              <div class="project-left">
+                <span class="project-num">04</span>
+                <div class="project-title-group">
+                  <h3 class="project-name">Aurizen</h3>
+                  <span class="project-subtitle">Social Habit Tracking Application — Flutter + Supabase</span>
+                </div>
+              </div>
+              <div class="project-right">
+                <span class="project-tech">Flutter • Dart • Supabase • SQLite</span>
+                <div class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+              </div>
+            </div>
+            <!-- Verified Resume Details -->
+            <div class="project-body">
+              <ul class="project-bullets">
+                <li>Built a Flutter/Dart app with <strong>Supabase</strong> (PostgreSQL, Auth, Realtime, Storage) and an offline-first architecture using <strong>SQLite</strong> with automatic synchronization.</li>
+                <li>Applied Repository and Service layer patterns with Row Level Security (RLS) and conflict resolution for reliable offline/online data sync.</li>
+                <li>Implemented Firebase Cloud Messaging and Supabase Realtime subscriptions for live cross-device notifications.</li>
+              </ul>
+              <div class="project-actions">
+                <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="project-pill">
+                  <i class="fa-brands fa-github"></i> View Repository on GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 05: AI Personal Finance App -->
+          <div class="project-item-wrap" data-index="4">
+            <div class="project-row magnetic-target">
+              <div class="project-left">
+                <span class="project-num">05</span>
+                <div class="project-title-group">
+                  <h3 class="project-name">AI Personal Finance App</h3>
+                  <span class="project-subtitle">Full-Stack Expense Tracker &amp; Ingestion Pipeline</span>
+                </div>
+              </div>
+              <div class="project-right">
+                <span class="project-tech">Next.js • Node.js • MongoDB • ETL</span>
+                <div class="project-arrow"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
+              </div>
+            </div>
+            <!-- Verified Resume Details -->
+            <div class="project-body">
+              <ul class="project-bullets">
+                <li>Built a full-stack personal finance tracker using Next.js, Node.js, and MongoDB to manage expenses, budgets, and subscriptions.</li>
+                <li>Designed a CSV ingestion pipeline with auto-categorization of bank transactions — an ETL-style workflow for cleaning and structuring raw financial data.</li>
+                <li>Integrated AI-powered insights to automatically summarize monthly spending patterns and generate personalized financial suggestions.</li>
+              </ul>
+              <div class="project-actions">
+                <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="project-pill">
+                  <i class="fa-brands fa-github"></i> View Repository on GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Dennis Snellenberg "All Projects" Button -->
+        <div class="work-footer-cta">
+          <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="magnetic-circle-btn medium magnetic-target">
+            <span>All Projects<br>on GitHub</span>
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- Contact & Campfire Gathering Section -->
-    <section class="section contact-section" id="contact">
-      <div class="section-container">
-        <div class="section-header">
-          <span class="section-badge"><i class="fa-solid fa-fire-flame-curved"></i> Pull Up a Chair</span>
-          <h2 class="section-title">Let's Build Something Extraordinary</h2>
-          <p class="section-subtitle">Looking for an AI engineer, backend architect, or versatile builder? Let's connect.</p>
+    <!-- Dennis Snellenberg Floating Cursor Modal & "View" Badge -->
+    <div class="project-modal-container" id="projectModalContainer" aria-hidden="true">
+      <div class="project-modal-slider" id="projectModalSlider">
+        <div class="project-modal-slide">
+          <img src="assets/marketmind-preview.png" alt="MarketMind AI Live Dashboard">
+        </div>
+        <div class="project-modal-slide">
+          <img src="assets/mom-preview.jpg" alt="MoM Generator Architecture">
+        </div>
+        <div class="project-modal-slide">
+          <img src="assets/haritkranti-preview.png" alt="HaritKranti Platform">
+        </div>
+        <div class="project-modal-slide">
+          <img src="assets/figure1_embedding_models.png" alt="Aurizen Architecture">
+        </div>
+        <div class="project-modal-slide">
+          <img src="assets/figure3_latency_vs_chunksize.png" alt="AI Finance ETL">
+        </div>
+      </div>
+    </div>
+    <div class="project-cursor-badge" id="projectCursorBadge" aria-hidden="true">View</div>
+
+    <!-- Curved Section Divider -->
+    <div class="rounded-div-wrapper darker">
+      <div class="rounded-div"></div>
+    </div>
+
+    <!-- ========================================================================
+         5. WORK EXPERIENCE SECTION (DENNIS SNELLENBERG CLEAN SPLIT LAYOUT)
+         ======================================================================== -->
+    <section class="experience-section" id="experience">
+      <div class="experience-container">
+        <div class="section-label-row">
+          <span class="section-label">WORK EXPERIENCE</span>
+          <span class="section-label-dim">Software Development Cell (SwDC)</span>
         </div>
 
-        <div class="contact-card-wrapper glass-panel">
-          <div class="contact-info-col">
-            <h3>Get in Touch</h3>
-            <p>
-              Feel free to reach out directly via email, phone, or connect on GitHub. I respond quickly to discussions about exciting engineering challenges.
+        <div class="experience-split-block">
+          <div class="exp-left-col">
+            <span class="exp-period">INTERNSHIP</span>
+            <h3 class="exp-company-title">Software Development Cell (SwDC)</h3>
+            <span class="exp-college-sub">K.J. Somaiya School of Engineering</span>
+          </div>
+
+          <div class="exp-right-col">
+            <div class="exp-role-header">
+              <h4 class="exp-role-title">Flutter &amp; Backend Developer Intern</h4>
+              <span class="exp-project-tag">MoM Generator</span>
+            </div>
+
+            <p class="exp-project-desc">
+              <strong>Project:</strong> MoM Generator — an AI-powered meeting minutes and transcription tool designed for institutional use.
             </p>
 
-            <div class="contact-details-list">
-              <div class="contact-detail-item">
-                <div class="detail-icon"><i class="fa-solid fa-envelope"></i></div>
-                <div class="detail-content">
-                  <span class="detail-label">Email Address</span>
-                  <a href="mailto:bsahil979@gmail.com" class="detail-value">bsahil979@gmail.com</a>
-                </div>
-                <button class="copy-btn" data-copy="bsahil979@gmail.com" title="Copy email">
-                  <i class="fa-regular fa-copy"></i>
-                </button>
-              </div>
-
-              <div class="contact-detail-item">
-                <div class="detail-icon"><i class="fa-solid fa-phone"></i></div>
-                <div class="detail-content">
-                  <span class="detail-label">Phone</span>
-                  <a href="tel:+918828049078" class="detail-value">+91 8828049078</a>
-                </div>
-                <button class="copy-btn" data-copy="+918828049078" title="Copy phone">
-                  <i class="fa-regular fa-copy"></i>
-                </button>
-              </div>
-
-              <div class="contact-detail-item">
-                <div class="detail-icon"><i class="fa-brands fa-github"></i></div>
-                <div class="detail-content">
-                  <span class="detail-label">GitHub</span>
-                  <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="detail-value">github.com/bsahil979</a>
-                </div>
-                <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="copy-btn" title="Open GitHub">
-                  <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                </a>
-              </div>
-
-              <div class="contact-detail-item">
-                <div class="detail-icon"><i class="fa-solid fa-file-pdf"></i></div>
-                <div class="detail-content">
-                  <span class="detail-label">Resume / CV</span>
-                  <a href="assets/Sahil_Belchada_Resume.pdf" download="Sahil_Belchada_Resume.pdf" target="_blank" class="detail-value">Sahil_Belchada_Resume.pdf</a>
-                </div>
-                <a href="assets/Sahil_Belchada_Resume.pdf" download="Sahil_Belchada_Resume.pdf" target="_blank" class="copy-btn" title="Download Resume">
-                  <i class="fa-solid fa-download"></i>
-                </a>
-              </div>
-
-              <div class="contact-detail-item">
-                <div class="detail-icon"><i class="fa-solid fa-location-dot"></i></div>
-                <div class="detail-content">
-                  <span class="detail-label">Location</span>
-                  <span class="detail-value">Mumbai, India</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Quick Action Links -->
-            <div class="direct-links-row">
-              <a href="mailto:bsahil979@gmail.com?subject=Opportunity%20Discussion" class="btn btn-primary">
-                <i class="fa-solid fa-paper-plane"></i> Send Direct Email
-              </a>
-              <button class="btn btn-secondary" id="contactAiChatTrigger">
-                <i class="fa-solid fa-wand-magic-sparkles"></i> Ask AI Copilot
-              </button>
-            </div>
-          </div>
-
-          <!-- Interactive Contact Note Form -->
-          <div class="contact-form-col">
-            <h3>Drop a Message</h3>
-            <form id="contactForm" class="contact-form">
-              <div class="form-group">
-                <label for="senderName">Your Name</label>
-                <input type="text" id="senderName" required placeholder="Jane Doe" autocomplete="name">
-              </div>
-
-              <div class="form-group">
-                <label for="senderEmail">Your Email</label>
-                <input type="email" id="senderEmail" required placeholder="jane@example.com" autocomplete="email">
-              </div>
-
-              <div class="form-group">
-                <label for="messageSubject">Subject</label>
-                <input type="text" id="messageSubject" required placeholder="Project Collaboration / Opportunity">
-              </div>
-
-              <div class="form-group">
-                <label for="messageBody">Message</label>
-                <textarea id="messageBody" rows="4" required placeholder="Hi Sahil, I loved your MarketMind AI project and would like to discuss..."></textarea>
-              </div>
-
-              <button type="submit" class="btn btn-primary btn-block" id="formSubmitBtn">
-                <i class="fa-solid fa-envelope"></i> Send Message
-              </button>
-              <p class="form-feedback" id="formFeedback"></p>
-            </form>
+            <ul class="resume-bullet-list">
+              <li>Built a RAG-based chatbot vector store in Python (rag.py) using <strong>ChromaDB</strong> and <strong>LangChain</strong>, with fast-fallback logic to clean and route data reliably and prevent request timeouts.</li>
+              <li>Implemented an offline, local <strong>Faster-Whisper</strong> fallback in Python (transcribe.py) for reliable speech-to-text transcription without dependency on internet connectivity.</li>
+              <li>Built <strong>FastAPI</strong> backend services in Python with psycopg2 for <strong>PostgreSQL</strong> integration, handling data storage, retrieval, and normalization for meeting records.</li>
+              <li>Integrated the <strong>Gemini API</strong> and <strong>Groq</strong> for AI-powered summarization and NLP-driven data extraction from unstructured meeting transcripts.</li>
+              <li>Optimized backend CPU/GPU resource usage by designing client disconnection monitors in main.py, improving pipeline efficiency.</li>
+              <li>Implemented <strong>JWT and bcrypt-based security layers</strong> to protect sensitive data, and containerized services with <strong>Docker and Docker Compose</strong> for consistent cloud deployment.</li>
+              <li>Developed the <strong>Flutter frontend</strong> with Provider for state management, integrating Firebase Auth and Google Sign-In for secure authentication.</li>
+              <li>Programmed native mono WAV audio chunk merging on the client side (meeting_provider.dart) to support speaker diarization.</li>
+              <li>Took ownership of diagnosing and fixing backend timeout and disconnection issues end-to-end, following Git-based version control and code review practices within the SDLC.</li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- Curved Section Divider -->
+    <div class="rounded-div-wrapper">
+      <div class="rounded-div"></div>
+    </div>
+
+    <!-- ========================================================================
+         6. TECHNICAL SKILLS SECTION (EXACT RESUME 8 CATEGORIES)
+         ======================================================================== -->
+    <section class="skills-section" id="skills">
+      <div class="skills-container">
+        <div class="section-label-row">
+          <span class="section-label">TECHNICAL SKILLS</span>
+          <span class="section-label-dim">Verified 8 Categories from Resume</span>
+        </div>
+
+        <div class="skills-grid">
+          
+          <!-- Category 1: AI Technologies -->
+          <div class="skill-category-row">
+            <div class="skill-cat-title">AI Technologies</div>
+            <div class="skill-cat-items">
+              <span class="skill-tag">LLM Integration (Gemini, Groq)</span>
+              <span class="skill-tag">RAG (Retrieval-Augmented Generation)</span>
+              <span class="skill-tag">LangChain</span>
+              <span class="skill-tag">ChromaDB Vector Stores</span>
+              <span class="skill-tag">Prompt Engineering</span>
+              <span class="skill-tag">NLP Sentiment Analysis</span>
+              <span class="skill-tag">Forecasting (LSTM, Prophet, Linear Regression)</span>
+            </div>
+          </div>
+
+          <!-- Category 2: Data Pipelines & ETL -->
+          <div class="skill-category-row">
+            <div class="skill-cat-title">Data Pipelines &amp; ETL</div>
+            <div class="skill-cat-items">
+              <span class="skill-tag">Extract-Validate-Clean-Load Pipelines</span>
+              <span class="skill-tag">Data Normalization &amp; Deduplication</span>
+              <span class="skill-tag">Apache Airflow DAG Orchestration</span>
+              <span class="skill-tag">Apache Kafka Event Streaming</span>
+              <span class="skill-tag">Dimensional (Star Schema) Modeling</span>
+            </div>
+          </div>
+
+          <!-- Category 3: Languages -->
+          <div class="skill-category-row">
+            <div class="skill-cat-title">Languages</div>
+            <div class="skill-cat-items">
+              <span class="skill-tag highlight">Python</span>
+              <span class="skill-tag highlight">Java</span>
+              <span class="skill-tag highlight">JavaScript</span>
+              <span class="skill-tag highlight">SQL</span>
+            </div>
+          </div>
+
+          <!-- Category 4: Databases -->
+          <div class="skill-category-row">
+            <div class="skill-cat-title">Databases</div>
+            <div class="skill-cat-items">
+              <span class="skill-tag">PostgreSQL (Star Schema / Time-Series)</span>
+              <span class="skill-tag">Redis</span>
+              <span class="skill-tag">MongoDB</span>
+              <span class="skill-tag">MongoDB Atlas</span>
+              <span class="skill-tag">SQL Basics</span>
+            </div>
+          </div>
+
+          <!-- Category 5: Backend & Frameworks -->
+          <div class="skill-category-row">
+            <div class="skill-cat-title">Backend &amp; Frameworks</div>
+            <div class="skill-cat-items">
+              <span class="skill-tag">FastAPI</span>
+              <span class="skill-tag">Spring Boot</span>
+              <span class="skill-tag">Node.js</span>
+              <span class="skill-tag">Express.js</span>
+            </div>
+          </div>
+
+          <!-- Category 6: Infrastructure & Cloud -->
+          <div class="skill-category-row">
+            <div class="skill-cat-title">Infrastructure &amp; Cloud</div>
+            <div class="skill-cat-items">
+              <span class="skill-tag">Docker</span>
+              <span class="skill-tag">Docker Compose</span>
+              <span class="skill-tag">Kafka</span>
+              <span class="skill-tag">Prometheus</span>
+              <span class="skill-tag">Grafana</span>
+              <span class="skill-tag">AWS</span>
+              <span class="skill-tag">Google Cloud</span>
+              <span class="skill-tag">WebSockets</span>
+              <span class="skill-tag">Microservices Architecture</span>
+            </div>
+          </div>
+
+          <!-- Category 7: Frontend -->
+          <div class="skill-category-row">
+            <div class="skill-cat-title">Frontend</div>
+            <div class="skill-cat-items">
+              <span class="skill-tag">React.js</span>
+              <span class="skill-tag">Next.js</span>
+              <span class="skill-tag">Tailwind CSS</span>
+            </div>
+          </div>
+
+          <!-- Category 8: Testing & SDLC -->
+          <div class="skill-category-row">
+            <div class="skill-cat-title">Testing &amp; SDLC</div>
+            <div class="skill-cat-items">
+              <span class="skill-tag">Git &amp; GitHub Version Control</span>
+              <span class="skill-tag">Unit Testing (Pytest, JUnit)</span>
+              <span class="skill-tag">Agile / SDLC Practices</span>
+              <span class="skill-tag">Code Reviews</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Curved Section Divider -->
+    <div class="rounded-div-wrapper darker">
+      <div class="rounded-div"></div>
+    </div>
+
+    <!-- ========================================================================
+         7. EDUCATION & CERTIFICATIONS (VERIFIED RESUME TRUTH)
+         ======================================================================== -->
+    <section class="education-section" id="education">
+      <div class="education-container">
+        <div class="section-label-row">
+          <span class="section-label">EDUCATION &amp; CREDENTIALS</span>
+          <span class="section-label-dim">Degree &amp; Verified Certifications</span>
+        </div>
+
+        <div class="education-split-block">
+          <div class="edu-left-col">
+            <span class="edu-year-label">GRADUATION: 2027</span>
+            <h3 class="edu-college-name">K.J. Somaiya College of Engineering</h3>
+            <span class="edu-location-sub">Mumbai, Maharashtra, India</span>
+          </div>
+          <div class="edu-right-col">
+            <h4 class="edu-degree-title">B.Tech in Computer Engineering</h4>
+            <p class="edu-desc">Comprehensive coursework in Data Structures, Algorithms, Database Management Systems, Computer Networks, Operating Systems, Software Engineering, and Artificial Intelligence.</p>
+          </div>
+        </div>
+
+        <!-- Certifications Split Grid -->
+        <div class="certifications-row">
+          <div class="cert-card">
+            <div class="cert-icon-wrap"><i class="fa-brands fa-aws"></i></div>
+            <div class="cert-meta">
+              <span class="cert-title">AWS Cloud Technical Essentials</span>
+              <span class="cert-issuer">Amazon Web Services • 2026</span>
+            </div>
+          </div>
+
+          <div class="cert-card">
+            <div class="cert-icon-wrap"><i class="fa-solid fa-pen-nib"></i></div>
+            <div class="cert-meta">
+              <span class="cert-title">UX Design Fundamentals</span>
+              <span class="cert-issuer">Coursera • 2025</span>
+            </div>
+          </div>
+
+          <div class="cert-card">
+            <div class="cert-icon-wrap"><i class="fa-solid fa-palette"></i></div>
+            <div class="cert-meta">
+              <span class="cert-title">Create Your UX Portfolio with Adobe</span>
+              <span class="cert-issuer">Coursera • 2025</span>
+            </div>
+          </div>
+
+          <div class="cert-card">
+            <div class="cert-icon-wrap"><i class="fa-solid fa-shapes"></i></div>
+            <div class="cert-meta">
+              <span class="cert-title">Fundamentals of Graphic Design</span>
+              <span class="cert-issuer">Coursera • 2025</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Curved Section Divider to Footer -->
+    <div class="rounded-div-wrapper darker">
+      <div class="rounded-div"></div>
+    </div>
+
+    <!-- ========================================================================
+         8. DENNIS SNELLENBERG SIGNATURE FOOTER ("LET'S WORK TOGETHER")
+         ======================================================================== -->
+    <footer class="footer-section" id="contact">
+      <div class="footer-container">
+        
+        <!-- Top Row: Avatar + Question -->
+        <div class="footer-top-row">
+          <div class="footer-avatar">SB</div>
+          <span class="footer-greeting">Have an opportunity or question?</span>
+        </div>
+
+        <!-- Giant Dennis Snellenberg Editorial Heading -->
+        <h2 class="footer-main-heading">
+          Let's work<br>together
+        </h2>
+
+        <!-- Divider Line with Floating Giant Magnetic Button -->
+        <div class="footer-divider-line">
+          <div class="footer-btn-anchor">
+            <a href="mailto:bsahil979@gmail.com" class="magnetic-circle-btn large magnetic-target" title="Send Sahil an email">
+              <span>Get in touch</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Contact Pills with Magnetic Interaction -->
+        <div class="footer-contact-pills">
+          <a href="mailto:bsahil979@gmail.com" class="contact-pill magnetic-target">
+            <i class="fa-solid fa-envelope"></i>
+            <span>bsahil979@gmail.com</span>
+          </a>
+          <a href="tel:+918828049078" class="contact-pill magnetic-target">
+            <i class="fa-solid fa-phone"></i>
+            <span>+91 8828049078</span>
+          </a>
+          <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="contact-pill magnetic-target">
+            <i class="fa-brands fa-github"></i>
+            <span>github.com/bsahil979</span>
+          </a>
+        </div>
+
+        <!-- Bottom Bar: Local Time + Copyright + Socials -->
+        <div class="footer-bottom-bar">
+          <div class="footer-bar-left">
+            <span class="footer-copyright">VERSION / 2026 © SAHIL BELCHADA</span>
+            <span class="footer-clock">MUMBAI, IN — <span id="liveClockMumbai">--:--:-- PM [GMT+5:30]</span></span>
+          </div>
+
+          <div class="footer-bar-right">
+            <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="footer-nav-link magnetic-target">GitHub</a>
+            <a href="assets/Sahil_Belchada_Resume.pdf" download="Sahil_Belchada_Resume.pdf" target="_blank" class="footer-nav-link magnetic-target">Resume</a>
+          </div>
+        </div>
+
+      </div>
+    </footer>
   </main>
 
-  <!-- Campfire Base Indicator Banner -->
-  <div class="campfire-bar">
-    <div class="campfire-bar-content">
-      <div class="fire-flame-icon">
-        <span class="flame-particle"></span>
-        <span class="flame-particle"></span>
-        <span class="flame-particle"></span>
-      </div>
-      <span class="campfire-bar-text">The Campfire is Lit &bull; Sahil Belchada &bull; Mumbai, India</span>
-    </div>
-  </div>
-
-  <!-- FLOATING AI ASSISTANT WIDGET (Directly matching the Instagram reel design) -->
-  <aside class="ai-widget minimized" id="aiWidget" aria-label="Interactive AI Portfolio Assistant">
-    <!-- Header -->
-    <div class="ai-widget-header" id="aiWidgetHeader">
-      <div class="ai-avatar-group">
-        <div class="ai-avatar">
-          <i class="fa-solid fa-fire"></i>
-          <span class="status-indicator"></span>
-        </div>
-        <div class="ai-header-meta">
-          <div class="ai-name-row">
-            <h4 class="ai-title">Sahil Belchada</h4>
-            <span class="ai-tag">Online</span>
-          </div>
-          <p class="ai-status-text" id="aiStatusText">Ask me anything about my work &amp; journey</p>
-        </div>
-      </div>
-
-      <div class="ai-header-controls">
-        <!-- Text To Speech Toggle -->
-        <button class="ai-ctrl-btn" id="ttsToggleBtn" title="Toggle voice response" aria-label="Toggle voice">
-          <i class="fa-solid fa-volume-high" id="ttsIcon"></i>
-        </button>
-        <!-- Minimize / Toggle Widget -->
-        <button class="ai-ctrl-btn" id="minimizeAiBtn" title="Minimize chat" aria-label="Minimize chat">
-          <i class="fa-solid fa-chevron-down" id="minimizeIcon"></i>
-        </button>
-      </div>
-    </div>
-
-    <!-- Body / Chat History -->
-    <div class="ai-widget-body" id="aiChatBody">
-      <!-- Welcome Message -->
-      <div class="ai-message ai-bubble">
-        <div class="ai-message-sender">
-          <i class="fa-solid fa-fire"></i> Sahil Belchada
-        </div>
-        <div class="ai-message-content">
-          Hey there! I'm Sahil. Welcome to my portfolio! Ask me anything about my work—from <strong>MarketMind AI</strong> and <strong>Kafka data streaming</strong> to my <strong>SwDC internship</strong> and <strong>RAG architectures</strong>. Let's chat!
-        </div>
-      </div>
-
-      <!-- Suggestion Quick Chips -->
-      <div class="ai-quick-chips" id="aiQuickChips">
-        <button class="chip-btn" data-query="Tell me about yourself">👋 About Me</button>
-        <button class="chip-btn" data-query="Tell me about MarketMind AI">📈 MarketMind AI</button>
-        <button class="chip-btn" data-query="What was your role at SwDC?">🏢 SwDC Internship</button>
-        <button class="chip-btn" data-query="What is your Tech Stack?">⚡ Tech Stack</button>
-        <button class="chip-btn" data-query="How can I contact or hire you?">📬 Let's Connect</button>
-      </div>
-    </div>
-
-    <!-- Input Footer -->
-    <div class="ai-widget-footer">
-      <form id="aiChatForm" class="ai-input-form">
-        <input 
-          type="text" 
-          id="aiUserInput" 
-          placeholder="Ask me anything..." 
-          autocomplete="off"
-          aria-label="Ask Sahil"
-        >
-        <button type="submit" class="ai-send-btn" id="aiSendBtn" aria-label="Send message">
-          <i class="fa-solid fa-paper-plane"></i>
-        </button>
-      </form>
-    </div>
-  </aside>
-
-  <!-- Collapsed AI Trigger Pill (When minimized) -->
-  <button class="ai-floating-dock-btn" id="aiFloatingDockBtn" aria-label="Chat with Sahil">
-    <div class="dock-pulse"></div>
-    <i class="fa-solid fa-fire"></i>
-    <span>Chat with Sahil</span>
-  </button>
-
-  <!-- Scripts -->
-  <script src="canvas-atmosphere.js"></script>
-  <script src="audio-effects.js"></script>
-  <script src="ai-assistant.js"></script>
-  <script src="app.js"></script>
+  <!-- Dennis Snellenberg Interactive Controller (Pure Native, Zero Hijacking) -->
+  <script src="app.js?v=4.0"></script>
 </body>
 </html>

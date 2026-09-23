@@ -1,356 +1,272 @@
 /**
  * ai-assistant.js
- * Interactive AI Copilot Knowledge Base & Chat Widget for Sahil Belchada's Portfolio.
- * Inspired by the campfire conversational assistant in the Instagram reel.
+ * SAHIL.OS // COPILOT v2.4
+ * Autonomous Engineering Copilot for Sahil Belchada's Portfolio.
+ * Provides instant technical intelligence on architecture, Kafka pipelines,
+ * SwDC internship, forecasting models, and direct contact.
  */
 
 (function () {
-  // Elements
-  const aiWidget = document.getElementById('aiWidget');
-  const aiFloatingDockBtn = document.getElementById('aiFloatingDockBtn');
-  const aiChatBody = document.getElementById('aiChatBody');
-  const aiChatForm = document.getElementById('aiChatForm');
-  const aiUserInput = document.getElementById('aiUserInput');
-  const minimizeAiBtn = document.getElementById('minimizeAiBtn');
-  const minimizeIcon = document.getElementById('minimizeIcon');
-  const ttsToggleBtn = document.getElementById('ttsToggleBtn');
-  const ttsIcon = document.getElementById('ttsIcon');
-  const openAiBtn = document.getElementById('openAiBtn');
-  const heroAiChatTrigger = document.getElementById('heroAiChatTrigger');
-  const contactAiChatTrigger = document.getElementById('contactAiChatTrigger');
+  'use strict';
 
-  // State
+  // Elements
+  const copilotModal = document.getElementById('copilotModal');
+  const copilotToggleBtns = document.querySelectorAll('.copilot-toggle-btn');
+  const copilotCloseBtn = document.getElementById('copilotCloseBtn');
+  const copilotHistory = document.getElementById('copilotHistory');
+  const copilotForm = document.getElementById('copilotForm');
+  const copilotInput = document.getElementById('copilotInput');
+  const copilotChips = document.getElementById('copilotChips');
+  const ttsBtn = document.getElementById('copilotTtsBtn');
+
   let isTtsEnabled = false;
   let isGenerating = false;
 
-  // Knowledge Base in Sahil's authentic personal voice
-  const KNOWLEDGE = {
-    bio: `Hey! I'm **Sahil Belchada**, a B.Tech Computer Engineering student at **K.J. Somaiya College of Engineering, Mumbai** (graduating 2027). 
+  // Engineering Knowledge Base
+  const SYSTEM_KNOWLEDGE = {
+    bio: `**Sahil Belchada** is a B.Tech Computer Engineering student at **K.J. Somaiya College of Engineering, Mumbai** (graduating 2027).\n\nSpecialized in **distributed microservices, real-time data pipelines (Kafka, Airflow)**, and **production AI/ML systems** in Python, Java, and TypeScript. Focuses on systems thinking: designing fault-tolerant architectures from event ingestion to vector RAG and high-throughput databases.`,
 
-I'm passionate about building **AI-powered solutions**, **real-time event streaming systems (Kafka, Airflow)**, and **scalable microservices** in Python and Java. I love tackling architecture end-to-end—from ingestion pipelines and star-schema warehouses to LLM agents and interactive dashboards.`,
+    marketmind: `**MarketMind AI** is Sahil's flagship distributed financial intelligence platform:\n\n• **Microservices Architecture:** Spring Boot (Java) price ingestion service + FastAPI (Python) analytics service connected via **Apache Kafka** event streaming.\n• **Real-Time Ingestion:** Ingests live asset prices every 30 seconds from Yahoo Finance with broker-failure fallback and raw JSON persistence.\n• **ETL & Dimensional Modeling:** Orchestrated by **Apache Airflow DAGs**, feeding a Star-Schema **PostgreSQL** warehouse optimized for time-series analytics.\n• **Forecasting & Risk Engine:** Implements Linear Regression, Prophet, and LSTM neural networks with a model registry tracking RMSE, MAPE, and R², plus risk metrics (Beta, Sharpe Ratio, VaR).\n• **Stack & Ops:** Redis query cache, WebSocket live price feeds, Prometheus & Grafana metrics, containerized with Docker Compose.\n• **Live Deployment:** [market-mind-ai-q1kl.vercel.app](https://market-mind-ai-q1kl.vercel.app/)`,
 
-    marketmind: `**MarketMind AI** is my flagship project! I designed it as an end-to-end distributed market prediction and analytics platform:
-• **Microservices Architecture:** I built a **Spring Boot (Java)** service for market ingestion and a **FastAPI (Python)** service for analytics, connected asynchronously via **Apache Kafka**.
-• **Live Streaming Pipeline:** Ingests real-time prices every 30s from Yahoo Finance API with producer-consumer Kafka streaming and broker-failure fallback.
-• **Automated ETL & Warehousing:** Orchestrated with **Apache Airflow DAGs**, populating a dimensional **Star-Schema PostgreSQL** warehouse optimized for time-series analytics.
-• **Forecasting & Risk Models:** I implemented and benchmarked **Linear Regression, Prophet, and LSTM** models tracked with a model registry (RMSE, MAPE, R²), plus portfolio risk metrics (Beta, Sharpe Ratio, VaR).
-• **Try it live:** Check out my deployment at [market-mind-ai-q1kl.vercel.app](https://market-mind-ai-q1kl.vercel.app/)!`,
+    swdc: `During his **Flutter & Backend Developer Internship at SwDC** (Software Development Cell, K.J. Somaiya School of Engineering), Sahil engineered the **MoM Generator** (Enterprise AI Meeting Minutes & Audio Transcription Platform):\n\n• **Vector RAG Chatbot:** ChromaDB vector store + LangChain agent in Python with fast-fallback routing logic to prevent network timeouts.\n• **Offline Speech Fallback:** Local Faster-Whisper pipeline in Python for 100% resilient speech-to-text with zero internet dependency.\n• **Dual LLM Pipeline:** Gemini API + Groq for rapid unstructured transcript summarization and structured action item extraction.\n• **Audio Diarization:** Client-side native mono WAV chunk merging in Flutter/Dart.\n• **Backend & Security:** FastAPI with PostgreSQL (psycopg2), client disconnection monitors, JWT/bcrypt authentication, Docker deployment.`,
 
-    swdc: `During my **Flutter & Backend Developer Internship at SwDC** (Software Development Cell, K.J. Somaiya School of Engineering), I engineered **MoM Generator** (AI Meeting Minutes & Transcription):
-• **RAG Chatbot Pipeline:** Built ChromaDB vector stores and LangChain agent routing in Python with fast-fallback logic to eliminate timeouts.
-• **Offline Faster-Whisper:** Implemented a local speech-to-text fallback in Python that transcribes reliably with zero internet dependency.
-• **LLM Summarization:** Integrated Gemini API and Groq for structured action item extraction and executive summaries.
-• **Audio Diarization:** Programmed client-side native mono WAV chunk merging in **Flutter/Dart** to enable multi-speaker diarization.
-• **Cloud & Security:** Built FastAPI backends with PostgreSQL, client disconnect monitors, JWT security, and Docker Compose.`,
+    architecture: `Sahil's core architectural philosophy emphasizes **decoupled services and resilient state pipelines**:\n\n1. **Edge/Client:** React 19 / Next.js / Flutter with WebSocket duplex feeds.\n2. **Gateway:** Reverse proxy with JWT authentication and rate limiting.\n3. **Services:** Polyglot microservices (Spring Boot for raw throughput, FastAPI for asynchronous AI & analytics).\n4. **Event Streaming:** Apache Kafka for asynchronous decoupling with producer-consumer failover.\n5. **ETL & Storage:** Airflow DAGs normalizing data into Star Schema PostgreSQL + Redis in-memory cache.\n6. **Inference Tier:** Local Faster-Whisper & PyTorch with cloud LLM orchestration (Gemini, Groq) and ChromaDB vector indexing.`,
 
-    techstack: `Here's what I build with day-to-day:
-• **Languages:** Python, Java, JavaScript, SQL, Dart
-• **AI & LLMs:** Gemini API, Groq, RAG Pipelines, LangChain, ChromaDB Vector Stores, Prompt Engineering, LSTM, Prophet
-• **Data Engineering & ETL:** Apache Kafka, Apache Airflow DAGs, Star Schema Modeling, ETL Pipelines, Time-Series Queries
-• **Backend & APIs:** FastAPI, Spring Boot, Node.js, Express.js, WebSockets, REST APIs
-• **Databases & Caching:** PostgreSQL, Redis, MongoDB Atlas, SQLite, Supabase
-• **DevOps & Infrastructure:** Docker, Docker Compose, AWS (Cloud Technical Essentials), Google Cloud, Prometheus, Grafana, Git
-• **Frontend & Mobile:** React 19 / Vite, Next.js, Flutter, Tailwind CSS`,
+    stack: `**Technical Ecosystem:**\n\n• **Languages:** Python, Java, JavaScript, TypeScript, SQL, Dart\n• **AI & ML:** Gemini API, Groq, LangChain, ChromaDB Vector Stores, PyTorch, LSTM, Prophet, Faster-Whisper, Prompt Engineering\n• **Data & ETL:** Apache Kafka, Apache Airflow DAGs, Star Schema Modeling, Time-Series Queries, Data Normalization\n• **Backend:** FastAPI, Spring Boot, Node.js, Express.js, WebSockets, REST APIs\n• **Databases:** PostgreSQL (Star Schema), Redis, MongoDB Atlas, SQLite, Supabase\n• **Cloud & DevOps:** Docker, Docker Compose, AWS (Cloud Technical Essentials), Google Cloud, Prometheus, Grafana, Linux, Git / GitHub\n• **Frontend & Mobile:** React 19, Next.js, Tailwind CSS, Flutter, Vite`,
 
-    haritkranti: `**HaritKranti** is a platform I built to empower farmers with fair trade and technical advisory:
-• It's built with the MERN stack (MongoDB Atlas, Express, React, Node.js).
-• I integrated a real-time translation API so farmers can navigate and read crop advisories in their local regional Indian languages.
-• Secured with JWT and indexed schemas for fast search.
-• Check it out live at [haritkranti-s-3m17.vercel.app](https://haritkranti-s-3m17.vercel.app/)!`,
+    haritkranti: `**HaritKranti** is a full-stack agricultural platform empowering farmers with fair direct trade and agronomy advisory:\n\n• **MERN Architecture:** Node.js & Express REST APIs, MongoDB Atlas with optimized compound indexing.\n• **Multilingual Localization:** Integrated real-time translation API enabling immediate UI switching into multiple Indian regional languages.\n• **Direct Marketplace:** Crop advisory feeds, disease guides, and JWT-authenticated trade channels.\n• **Live Deployment:** [haritkranti-s-3m17.vercel.app](https://haritkranti-s-3m17.vercel.app/)`,
 
-    aurizen: `**Aurizen** is a social habit tracking mobile app I developed using **Flutter & Supabase**:
-• Designed with an **offline-first architecture** using local **SQLite** and automatic bi-directional cloud sync with Supabase PostgreSQL.
-• Implemented Row Level Security (RLS) policies and real-time WebSocket subscriptions.
-• Integrated Firebase Cloud Messaging for social encouragements and habit reminders.`,
+    aurizen: `**Aurizen** is a mobile habit tracking application engineered with an **offline-first distributed architecture**:\n\n• Built in **Flutter & Dart** with local SQLite caching for zero-latency offline interaction.\n• **Supabase Cloud** (PostgreSQL, Row Level Security RLS, Realtime WebSockets).\n• Bidirectional sync engine with conflict resolution and Firebase Cloud Messaging (FCM).`,
 
-    financeApp: `I created the **AI Personal Finance Tracker** using **Next.js, Node.js, and MongoDB**:
-• Built an automated CSV ETL pipeline that cleans, deduplicates, and categorizes raw bank statements.
-• Integrated LLMs to summarize spending habits and generate actionable budget optimization tips.`,
+    finance: `**AI Personal Finance App**:\n\n• Full-stack Next.js, Node.js, and MongoDB platform.\n• Automated bank statement CSV ETL pipeline for transaction deduplication & categorization.\n• LLM spending analysis copilot to generate actionable budget suggestions.`,
 
-    contact: `I'd love to connect! You can reach me directly through any of these channels:
-• 📧 **Email:** [bsahil979@gmail.com](mailto:bsahil979@gmail.com)
-• 📱 **Phone:** [+91 8828049078](tel:+918828049078)
-• 💻 **GitHub:** [github.com/bsahil979](https://github.com/bsahil979)
-• 📍 **Location:** Mumbai, India
-I'm actively open to software engineering, data engineering, and AI roles!`,
+    contact: `**Contact & Communication Channels:**\n\n• **Email:** [bsahil979@gmail.com](mailto:bsahil979@gmail.com)\n• **Phone:** [+91 8828049078](tel:+918828049078)\n• **GitHub:** [github.com/bsahil979](https://github.com/bsahil979)\n• **Resume:** [Download Sahil's Resume](assets/Sahil_Belchada_Resume.pdf)\n• **Location:** Mumbai, India\n\nSahil is actively seeking Software Engineering, AI/ML, Cloud, and Backend roles.`,
 
-    education: `I am currently pursuing my **B.Tech in Computer Engineering** at **K.J. Somaiya College of Engineering, Mumbai**, with expected graduation in **2027**. 
+    education: `**Academic Foundation:**\n\n• **Degree:** B.Tech in Computer Engineering\n• **Institution:** K.J. Somaiya College of Engineering, Mumbai\n• **Expected Graduation:** 2027\n• **Key Certifications:** AWS Cloud Technical Essentials (AWS 2026), UX Design Fundamentals (Coursera 2025), Fundamentals of Graphic Design (Coursera 2025).`,
 
-I also hold certifications in **AWS Cloud Technical Essentials**, **UX Design Fundamentals**, and **Graphic Design Fundamentals**.`,
-
-    default: `Thanks for reaching out! As a software and data engineer, I love working on distributed systems, AI architectures, and full-stack platforms. Would you like to know more about my flagship project **MarketMind AI**, my **SwDC internship**, my **tech stack**, or how to **get in touch**?`
+    default: `Command recognized. I can provide technical breakdowns of Sahil's **MarketMind AI microservices**, **Kafka streaming pipelines**, **SwDC internship (MoM Generator)**, **system architecture**, **tech stack**, or **direct contact details**.\n\nType a question or select a command below.`
   };
 
-  // Process query and return contextual answer in Sahil's voice
-  function getAiResponse(userText) {
-    const text = userText.toLowerCase().trim();
+  function getCopilotResponse(query) {
+    const q = query.toLowerCase().trim();
 
-    if (text.includes('who') || text.includes('about') || text.includes('yourself') || text.includes('sahil') || text.includes('intro') || text.includes('background')) {
-      return { answer: KNOWLEDGE.bio, chips: ['MarketMind AI', 'My Tech Stack', 'Contact Me'] };
+    if (q.includes('marketmind') || q.includes('stock') || q.includes('finance') || q.includes('prediction') || q.includes('flagship')) {
+      return { text: SYSTEM_KNOWLEDGE.marketmind, suggestions: ['System Architecture', 'SwDC Internship', 'Tech Stack'] };
     }
-    if (text.includes('marketmind') || text.includes('market') || text.includes('stock') || text.includes('prediction') || text.includes('financial') || text.includes('flagship')) {
-      return { answer: KNOWLEDGE.marketmind, chips: ['SwDC Internship', 'My Tech Stack', 'Contact Me'] };
+    if (q.includes('swdc') || q.includes('mom') || q.includes('meeting') || q.includes('whisper') || q.includes('intern')) {
+      return { text: SYSTEM_KNOWLEDGE.swdc, suggestions: ['MarketMind AI', 'System Architecture', 'Contact Info'] };
     }
-    if (text.includes('swdc') || text.includes('intern') || text.includes('mom') || text.includes('meeting') || text.includes('whisper') || text.includes('rag')) {
-      return { answer: KNOWLEDGE.swdc, chips: ['MarketMind AI', 'My Tech Stack', 'Contact Me'] };
+    if (q.includes('architecture') || q.includes('pipeline') || q.includes('kafka') || q.includes('airflow') || q.includes('design')) {
+      return { text: SYSTEM_KNOWLEDGE.architecture, suggestions: ['MarketMind AI', 'Tech Stack', 'Contact Info'] };
     }
-    if (text.includes('stack') || text.includes('skill') || text.includes('technolog') || text.includes('python') || text.includes('java') || text.includes('kafka') || text.includes('tools')) {
-      return { answer: KNOWLEDGE.techstack, chips: ['MarketMind AI', 'HaritKranti', 'Contact Me'] };
+    if (q.includes('stack') || q.includes('skill') || q.includes('language') || q.includes('python') || q.includes('java') || q.includes('tools')) {
+      return { text: SYSTEM_KNOWLEDGE.stack, suggestions: ['MarketMind AI', 'SwDC Internship', 'Contact Info'] };
     }
-    if (text.includes('harit') || text.includes('farmer') || text.includes('kranti') || text.includes('agriculture')) {
-      return { answer: KNOWLEDGE.haritkranti, chips: ['MarketMind AI', 'Aurizen', 'Contact Me'] };
+    if (q.includes('harit') || q.includes('kranti') || q.includes('farmer') || q.includes('agriculture')) {
+      return { text: SYSTEM_KNOWLEDGE.haritkranti, suggestions: ['MarketMind AI', 'Tech Stack', 'Contact Info'] };
     }
-    if (text.includes('aurizen') || text.includes('habit') || text.includes('flutter') || text.includes('supabase') || text.includes('mobile')) {
-      return { answer: KNOWLEDGE.aurizen, chips: ['SwDC Internship', 'MarketMind AI', 'Contact Me'] };
+    if (q.includes('aurizen') || q.includes('habit') || q.includes('flutter') || q.includes('sqlite')) {
+      return { text: SYSTEM_KNOWLEDGE.aurizen, suggestions: ['SwDC Internship', 'Tech Stack', 'Contact Info'] };
     }
-    if (text.includes('personal finance') || text.includes('csv') || text.includes('budget') || text.includes('finance')) {
-      return { answer: KNOWLEDGE.financeApp, chips: ['MarketMind AI', 'My Tech Stack'] };
+    if (q.includes('contact') || q.includes('hire') || q.includes('email') || q.includes('phone') || q.includes('reach') || q.includes('interview')) {
+      return { text: SYSTEM_KNOWLEDGE.contact, suggestions: ['MarketMind AI', 'Resume / CV', 'System Architecture'] };
     }
-    if (text.includes('contact') || text.includes('hire') || text.includes('email') || text.includes('phone') || text.includes('reach') || text.includes('interview') || text.includes('connect')) {
-      return { answer: KNOWLEDGE.contact, chips: ['MarketMind AI', 'SwDC Internship'] };
+    if (q.includes('resume') || q.includes('cv')) {
+      return { text: `You can view or download Sahil's verified resume here: [Sahil_Belchada_Resume.pdf](assets/Sahil_Belchada_Resume.pdf).`, suggestions: ['Tech Stack', 'Contact Info', 'MarketMind AI'] };
     }
-    if (text.includes('education') || text.includes('college') || text.includes('somaiya') || text.includes('degree') || text.includes('certif') || text.includes('graduat')) {
-      return { answer: KNOWLEDGE.education, chips: ['MarketMind AI', 'My Tech Stack', 'Contact Me'] };
+    if (q.includes('education') || q.includes('college') || q.includes('degree') || q.includes('somaiya')) {
+      return { text: SYSTEM_KNOWLEDGE.education, suggestions: ['SwDC Internship', 'MarketMind AI', 'Contact Info'] };
     }
-    if (text.includes('hello') || text.includes('hi') || text.includes('hey') || text.includes('sup') || text.includes('greetings')) {
-      return { 
-        answer: `Hey there! Great to meet you. Thanks for pulling up a chair at my campfire. What would you like to explore first?`,
-        chips: ['About Me', 'MarketMind AI', 'SwDC Internship', 'Contact Me']
-      };
+    if (q.includes('who') || q.includes('about') || q.includes('sahil') || q.includes('intro')) {
+      return { text: SYSTEM_KNOWLEDGE.bio, suggestions: ['MarketMind AI', 'System Architecture', 'Tech Stack'] };
     }
 
-    return { answer: KNOWLEDGE.default, chips: ['About Me', 'MarketMind AI', 'My Tech Stack', 'Contact Me'] };
+    return { text: SYSTEM_KNOWLEDGE.default, suggestions: ['MarketMind AI', 'SwDC Internship', 'System Architecture', 'Tech Stack', 'Contact Info'] };
   }
 
-  // Convert simple markdown into safe HTML
   function formatMarkdown(text) {
-    return text
-      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-      .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
-      .replace(/\n/g, '<br>');
+    let out = text
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+
+    // Bold
+    out = out.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    // Italic
+    out = out.replace(/\*(.*?)\*/g, '<em>$1</em>');
+    // Links
+    out = out.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="copilot-link">$1 <i class="fa-solid fa-arrow-up-right-from-square"></i></a>');
+    // Bullet points
+    out = out.replace(/^• (.*)$/gm, '<li class="copilot-bullet">$1</li>');
+    out = out.replace(/(<li.*<\/li>)/s, '<ul class="copilot-list">$1</ul>');
+    // Line breaks
+    out = out.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
+
+    return out;
   }
 
-  // Speak text with SpeechSynthesis
-  function speakResponse(plainText) {
-    if (!isTtsEnabled || !('speechSynthesis' in window)) return;
-    window.speechSynthesis.cancel();
-    
-    // Strip markdown formatting for cleaner speech
-    const cleanSpeech = plainText
-      .replace(/\[(.*?)\]\(.*?\)/g, '$1')
-      .replace(/[*#•]/g, '')
-      .replace(/https?:\/\/\S+/g, 'link');
+  function appendMessage(sender, rawText, isUser = false) {
+    if (!copilotHistory) return;
+    const msgEl = document.createElement('div');
+    msgEl.className = `copilot-msg ${isUser ? 'user-msg' : 'sys-msg'}`;
 
-    const utterance = new SpeechSynthesisUtterance(cleanSpeech);
-    utterance.rate = 1.05;
-    utterance.pitch = 1.0;
-    window.speechSynthesis.speak(utterance);
-  }
-
-  // Render a chat message
-  function appendMessage(sender, content, isHtml = false) {
-    const messageEl = document.createElement('div');
-    messageEl.className = `ai-message ${sender === 'user' ? 'user-bubble' : 'ai-bubble'}`;
-
-    const senderHeader = document.createElement('div');
-    senderHeader.className = 'ai-message-sender';
-    senderHeader.innerHTML = sender === 'user' 
-      ? `<i class="fa-solid fa-user"></i> You` 
-      : `<i class="fa-solid fa-fire"></i> Sahil Belchada`;
+    const metaEl = document.createElement('div');
+    metaEl.className = 'copilot-msg-meta';
+    metaEl.innerHTML = isUser
+      ? `<span class="prompt-sym">&gt;</span> YOU <span class="copilot-timestamp">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>`
+      : `<span class="copilot-badge">SAHIL.OS</span> SYSTEM <span class="copilot-timestamp">${new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>`;
 
     const bodyEl = document.createElement('div');
-    bodyEl.className = 'ai-message-content';
+    bodyEl.className = 'copilot-msg-body';
+    bodyEl.innerHTML = formatMarkdown(rawText);
 
-    if (isHtml) {
-      bodyEl.innerHTML = content;
-    } else {
-      bodyEl.textContent = content;
+    msgEl.appendChild(metaEl);
+    msgEl.appendChild(bodyEl);
+    copilotHistory.appendChild(msgEl);
+    copilotHistory.scrollTop = copilotHistory.scrollHeight;
+
+    // Optional Speech Synthesis
+    if (!isUser && isTtsEnabled && 'speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      const cleanSpeech = rawText.replace(/[*#_\[\]\(\)]/g, '').replace(/https?:\/\/\S+/g, '');
+      const utterance = new SpeechSynthesisUtterance(cleanSpeech.slice(0, 300));
+      utterance.rate = 1.05;
+      utterance.pitch = 0.95;
+      window.speechSynthesis.speak(utterance);
     }
-
-    messageEl.appendChild(senderHeader);
-    messageEl.appendChild(bodyEl);
-    aiChatBody.appendChild(messageEl);
-
-
-    // Scroll to bottom
-    aiChatBody.scrollTop = aiChatBody.scrollHeight;
-    return bodyEl;
   }
 
-  // Typewriter streaming effect for AI answers
-  function typeWriterEffect(targetEl, fullHtml, rawText, followUpChips) {
-    targetEl.innerHTML = '';
-    let i = 0;
+  function updateQuickChips(chips) {
+    if (!copilotChips) return;
+    copilotChips.innerHTML = '';
+    chips.forEach(chip => {
+      const btn = document.createElement('button');
+      btn.className = 'copilot-chip-btn';
+      btn.textContent = chip;
+      btn.addEventListener('click', () => {
+        handleUserQuery(chip);
+      });
+      copilotChips.appendChild(btn);
+    });
+  }
+
+  function handleUserQuery(query) {
+    if (!query || isGenerating) return;
     isGenerating = true;
 
-    // Fast streaming interval
-    const speed = 12;
-    const interval = setInterval(() => {
-      if (i < fullHtml.length) {
-        // If an HTML tag starts, fast-forward through it
-        if (fullHtml[i] === '<') {
-          const tagClose = fullHtml.indexOf('>', i);
-          if (tagClose !== -1) {
-            targetEl.innerHTML = fullHtml.slice(0, tagClose + 1);
-            i = tagClose + 1;
-          } else {
-            targetEl.innerHTML = fullHtml.slice(0, i + 1);
-            i++;
-          }
-        } else {
-          targetEl.innerHTML = fullHtml.slice(0, i + 1);
-          i++;
+    appendMessage('user', query, true);
+    if (copilotInput) copilotInput.value = '';
+
+    // Simulate rapid system calculation (160ms)
+    setTimeout(() => {
+      const res = getCopilotResponse(query);
+      appendMessage('system', res.text, false);
+      updateQuickChips(res.suggestions);
+      isGenerating = false;
+      if (copilotInput) copilotInput.focus();
+    }, 160);
+  }
+
+  function openCopilot() {
+    if (!copilotModal) return;
+    copilotModal.classList.add('active');
+    document.body.classList.add('modal-open');
+    if (copilotInput) {
+      setTimeout(() => copilotInput.focus(), 150);
+    }
+  }
+
+  function closeCopilot() {
+    if (!copilotModal) return;
+    copilotModal.classList.remove('active');
+    document.body.classList.remove('modal-open');
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+  }
+
+  function init() {
+    // Toggle triggers
+    copilotToggleBtns.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openCopilot();
+      });
+    });
+
+    if (copilotCloseBtn) {
+      copilotCloseBtn.addEventListener('click', closeCopilot);
+    }
+
+    // Close on overlay backdrop click
+    if (copilotModal) {
+      copilotModal.addEventListener('click', (e) => {
+        if (e.target === copilotModal) {
+          closeCopilot();
         }
-        aiChatBody.scrollTop = aiChatBody.scrollHeight;
-      } else {
-        clearInterval(interval);
-        isGenerating = false;
-        renderChips(followUpChips);
-        speakResponse(rawText);
+      });
+    }
+
+    // Form submit
+    if (copilotForm) {
+      copilotForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const val = copilotInput ? copilotInput.value.trim() : '';
+        if (val) handleUserQuery(val);
+      });
+    }
+
+    // TTS Toggle
+    if (ttsBtn) {
+      ttsBtn.addEventListener('click', () => {
+        isTtsEnabled = !isTtsEnabled;
+        ttsBtn.classList.toggle('active', isTtsEnabled);
+        const icon = ttsBtn.querySelector('i');
+        if (icon) {
+          icon.className = isTtsEnabled ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark';
+        }
+        if (!isTtsEnabled && 'speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+        }
+      });
+    }
+
+    // Keyboard Shortcuts: Cmd/Ctrl + K or Escape
+    window.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        if (copilotModal && copilotModal.classList.contains('active')) {
+          closeCopilot();
+        } else {
+          openCopilot();
+        }
       }
-    }, speed);
-  }
-
-  // Render follow-up prompt chips
-  function renderChips(chips) {
-    if (!chips || chips.length === 0) return;
-
-    const oldChips = document.querySelector('.ai-quick-chips');
-    if (oldChips) oldChips.remove();
-
-    const chipsWrapper = document.createElement('div');
-    chipsWrapper.className = 'ai-quick-chips';
-
-    chips.forEach(chipText => {
-      const btn = document.createElement('button');
-      btn.className = 'chip-btn';
-      btn.textContent = chipText;
-      btn.dataset.query = chipText;
-      btn.addEventListener('click', () => handleUserInput(chipText));
-      chipsWrapper.appendChild(btn);
-    });
-
-    aiChatBody.appendChild(chipsWrapper);
-    aiChatBody.scrollTop = aiChatBody.scrollHeight;
-  }
-
-  // Handle User Input Submission
-  function handleUserInput(text) {
-    if (!text || isGenerating) return;
-
-    // 1. User Bubble
-    appendMessage('user', text);
-
-    // 2. Clear input
-    if (aiUserInput) aiUserInput.value = '';
-
-    // 3. Remove previous chips
-    const oldChips = document.querySelector('.ai-quick-chips');
-    if (oldChips) oldChips.remove();
-
-    // 4. Generate AI response
-    setTimeout(() => {
-      const { answer, chips } = getAiResponse(text);
-      const formattedHtml = formatMarkdown(answer);
-      const responseEl = appendMessage('ai', '', true);
-      typeWriterEffect(responseEl, formattedHtml, answer, chips);
-    }, 280);
-  }
-
-  // Toggle Visibility
-  function openWidget() {
-    if (aiWidget) aiWidget.classList.remove('minimized');
-    if (aiFloatingDockBtn) aiFloatingDockBtn.classList.add('hidden');
-    if (minimizeIcon) {
-      minimizeIcon.classList.remove('fa-chevron-up');
-      minimizeIcon.classList.add('fa-chevron-down');
-    }
-    setTimeout(() => {
-      if (aiUserInput) aiUserInput.focus();
-    }, 200);
-  }
-
-  function minimizeWidget() {
-    if (aiWidget) aiWidget.classList.add('minimized');
-    if (aiFloatingDockBtn) aiFloatingDockBtn.classList.remove('hidden');
-    if (minimizeIcon) {
-      minimizeIcon.classList.remove('fa-chevron-down');
-      minimizeIcon.classList.add('fa-chevron-up');
-    }
-  }
-
-  function toggleWidget() {
-    if (aiWidget.classList.contains('minimized')) {
-      openWidget();
-    } else {
-      minimizeWidget();
-    }
-  }
-
-  // Event Listeners
-  if (aiChatForm) {
-    aiChatForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const val = aiUserInput.value.trim();
-      if (val) handleUserInput(val);
-    });
-  }
-
-  // Initial chips click handlers
-  document.querySelectorAll('.chip-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const q = btn.getAttribute('data-query');
-      if (q) handleUserInput(q);
-    });
-  });
-
-  // Project cards "Ask AI About This" buttons
-  document.querySelectorAll('.ask-ai-project-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const projectName = btn.getAttribute('data-project');
-      openWidget();
-      handleUserInput(`Tell me all about ${projectName}`);
-    });
-  });
-
-  if (openAiBtn) openAiBtn.addEventListener('click', openWidget);
-  if (heroAiChatTrigger) heroAiChatTrigger.addEventListener('click', openWidget);
-  if (contactAiChatTrigger) contactAiChatTrigger.addEventListener('click', openWidget);
-  if (minimizeAiBtn) minimizeAiBtn.addEventListener('click', minimizeWidget);
-  if (aiFloatingDockBtn) aiFloatingDockBtn.addEventListener('click', openWidget);
-
-  // Text-To-Speech Toggle
-  if (ttsToggleBtn) {
-    ttsToggleBtn.addEventListener('click', () => {
-      isTtsEnabled = !isTtsEnabled;
-      ttsToggleBtn.classList.toggle('active', isTtsEnabled);
-      if (ttsIcon) {
-        ttsIcon.className = isTtsEnabled ? 'fa-solid fa-volume-high' : 'fa-solid fa-volume-xmark';
-      }
-      if (!isTtsEnabled && 'speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
+      if (e.key === 'Escape' && copilotModal && copilotModal.classList.contains('active')) {
+        closeCopilot();
       }
     });
+
+    // Initial Chips
+    updateQuickChips([
+      'MarketMind AI Architecture',
+      'Kafka Data Pipelines',
+      'SwDC Internship (MoM Generator)',
+      'Tech Ecosystem',
+      'Contact Sahil'
+    ]);
   }
 
-  // Responsive initial state: strictly minimized on mobile/tablet screens
-  if (window.innerWidth <= 860) {
-    minimizeWidget();
+  // Init on DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
   } else {
-    openWidget();
+    init();
   }
 
-  // Handle mobile orientation or viewport resizing
-  window.addEventListener('resize', () => {
-    if (window.innerWidth <= 860 && !aiWidget.classList.contains('minimized')) {
-      // Don't auto-open on mobile
+  window.openSahilCopilot = function (initialQuery) {
+    openCopilot();
+    if (initialQuery) {
+      setTimeout(() => handleUserQuery(initialQuery), 250);
     }
-  });
-
-  // Expose global trigger
-  window.askSahilAi = function (query) {
-    openWidget();
-    handleUserInput(query);
   };
 })();
