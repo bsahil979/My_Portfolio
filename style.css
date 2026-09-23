@@ -370,16 +370,95 @@ body {
   gap: 10px;
 }
 
-.globe-wrap {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  border: 1px solid rgba(69, 92, 233, 0.6);
-  display: flex;
+/* Dennis Snellenberg Rotating 3D Wireframe Globe */
+.dennis-globe-container {
+  width: 1.85em;
+  height: 1.85em;
+  position: relative;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.75rem;
-  color: var(--color-blue);
+  flex-shrink: 0;
+}
+
+.dennis-globe {
+  position: relative;
+  width: 1.35em;
+  height: 1.35em;
+}
+
+.dennis-globe-wrap {
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: block;
+  border-radius: 50%;
+  transform: translate(-50%, -50%) rotate(30deg);
+  animation: dennisGlobe 5.4s cubic-bezier(0.35, 0, 0.65, 1) infinite;
+  overflow: hidden;
+  box-shadow: inset 0px 0px 0px .095em #FFFFFF;
+}
+
+.dennis-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  box-shadow: inset .085em 0px 0px .065em #FFFFFF;
+  animation: dennisCircle 2.7s linear infinite;
+}
+
+.dennis-circle:nth-child(1) {
+  animation-delay: -1.8s;
+}
+
+.dennis-circle:nth-child(2) {
+  animation-delay: -.9s;
+}
+
+.dennis-circle:nth-child(3) {
+  animation-delay: 0s;
+}
+
+.dennis-circle-hor {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  height: 55%;
+  box-shadow: inset 0px 0px 0px .11em #FFFFFF;
+}
+
+.dennis-circle-hor-middle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 150%;
+  transform: translate(-50%, -50%);
+  border-radius: 0%;
+  height: .1em;
+  background: #FFFFFF;
+}
+
+@keyframes dennisGlobe {
+  0%   { transform: translate(-50%, -50%) rotate(15deg); }
+  50%  { transform: translate(-50%, -50%) rotate(-15deg); }
+  100% { transform: translate(-50%, -50%) rotate(15deg); }
+}
+
+@keyframes dennisCircle {
+  0%   { border-radius: 50%; box-shadow: inset .085em 0px 0px .065em #FFFFFF; width: 100%; }
+  49%  { border-radius: 50%; box-shadow: inset .085em 0px 0px .065em #FFFFFF; background: transparent; }
+  50%  { border-radius: 0%; width: .14em; background: #FFFFFF; }
+  51%  { border-radius: 50%; box-shadow: inset -.085em 0px 0px .065em #FFFFFF; background: transparent; }
+  100% { border-radius: 50%; box-shadow: inset -.085em 0px 0px .065em #FFFFFF; width: 100%; }
 }
 
 .hero-role-tag {
@@ -423,6 +502,46 @@ body {
   font-weight: 400;
   letter-spacing: -0.025em;
   color: var(--color-gray);
+}
+
+/* Dennis Snellenberg Drifting Hero Marquee Strip */
+.hero-sliding-strip {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  overflow: hidden;
+  white-space: nowrap;
+  padding: clamp(1rem, 2.2vw, 2.8rem) 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+.sliding-strip-track {
+  display: inline-flex;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.strip-text {
+  font-family: var(--font-editorial);
+  font-size: clamp(3.8rem, 9.2vw, 9.2rem);
+  font-weight: 500;
+  color: #FFFFFF;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  padding-right: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.strip-dash {
+  font-weight: 300;
+  opacity: 0.45;
+  color: #999D9E;
 }
 
 .hero-bottom-row {
@@ -642,6 +761,35 @@ body {
   font-size: 0.75rem;
   font-weight: 600;
   margin-left: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   7b. Magnetic Physics Targets & Inner Text Parallax (2.5D Depth)
+   -------------------------------------------------------------------------- */
+.magnetic-target {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  will-change: transform;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.magnetic-target.is-hovered {
+  transition: transform 0.08s ease-out;
+}
+
+.btn-text-inner {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: inherit;
+  pointer-events: none;
+  will-change: transform;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.magnetic-target.is-hovered .btn-text-inner {
+  transition: transform 0.08s ease-out;
 }
 
 /* --------------------------------------------------------------------------

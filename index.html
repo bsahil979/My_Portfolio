@@ -40,8 +40,8 @@
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  <!-- Dennis Snellenberg Dual-Contrast Stylesheet (Cache Busted v=7.0) -->
-  <link rel="stylesheet" href="style.css?v=7.0">
+  <!-- Dennis Snellenberg Full Motion Stylesheet (Cache Busted v=8.0) -->
+  <link rel="stylesheet" href="style.css?v=8.0">
 </head>
 <body>
 
@@ -51,15 +51,15 @@
   <div class="loading-container" id="loadingContainer" aria-label="Loading portfolio">
     <div class="loading-screen" id="loadingScreen">
       <div class="loading-words" id="loadingWords">
-        <h2 class="active"><span class="dot"></span>Hello</h2>
-        <h2><span class="dot"></span>Bonjour</h2>
-        <h2><span class="dot"></span>नमस्ते</h2>
-        <h2><span class="dot"></span>Ciao</h2>
-        <h2><span class="dot"></span>Olá</h2>
-        <h2><span class="dot"></span>こんにちは</h2>
-        <h2><span class="dot"></span>Hallå</h2>
-        <h2><span class="dot"></span>Guten Tag</h2>
-        <h2><span class="dot"></span>Hallo</h2>
+        <h2 class="active">Hello <span class="dot"></span></h2>
+        <h2>Bonjour <span class="dot"></span></h2>
+        <h2>स्वागत हे <span class="dot"></span></h2>
+        <h2>Ciao <span class="dot"></span></h2>
+        <h2>Olá <span class="dot"></span></h2>
+        <h2>おい <span class="dot"></span></h2>
+        <h2>Hallå <span class="dot"></span></h2>
+        <h2>Guten Tag <span class="dot"></span></h2>
+        <h2>Hallo <span class="dot"></span></h2>
       </div>
       <div class="loading-rounded-div-wrap">
         <div class="loading-rounded-div"></div>
@@ -73,38 +73,38 @@
   <header class="navbar" id="navbar">
     <div class="nav-container">
       <a href="#hero" class="brand-link magnetic-target" aria-label="Sahil Belchada">
-        <span class="brand-text">© Code by <span class="brand-name">Sahil</span></span>
+        <span class="btn-text-inner brand-text">© Code by <span class="brand-name">Sahil</span></span>
       </a>
 
       <!-- Desktop Nav Links -->
       <nav class="nav-links" id="navLinks" aria-label="Primary Navigation">
         <a href="#work" class="nav-item magnetic-target">
-          <span>Work</span>
+          <span class="btn-text-inner">Work</span>
           <span class="nav-item-dot"></span>
         </a>
         <a href="#more-work" class="nav-item magnetic-target">
-          <span>More Work</span>
+          <span class="btn-text-inner">More Work</span>
           <span class="nav-item-dot"></span>
         </a>
         <a href="#about" class="nav-item magnetic-target">
-          <span>About</span>
+          <span class="btn-text-inner">About</span>
           <span class="nav-item-dot"></span>
         </a>
         <a href="#experience" class="nav-item magnetic-target">
-          <span>Experience</span>
+          <span class="btn-text-inner">Experience</span>
           <span class="nav-item-dot"></span>
         </a>
         <a href="#skills" class="nav-item magnetic-target">
-          <span>Skills</span>
+          <span class="btn-text-inner">Skills</span>
           <span class="nav-item-dot"></span>
         </a>
         <a href="#contact" class="nav-item magnetic-target">
-          <span>Contact</span>
+          <span class="btn-text-inner">Contact</span>
           <span class="nav-item-dot"></span>
         </a>
         <a href="assets/Sahil_Belchada_Resume.pdf" download="Sahil_Belchada_Resume.pdf" target="_blank" class="nav-resume-btn magnetic-target" title="Download Verified Resume">
           <i class="fa-solid fa-file-arrow-down"></i>
-          <span>Resume</span>
+          <span class="btn-text-inner">Resume</span>
         </a>
       </nav>
 
@@ -117,14 +117,23 @@
 
   <main>
     <!-- ========================================================================
-         2. HERO SECTION (DARK THEME // DENNIS SNELLENBERG EDITORIAL)
+         2. HERO SECTION (DENNIS SNELLENBERG WIREFRAME GLOBE + CALM SLIDING MARQUEE)
          ======================================================================== -->
     <section class="hero-section theme-dark" id="hero">
       <!-- Top Status Row -->
       <div class="hero-top-row">
         <div class="hero-location-tag">
-          <div class="globe-wrap">
-            <i class="fa-solid fa-globe"></i>
+          <!-- Dennis Snellenberg Rotating Wireframe Globe -->
+          <div class="dennis-globe-container">
+            <div class="dennis-globe">
+              <div class="dennis-globe-wrap">
+                <div class="dennis-circle"></div>
+                <div class="dennis-circle"></div>
+                <div class="dennis-circle"></div>
+                <div class="dennis-circle-hor"></div>
+                <div class="dennis-circle-hor-middle"></div>
+              </div>
+            </div>
           </div>
           <span class="hero-loc-text">Located in Mumbai, India</span>
         </div>
@@ -141,13 +150,23 @@
         <div class="hero-title-role">Software Engineer</div>
       </div>
 
+      <!-- Dennis Snellenberg Smooth Drifting Hero Marquee -->
+      <div class="hero-sliding-strip" aria-hidden="true">
+        <div class="sliding-strip-track" id="heroMarqueeTrack">
+          <span class="strip-text">Sahil Belchada <span class="strip-dash">—</span> Software Engineer <span class="strip-dash">—</span></span>
+          <span class="strip-text">Sahil Belchada <span class="strip-dash">—</span> Software Engineer <span class="strip-dash">—</span></span>
+          <span class="strip-text">Sahil Belchada <span class="strip-dash">—</span> Software Engineer <span class="strip-dash">—</span></span>
+          <span class="strip-text">Sahil Belchada <span class="strip-dash">—</span> Software Engineer <span class="strip-dash">—</span></span>
+        </div>
+      </div>
+
       <!-- Bottom Info Row -->
       <div class="hero-bottom-row">
         <a href="#work" class="hero-scroll-btn magnetic-target">
           <div class="scroll-arrow-circle">
             <i class="fa-solid fa-arrow-down"></i>
           </div>
-          <span>Scroll to explore</span>
+          <span class="btn-text-inner">Scroll to explore</span>
         </a>
         <div class="hero-education-tag">
           <span>B.Tech in Computer Engineering (2027) • K.J. Somaiya College of Engineering</span>
@@ -161,7 +180,7 @@
     </div>
 
     <!-- ========================================================================
-         3. ABOUT / STATEMENT SECTION (CRISP WHITE / LIGHT GRAYISH THEME)
+         3. ABOUT / STATEMENT SECTION (CRISP WHITE // EDITORIAL SPLIT)
          ======================================================================== -->
     <section class="about-section theme-light" id="about">
       <div class="about-container">
@@ -181,7 +200,7 @@
 
             <div class="about-actions-wrap">
               <a href="assets/Sahil_Belchada_Resume.pdf" download="Sahil_Belchada_Resume.pdf" target="_blank" class="magnetic-circle-btn small dark magnetic-target">
-                <span>Resume (PDF)</span>
+                <span class="btn-text-inner">Resume (PDF)</span>
               </a>
               <div class="about-contact-quick">
                 <a href="mailto:bsahil979@gmail.com" class="about-link"><i class="fa-solid fa-envelope"></i> bsahil979@gmail.com</a>
@@ -194,12 +213,11 @@
     </section>
 
     <!-- ========================================================================
-         4. RECENT WORK ON HOME (SIMPLE & MINIMAL LIKE DENNIS SNELLENBERG)
+         4. RECENT WORK ON HOME (SIMPLE & MINIMAL // DENNIS SNELLENBERG HOVER)
             - Project Name in BOLD
-            - Category on the right
+            - Row dimming of unhovered items
+            - Title & Category translation on hover
             - Floating Cursor Preview Modal with "View" badge
-            - Dimming of unhovered rows on hover (dennissnellenberg.com behavior)
-            - "More work (5)" Button linking to the full detailed case studies
          ======================================================================== -->
     <section class="work-section theme-light" id="work">
       <div class="work-container">
@@ -214,7 +232,7 @@
           <!-- Project 01: MarketMind AI -->
           <li class="home-project-item" data-index="0">
             <div class="stripe"></div>
-            <a href="#case-study-01" class="home-project-row magnetic-target">
+            <a href="#case-study-01" class="home-project-row">
               <div class="home-project-left">
                 <h3 class="home-project-title">MarketMind AI</h3>
               </div>
@@ -228,7 +246,7 @@
           <!-- Project 02: MoM Generator -->
           <li class="home-project-item" data-index="1">
             <div class="stripe"></div>
-            <a href="#case-study-02" class="home-project-row magnetic-target">
+            <a href="#case-study-02" class="home-project-row">
               <div class="home-project-left">
                 <h3 class="home-project-title">MoM Generator</h3>
               </div>
@@ -242,7 +260,7 @@
           <!-- Project 03: HaritKranti -->
           <li class="home-project-item" data-index="2">
             <div class="stripe"></div>
-            <a href="#case-study-03" class="home-project-row magnetic-target">
+            <a href="#case-study-03" class="home-project-row">
               <div class="home-project-left">
                 <h3 class="home-project-title">HaritKranti</h3>
               </div>
@@ -256,7 +274,7 @@
           <!-- Project 04: Aurizen -->
           <li class="home-project-item" data-index="3">
             <div class="stripe"></div>
-            <a href="#case-study-04" class="home-project-row magnetic-target">
+            <a href="#case-study-04" class="home-project-row">
               <div class="home-project-left">
                 <h3 class="home-project-title">Aurizen</h3>
               </div>
@@ -270,7 +288,7 @@
           <!-- Project 05: AI Personal Finance App -->
           <li class="home-project-item" data-index="4">
             <div class="stripe"></div>
-            <a href="#case-study-05" class="home-project-row magnetic-target">
+            <a href="#case-study-05" class="home-project-row">
               <div class="home-project-left">
                 <h3 class="home-project-title">AI Finance App</h3>
               </div>
@@ -286,7 +304,7 @@
         <!-- Dennis Snellenberg "More work (5)" Button -->
         <div class="work-footer-cta">
           <a href="#more-work" class="magnetic-circle-btn medium dark magnetic-target" id="moreWorkTriggerBtn">
-            <span>More work <span class="badge-count">5</span></span>
+            <span class="btn-text-inner">More work <span class="badge-count">5</span></span>
           </a>
         </div>
       </div>
@@ -315,10 +333,7 @@
     <div class="project-cursor-badge" id="projectCursorBadge" aria-hidden="true">View</div>
 
     <!-- ========================================================================
-         5. WORK EXPERIENCE ON HOME (SIMPLE & MINIMAL DENNIS SNELLENBERG ROW)
-            - Company in Bold on Left
-            - Role & Details on Right
-            - Same Hover Shift & Dimming as Projects
+         5. WORK EXPERIENCE ON HOME (MATCHES PROJECT ROW STRUCTURE & HOVER)
          ======================================================================== -->
     <section class="experience-section theme-light" id="experience">
       <div class="experience-container">
@@ -330,7 +345,7 @@
         <ul class="home-project-list home-experience-list">
           <li class="home-project-item">
             <div class="stripe"></div>
-            <a href="#case-study-swdc" class="home-project-row magnetic-target">
+            <a href="#case-study-swdc" class="home-project-row">
               <div class="home-project-left">
                 <h3 class="home-project-title">Software Development Cell</h3>
               </div>
@@ -811,7 +826,7 @@
         <div class="footer-divider-line">
           <div class="footer-btn-anchor">
             <a href="mailto:bsahil979@gmail.com" class="magnetic-circle-btn large magnetic-target" title="Send Sahil an email">
-              <span>Get in touch</span>
+              <span class="btn-text-inner">Get in touch</span>
             </a>
           </div>
         </div>
@@ -820,15 +835,15 @@
         <div class="footer-contact-pills">
           <a href="mailto:bsahil979@gmail.com" class="contact-pill magnetic-target">
             <i class="fa-solid fa-envelope"></i>
-            <span>bsahil979@gmail.com</span>
+            <span class="btn-text-inner">bsahil979@gmail.com</span>
           </a>
           <a href="tel:+918828049078" class="contact-pill magnetic-target">
             <i class="fa-solid fa-phone"></i>
-            <span>+91 8828049078</span>
+            <span class="btn-text-inner">+91 8828049078</span>
           </a>
           <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="contact-pill magnetic-target">
             <i class="fa-brands fa-github"></i>
-            <span>github.com/bsahil979</span>
+            <span class="btn-text-inner">github.com/bsahil979</span>
           </a>
         </div>
 
@@ -840,8 +855,12 @@
           </div>
 
           <div class="footer-bar-right">
-            <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="footer-nav-link magnetic-target">GitHub</a>
-            <a href="assets/Sahil_Belchada_Resume.pdf" download="Sahil_Belchada_Resume.pdf" target="_blank" class="footer-nav-link magnetic-target">Resume</a>
+            <a href="https://github.com/bsahil979" target="_blank" rel="noopener noreferrer" class="footer-nav-link magnetic-target">
+              <span class="btn-text-inner">GitHub</span>
+            </a>
+            <a href="assets/Sahil_Belchada_Resume.pdf" download="Sahil_Belchada_Resume.pdf" target="_blank" class="footer-nav-link magnetic-target">
+              <span class="btn-text-inner">Resume</span>
+            </a>
           </div>
         </div>
 
@@ -849,7 +868,7 @@
     </footer>
   </main>
 
-  <!-- Dennis Snellenberg Interactive Controller -->
-  <script src="app.js?v=7.0"></script>
+  <!-- Dennis Snellenberg Full Motion & Interactive Controller -->
+  <script src="app.js?v=8.0"></script>
 </body>
 </html>

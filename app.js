@@ -89,7 +89,7 @@
   }
 
   // --------------------------------------------------------------------------
-  // 3. Dennis Snellenberg Magnetic Physics Engine
+  // 3. Dennis Snellenberg Magnetic Physics Engine (2.5D Dual-Layer Text Parallax)
   // --------------------------------------------------------------------------
   function initMagneticPhysics() {
     const isTouch = window.innerWidth < 1024 || ('ontouchstart' in window);
@@ -98,27 +98,83 @@
     const magneticElements = document.querySelectorAll('.magnetic-target');
 
     magneticElements.forEach((el) => {
+      const textInner = el.querySelector('.btn-text-inner');
       let bound = el.getBoundingClientRect();
 
-      window.addEventListener('resize', () => {
+      function updateBounds() {
         bound = el.getBoundingClientRect();
-      }, { passive: true });
+      }
+      window.addEventListener('resize', updateBounds, { passive: true });
+      window.addEventListener('scroll', updateBounds, { passive: true });
+
+      el.addEventListener('mouseenter', () => {
+        el.classList.add('is-hovered');
+        bound = el.getBoundingClientRect();
+      });
 
       el.addEventListener('mousemove', (e) => {
-        bound = el.getBoundingClientRect();
         const centerX = bound.left + bound.width / 2;
         const centerY = bound.top + bound.height / 2;
 
-        const deltaX = (e.clientX - centerX) * 0.32;
-        const deltaY = (e.clientY - centerY) * 0.32;
+        const deltaX = (e.clientX - centerX) * 0.35;
+        const deltaY = (e.clientY - centerY) * 0.35;
 
         el.style.transform = `translate3d(${deltaX}px, ${deltaY}px, 0)`;
+
+        if (textInner) {
+          const textDeltaX = (e.clientX - centerX) * 0.18;
+          const textDeltaY = (e.clientY - centerY) * 0.18;
+          textInner.style.transform = `translate3d(${textDeltaX}px, ${textDeltaY}px, 0)`;
+        }
       });
 
       el.addEventListener('mouseleave', () => {
-        el.style.transform = `translate3d(0px, 0px, 0)`;
+        el.classList.remove('is-hovered');
+        el.style.transform = 'translate3d(0px, 0px, 0)';
+        if (textInner) {
+          textInner.style.transform = 'translate3d(0px, 0px, 0)';
+        }
       });
     });
+  }
+
+  // --------------------------------------------------------------------------
+  // Dennis Snellenberg Calm Drifting Hero Marquee with Scroll Velocity Link
+  // --------------------------------------------------------------------------
+  function initHeroMarquee() {
+    const track = document.getElementById('heroMarqueeTrack');
+    if (!track) return;
+
+    let xPercent = 0;
+    const baseSpeed = 0.055;
+    let scrollSpeedBoost = 0;
+    let lastScrollY = window.scrollY;
+
+    function onScroll() {
+      const currentScrollY = window.scrollY;
+      const delta = currentScrollY - lastScrollY;
+      lastScrollY = currentScrollY;
+      scrollSpeedBoost += delta * 0.035;
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    function renderMarquee() {
+      xPercent -= (baseSpeed + scrollSpeedBoost);
+      scrollSpeedBoost *= 0.92;
+
+      // Wrap cleanly at -50% for seamless looping
+      if (xPercent <= -50) {
+        xPercent += 50;
+      } else if (xPercent > 0) {
+        xPercent -= 50;
+      }
+
+      track.style.transform = `translate3d(${xPercent}%, 0, 0)`;
+      requestAnimationFrame(renderMarquee);
+    }
+
+    requestAnimationFrame(renderMarquee);
   }
 
   // --------------------------------------------------------------------------
@@ -132,9 +188,11 @@
     const modalContainer = document.getElementById('projectModalContainer');
     const modalSlider = document.getElementById('projectModalSlider');
     const cursorBadge = document.getElementById('projectCursorBadge');
-    const projectItems = document.querySelectorAll('.home-project-item, .project-item-wrap');
 
     if (!projectList || !modalContainer || !modalSlider || !cursorBadge) return;
+
+    const projectItems = projectList.querySelectorAll('.home-project-item');
+    if (!projectItems.length) return;
 
     let mouseX = -300, mouseY = -300;
     let modalX = -300, modalY = -300;
@@ -163,8 +221,20 @@
     }
     requestAnimationFrame(renderModal);
 
-    projectList.addEventListener('mouseenter', () => {
+    projectList.addEventListener('mouseenter', (e) => {
       isHoveringList = true;
+      if (e.clientX && e.clientY) {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        modalX = e.clientX;
+        modalY = e.clientY;
+        badgeX = e.clientX;
+        badgeY = e.clientY;
+        modalContainer.style.left = `${modalX}px`;
+        modalContainer.style.top = `${modalY}px`;
+        cursorBadge.style.left = `${badgeX}px`;
+        cursorBadge.style.top = `${badgeY}px`;
+      }
       modalContainer.classList.add('active');
       cursorBadge.classList.add('active');
     });
@@ -176,8 +246,9 @@
     });
 
     projectItems.forEach((item, idx) => {
+      const slideIndex = item.hasAttribute('data-index') ? parseInt(item.getAttribute('data-index'), 10) : idx;
       item.addEventListener('mouseenter', () => {
-        modalSlider.style.transform = `translate3d(0, -${idx * 100}%, 0)`;
+        modalSlider.style.transform = `translate3d(0, -${slideIndex * 100}%, 0)`;
       });
     });
   }
@@ -228,6 +299,7 @@
   // DOM Ready Initialization
   document.addEventListener('DOMContentLoaded', () => {
     initLanguagePreloader();
+    initHeroMarquee();
     initAdaptiveNavbar();
     initMagneticPhysics();
     initProjectHoverModal();
