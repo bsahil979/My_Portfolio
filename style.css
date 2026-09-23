@@ -727,32 +727,54 @@ html.lenis, html.lenis body {
 .rounded-div-wrapper {
   width: 100%;
   position: relative;
-  height: 100px;
+  height: 0;
+  display: block;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.rounded-div-wrapper .rounded-div-wrap {
+  width: 100%;
+  height: clamp(80px, 12vh, 130px);
+  position: absolute;
+  left: 0;
   overflow: hidden;
-  margin-top: -1px;
-  margin-bottom: -1px;
-  z-index: 3;
   will-change: height;
 }
 
-.rounded-div {
+.rounded-div-wrapper.to-light .rounded-div-wrap {
+  bottom: 0;
+  transform: translateY(1px);
+}
+
+.rounded-div-wrapper.to-dark .rounded-div-wrap {
+  top: 0;
+  transform: translateY(-1px);
+}
+
+.rounded-div-wrapper .rounded-div {
   width: 150%;
-  position: absolute;
-  left: -25%;
   height: 750%;
+  position: absolute;
+  left: 50%;
+  top: 0;
   border-radius: 50%;
+  z-index: 1;
 }
 
 .rounded-div-wrapper.to-light .rounded-div {
   background: var(--color-white);
+  transform: translate(-50%, 0);
 }
 
 .rounded-div-wrapper.to-gray .rounded-div {
   background: var(--color-lightgray);
+  transform: translate(-50%, 0);
 }
 
 .rounded-div-wrapper.to-dark .rounded-div {
-  background: var(--color-dark);
+  background: var(--color-white);
+  transform: translate(-50%, -86.666%);
 }
 
 /* Dennis Snellenberg Overlapping Stacking Contexts */
@@ -764,7 +786,7 @@ html.lenis, html.lenis body {
 .about-section {
   position: relative;
   z-index: 2;
-  box-shadow: 0 -25px 60px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 -35px 70px rgba(0, 0, 0, 0.28);
 }
 
 .work-section {
@@ -790,6 +812,20 @@ html.lenis, html.lenis body {
 .education-section {
   position: relative;
   z-index: 2;
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.28);
+}
+
+.work-hero-section,
+.work-filters-section,
+.work-list-section,
+.work-grid-section {
+  position: relative;
+  z-index: 2;
+}
+
+.work-list-section,
+.work-grid-section {
+  box-shadow: 0 35px 70px rgba(0, 0, 0, 0.28);
 }
 
 .footer-section {

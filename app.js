@@ -314,36 +314,79 @@
     const windowH = window.innerHeight;
 
     wrappers.forEach((wrap) => {
+      const innerWrap = wrap.querySelector('.rounded-div-wrap');
+      if (!innerWrap) return;
+
       const rect = wrap.getBoundingClientRect();
-      // Progress 0 when entering bottom of viewport (rect.top == windowH)
-      // Progress 1 when top reaches 15% of viewport (rect.top <= windowH * 0.15)
+      const isToLight = wrap.classList.contains('to-light');
+      
+      // Calculate scroll progress for the divider:
+      // Start scrubbing when divider enters bottom of viewport (rect.top == windowH)
+      // Fully flattened when divider reaches upper viewport (rect.top <= windowH * 0.15)
       const start = windowH;
       const end = windowH * 0.15;
       const progress = Math.max(0, Math.min(1, (start - rect.top) / (start - end)));
 
-      // Height morphs smoothly from 100px down to 0px, creating the peeling curved overlap
-      const targetHeight = (100 * (1 - progress)).toFixed(1);
-      wrap.style.height = `${targetHeight}px`;
+      // Height morphs smoothly from ~115px down to 0px, creating the peeling curved overlap
+      const maxHeight = Math.min(125, Math.max(75, windowH * 0.1));
+      const targetHeight = (maxHeight * (1 - progress)).toFixed(1);
+      innerWrap.style.height = `${targetHeight}px`;
     });
+  }
+
+  function updateScrollParallax(scrollY) {
+    const windowH = window.innerHeight;
+
+    // 1. Hero elements subtle depth parallax (receding into background)
+    if (scrollY < windowH * 1.5) {
+      const heroHanger = document.querySelector('.hero-hanger');
+      const heroIntroBadge = document.querySelector('.hero-intro-badge');
+      if (heroHanger) {
+        heroHanger.style.transform = `translate3d(0, ${(scrollY * 0.12).toFixed(1)}px, 0)`;
+      }
+      if (heroIntroBadge) {
+        heroIntroBadge.style.transform = `translate3d(0, ${(scrollY * 0.18).toFixed(1)}px, 0)`;
+      }
+    }
+
+    // 2. Footer elements subtle upward floating parallax
+    const footer = document.querySelector('.footer-section');
+    if (footer) {
+      const footerRect = footer.getBoundingClientRect();
+      if (footerRect.top < windowH && footerRect.bottom > 0) {
+        const distance = windowH - footerRect.top;
+        const title = footer.querySelector('.footer-giant-title');
+        const cta = footer.querySelector('.footer-cta-container');
+        if (title) {
+          title.style.transform = `translate3d(0, ${(-distance * 0.08).toFixed(1)}px, 0)`;
+        }
+        if (cta) {
+          cta.style.transform = `translate3d(0, ${(-distance * 0.05).toFixed(1)}px, 0)`;
+        }
+      }
+    }
   }
 
   function initSmoothScroll() {
     // If user prefers reduced motion, keep native scroll
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      window.addEventListener('scroll', updateCurvedDividers, { passive: true });
+      window.addEventListener('scroll', () => {
+        updateCurvedDividers();
+        updateScrollParallax(window.scrollY);
+      }, { passive: true });
       updateCurvedDividers();
       return;
     }
 
     if (typeof Lenis !== 'undefined') {
       lenisInstance = new Lenis({
-        duration: 1.2,
+        duration: 1.25,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         orientation: 'vertical',
         gestureOrientation: 'vertical',
         smoothWheel: true,
-        wheelMultiplier: 1.0,
-        touchMultiplier: 1.15,
+        wheelMultiplier: 1.05,
+        touchMultiplier: 1.5,
         infinite: false,
       });
 
@@ -353,12 +396,17 @@
       }
       requestAnimationFrame(raf);
 
-      lenisInstance.on('scroll', () => {
+      lenisInstance.on('scroll', (e) => {
         updateCurvedDividers();
+        updateScrollParallax(e.scroll || window.scrollY);
       });
     }
 
-    window.addEventListener('scroll', updateCurvedDividers, { passive: true });
+    window.addEventListener('scroll', () => {
+      const sy = window.scrollY;
+      updateCurvedDividers();
+      updateScrollParallax(sy);
+    }, { passive: true });
     updateCurvedDividers();
   }
 
