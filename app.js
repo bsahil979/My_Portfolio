@@ -334,37 +334,28 @@
     });
   }
 
-  function updateScrollParallax(scrollY) {
+  function updateScrollParallax() {
     const windowH = window.innerHeight;
+    const windowCenter = windowH / 2;
+    const parallaxElements = document.querySelectorAll('[data-scroll-speed]');
 
-    // 1. Hero elements subtle depth parallax (receding into background)
-    if (scrollY < windowH * 1.5) {
-      const heroHanger = document.querySelector('.hero-hanger');
-      const heroIntroBadge = document.querySelector('.hero-intro-badge');
-      if (heroHanger) {
-        heroHanger.style.transform = `translate3d(0, ${(scrollY * 0.12).toFixed(1)}px, 0)`;
-      }
-      if (heroIntroBadge) {
-        heroIntroBadge.style.transform = `translate3d(0, ${(scrollY * 0.18).toFixed(1)}px, 0)`;
-      }
-    }
+    parallaxElements.forEach((el) => {
+      const speed = parseFloat(el.getAttribute('data-scroll-speed'));
+      if (isNaN(speed) || speed === 0) return;
 
-    // 2. Footer elements subtle upward floating parallax
-    const footer = document.querySelector('.footer-section');
-    if (footer) {
-      const footerRect = footer.getBoundingClientRect();
-      if (footerRect.top < windowH && footerRect.bottom > 0) {
-        const distance = windowH - footerRect.top;
-        const title = footer.querySelector('.footer-giant-title');
-        const cta = footer.querySelector('.footer-cta-container');
-        if (title) {
-          title.style.transform = `translate3d(0, ${(-distance * 0.08).toFixed(1)}px, 0)`;
-        }
-        if (cta) {
-          cta.style.transform = `translate3d(0, ${(-distance * 0.05).toFixed(1)}px, 0)`;
-        }
+      const rect = el.getBoundingClientRect();
+      // Only compute and transform when in or near viewport (-150px buffer)
+      if (rect.bottom >= -150 && rect.top <= windowH + 150) {
+        const elCenter = rect.top + rect.height / 2;
+        const diff = elCenter - windowCenter;
+        
+        // High-precision smooth parallax translation
+        // As you scroll down (el moves up, diff < 0), positive speed moves UP faster
+        // As you scroll up (el moves down, diff > 0), positive speed moves DOWN faster
+        const translateY = (diff * speed * 0.08).toFixed(1);
+        el.style.transform = `translate3d(0, ${translateY}px, 0)`;
       }
-    }
+    });
   }
 
   function initSmoothScroll() {
@@ -372,42 +363,47 @@
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       window.addEventListener('scroll', () => {
         updateCurvedDividers();
-        updateScrollParallax(window.scrollY);
+        updateScrollParallax();
       }, { passive: true });
       updateCurvedDividers();
       return;
     }
 
     if (typeof Lenis !== 'undefined') {
+      // Dennis Snellenberg / Locomotive Scroll Linear Interpolation Physics
       lenisInstance = new Lenis({
-        duration: 1.25,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        lerp: 0.085,
         orientation: 'vertical',
         gestureOrientation: 'vertical',
         smoothWheel: true,
-        wheelMultiplier: 1.05,
+        wheelMultiplier: 1.0,
         touchMultiplier: 1.5,
         infinite: false,
       });
 
+      // Expose globally for coordination
+      window.lenis = lenisInstance;
+
       function raf(time) {
         lenisInstance.raf(time);
+        updateCurvedDividers();
+        updateScrollParallax();
         requestAnimationFrame(raf);
       }
       requestAnimationFrame(raf);
 
-      lenisInstance.on('scroll', (e) => {
+      lenisInstance.on('scroll', () => {
         updateCurvedDividers();
-        updateScrollParallax(e.scroll || window.scrollY);
+        updateScrollParallax();
       });
     }
 
     window.addEventListener('scroll', () => {
-      const sy = window.scrollY;
       updateCurvedDividers();
-      updateScrollParallax(sy);
+      updateScrollParallax();
     }, { passive: true });
     updateCurvedDividers();
+    updateScrollParallax();
   }
 
   // --------------------------------------------------------------------------

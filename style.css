@@ -58,8 +58,6 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  overflow-y: auto;
-  scroll-behavior: smooth;
 }
 
 body {
@@ -68,9 +66,12 @@ body {
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
-  overflow-y: auto;
   line-height: 1.6;
   font-weight: 450;
+}
+
+[data-scroll-speed] {
+  will-change: transform;
 }
 
 /* Dennis Snellenberg / Lenis Smooth Scrolling Core Standards */

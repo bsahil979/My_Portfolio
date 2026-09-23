@@ -13,8 +13,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <!-- Lenis Inertia Smooth Scroll -->
-  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/dist/lenis.min.js"></script>
+
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
@@ -88,7 +87,7 @@
           <span class="work-hero-tag">Archive &amp; Technical Case Studies</span>
           <span class="work-hero-count">6 Projects &amp; Experience</span>
         </div>
-        <h1 class="work-hero-title">
+        <h1 class="work-hero-title" data-scroll data-scroll-speed="0.8">
           <span>Creating next level</span>
           <span>software &amp; systems</span>
         </h1>
@@ -99,7 +98,7 @@
          3. FILTERS & VIEW MODE SWITCHER (DENNIS SNELLENBERG WORK FILTERS)
          ======================================================================== -->
     <section class="section work-filters-section">
-      <div class="work-filters-container">
+      <div class="work-filters-container" data-scroll data-scroll-speed="1.2">
         <div class="filter-pills-row">
           <button class="filter-pill-btn active magnetic-target" data-filter="all">
             <span class="btn-text-inner">All <span class="count-badge">6</span></span>
@@ -686,7 +685,7 @@
         </div>
 
         <!-- Giant Dennis Snellenberg Editorial Heading -->
-        <h2 class="footer-giant-title">
+        <h2 class="footer-giant-title" data-scroll data-scroll-speed="-1.2">
           <span>Let's work</span>
           <span>together</span>
         </h2>
@@ -694,7 +693,7 @@
         <!-- Dennis Snellenberg Giant Round Magnetic CTA Button -->
         <div class="footer-cta-container">
           <div class="footer-divider-stripe"></div>
-          <div class="footer-btn-anchor">
+          <div class="footer-btn-anchor" data-scroll data-scroll-speed="1.4">
             <a href="mailto:bsahil979@gmail.com" class="magnetic-circle-btn large dark magnetic-target" id="footerContactBtn">
               <span class="btn-text-inner">Get in touch</span>
             </a>
@@ -743,6 +742,8 @@
     </footer>
   </main>
 
+  <!-- Lenis Smooth Inertia Scroll Library (Dennis Snellenberg Scroll Physics) -->
+  <script src="assets/lenis.min.js"></script>
   <!-- Interactive Logic -->
   <script src="app.js"></script>
 </body>
