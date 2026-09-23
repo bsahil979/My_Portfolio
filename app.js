@@ -131,6 +131,7 @@
     const projectList = document.getElementById('projectList');
     const modalContainer = document.getElementById('projectModalContainer');
     const modalSlider = document.getElementById('projectModalSlider');
+    const cursorBadge = document.getElementById('projectCursorBadge');
     const projectItems = document.querySelectorAll('.home-project-item, .project-item-wrap');
 
     if (!projectList || !modalContainer || !modalSlider || !cursorBadge) return;

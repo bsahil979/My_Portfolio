@@ -683,6 +683,15 @@ body {
   color: var(--color-dim);
 }
 
+/* Dennis Snellenberg Project & Experience List Row Dimming */
+.home-project-list:hover .home-project-row {
+  opacity: 0.35;
+}
+
+.home-project-list .home-project-row:hover {
+  opacity: 1 !important;
+}
+
 .home-project-list {
   display: flex;
   flex-direction: column;
@@ -698,10 +707,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: clamp(2.2rem, 4.4vw, 3.8rem) 0;
+  padding: clamp(2.4rem, 4.6vw, 3.8rem) 0;
   text-decoration: none;
   color: var(--color-text-dark);
-  transition: transform 0.25s ease;
+  transition: opacity 0.3s cubic-bezier(0.7, 0, 0.3, 1);
   cursor: pointer;
 }
 
@@ -713,17 +722,18 @@ body {
 /* Project Name in BOLD (Dennis Snellenberg Style) */
 .home-project-title {
   font-family: var(--font-editorial);
-  font-size: clamp(2.4rem, 5vw, 4.4rem);
+  font-size: clamp(2.4rem, 5.2vw, 4.5rem);
   font-weight: 700;
   letter-spacing: -0.03em;
   color: var(--color-text-dark);
   line-height: 1.05;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease;
+  transform: translateX(0);
 }
 
 .home-project-row:hover .home-project-title {
   color: var(--color-blue);
-  transform: translateX(14px);
+  transform: translateX(18px);
 }
 
 .home-project-right {
@@ -733,15 +743,17 @@ body {
 }
 
 .home-project-cat {
-  font-size: clamp(0.95rem, 1.2vw, 1.15rem);
+  font-size: clamp(0.95rem, 1.25vw, 1.15rem);
   color: var(--color-dim);
   font-weight: 450;
   text-align: right;
-  transition: color 0.25s ease;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), color 0.25s ease;
+  transform: translateX(0);
 }
 
 .home-project-row:hover .home-project-cat {
   color: var(--color-text-dark);
+  transform: translateX(-10px);
 }
 
 .home-project-arrow {
@@ -777,16 +789,16 @@ body {
   position: fixed;
   top: 0;
   left: 0;
-  width: 400px;
-  height: 280px;
+  width: clamp(15rem, 28vw, 26rem);
+  height: clamp(10.5rem, 19.5vw, 18.5rem);
   background-color: #0b0c0e;
-  border-radius: 12px;
+  border-radius: 4px;
   overflow: hidden;
   pointer-events: none;
-  z-index: 999;
+  z-index: 990;
   transform: translate(-50%, -50%) scale(0);
   opacity: 0;
-  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+  transition: transform 0.4s cubic-bezier(0.34, 1, 0.64, 1), opacity 0.25s ease;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
 }
 
@@ -817,14 +829,16 @@ body {
   height: 100%;
   object-fit: cover;
   object-position: top;
+  transform: scale(1.05);
+  transition: transform 0.5s cubic-bezier(0.7, 0, 0.3, 1);
 }
 
 .project-cursor-badge {
   position: fixed;
   top: 0;
   left: 0;
-  width: 76px;
-  height: 76px;
+  width: clamp(70px, 5.5vw, 84px);
+  height: clamp(70px, 5.5vw, 84px);
   background-color: var(--color-blue);
   border-radius: 50%;
   pointer-events: none;
@@ -833,11 +847,13 @@ body {
   align-items: center;
   justify-content: center;
   color: #FFFFFF;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 500;
+  letter-spacing: -0.01em;
   transform: translate(-50%, -50%) scale(0);
   opacity: 0;
-  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  transition: transform 0.35s cubic-bezier(0.34, 1, 0.64, 1), opacity 0.2s ease;
+  box-shadow: 0 10px 30px rgba(69, 92, 233, 0.45);
 }
 
 .project-cursor-badge.active {
