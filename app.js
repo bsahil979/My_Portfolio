@@ -84,8 +84,13 @@
 
     const drawerLinks = fixedNav.querySelectorAll('.drawer-nav-link');
 
-    // Scroll listener: appear when scrolled down, disappear when at top in hero
+    // Scroll listener: appear when scrolled down, or always visible on tablet/mobile (<= 980px)
     function handleScroll() {
+      if (window.innerWidth <= 980) {
+        btnHamburger.classList.add('visible');
+        return;
+      }
+
       const scrollY = window.scrollY || document.documentElement.scrollTop || (window.lenis ? window.lenis.scroll : 0);
       const threshold = 50; // appears as soon as hero navbar starts leaving view
 
@@ -118,9 +123,11 @@
       btnHamburger.setAttribute('aria-expanded', 'false');
       fixedNav.setAttribute('aria-hidden', 'true');
 
-      const scrollY = window.scrollY || document.documentElement.scrollTop || (window.lenis ? window.lenis.scroll : 0);
-      if (scrollY <= 50) {
-        btnHamburger.classList.remove('visible');
+      if (window.innerWidth > 980) {
+        const scrollY = window.scrollY || document.documentElement.scrollTop || (window.lenis ? window.lenis.scroll : 0);
+        if (scrollY <= 50) {
+          btnHamburger.classList.remove('visible');
+        }
       }
     }
 
@@ -145,9 +152,10 @@
       }
     });
 
-    // Dedicated magnetic physics for hamburger button (rock-solid, clamped, won't fly away)
+    // Dedicated magnetic physics for hamburger button (fine pointer only)
     const btnClick = btnHamburger.querySelector('.btn-click');
-    if (btnClick && window.innerWidth > 540) {
+    const hasFinePointer = window.matchMedia('(pointer: fine) and (hover: hover)').matches;
+    if (btnClick && hasFinePointer) {
       let isHovered = false;
 
       btnHamburger.addEventListener('mouseenter', () => {
@@ -218,7 +226,8 @@
   // 3. Dennis Snellenberg Magnetic Physics Engine (2.5D Dual-Layer Text Parallax)
   // --------------------------------------------------------------------------
   function initMagneticPhysics() {
-    if (window.innerWidth <= 540) return;
+    const hasFinePointer = window.matchMedia('(pointer: fine) and (hover: hover)').matches;
+    if (!hasFinePointer) return;
 
     // Exclude hero elements (managed exclusively by the dedicated Motion engine)
     const magneticElements = document.querySelectorAll('.magnetic-target:not(#hero .magnetic-target)');
@@ -307,8 +316,9 @@
   // 4. Dennis Snellenberg Floating Project Modal & "View" Cursor Follower
   // --------------------------------------------------------------------------
   function initProjectHoverModal() {
-    // Only disable on narrow mobile screens (<= 540px, matching Dennis Snellenberg)
-    if (window.innerWidth <= 540) return;
+    // Only enable on true fine pointer / mouse devices (not touch screens)
+    const hasFinePointer = window.matchMedia('(pointer: fine) and (hover: hover)').matches;
+    if (!hasFinePointer) return;
 
     const projectList = document.getElementById('projectList');
     const modalContainer = document.getElementById('projectModalContainer');
@@ -504,8 +514,9 @@
         orientation: 'vertical',
         gestureOrientation: 'vertical',
         smoothWheel: true,
+        smoothTouch: false, // Maintain native hardware-accelerated momentum touch scrolling on Android and iOS
         wheelMultiplier: 1.0,
-        touchMultiplier: 1.5,
+        touchMultiplier: 1.0,
         infinite: false,
       });
 
