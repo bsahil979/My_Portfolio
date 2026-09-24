@@ -83,8 +83,8 @@
 
     // Scroll listener: appear when scrolled down, disappear when at top in hero
     function handleScroll() {
-      const scrollY = window.scrollY;
-      const threshold = 140; // past hero top navbar
+      const scrollY = window.scrollY || document.documentElement.scrollTop || (window.lenis ? window.lenis.scroll : 0);
+      const threshold = 50; // appears as soon as hero navbar starts leaving view
 
       if (scrollY > threshold) {
         btnHamburger.classList.add('visible');
@@ -115,7 +115,8 @@
       btnHamburger.setAttribute('aria-expanded', 'false');
       fixedNav.setAttribute('aria-hidden', 'true');
 
-      if (window.scrollY <= 140) {
+      const scrollY = window.scrollY || document.documentElement.scrollTop || (window.lenis ? window.lenis.scroll : 0);
+      if (scrollY <= 50) {
         btnHamburger.classList.remove('visible');
       }
     }
@@ -129,6 +130,7 @@
     }
 
     btnHamburger.addEventListener('click', (e) => {
+      e.preventDefault();
       e.stopPropagation();
       toggleMenu();
     });
@@ -139,6 +141,33 @@
         toggleMenu();
       }
     });
+
+    // Dedicated magnetic physics for hamburger button (rock-solid, clamped, won't fly away)
+    const btnClick = btnHamburger.querySelector('.btn-click');
+    if (btnClick && window.innerWidth > 540) {
+      let isHovered = false;
+
+      btnHamburger.addEventListener('mouseenter', () => {
+        isHovered = true;
+      });
+
+      btnHamburger.addEventListener('mousemove', (e) => {
+        if (!isHovered) return;
+        const rect = btnHamburger.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
+        const deltaX = Math.max(-10, Math.min(10, (e.clientX - centerX) * 0.25));
+        const deltaY = Math.max(-10, Math.min(10, (e.clientY - centerY) * 0.25));
+
+        btnClick.style.transform = `translate3d(${deltaX}px, ${deltaY}px, 0)`;
+      });
+
+      btnHamburger.addEventListener('mouseleave', () => {
+        isHovered = false;
+        btnClick.style.transform = 'translate3d(0, 0, 0)';
+      });
+    }
 
     if (fixedNavBack) {
       fixedNavBack.addEventListener('click', closeMenu);
@@ -476,6 +505,7 @@
         lenisInstance.raf(time);
         updateCurvedDividers();
         updateScrollParallax();
+        if (updateHamburgerScroll) updateHamburgerScroll();
         requestAnimationFrame(raf);
       }
       requestAnimationFrame(raf);

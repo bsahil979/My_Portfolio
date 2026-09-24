@@ -215,7 +215,7 @@ html.lenis, html.lenis body {
   z-index: 20;
   display: flex;
   align-items: center;
-  padding: 0 var(--container-padding);
+  padding: 0 clamp(24px, 4vw, 56px);
   background: transparent;
   color: var(--color-white);
   pointer-events: all;
@@ -258,8 +258,8 @@ html.lenis, html.lenis body {
    -------------------------------------------------------------------------- */
 .btn-hamburger {
   position: fixed;
-  top: clamp(20px, 3.5vw, 36px);
-  right: clamp(20px, 3.5vw, 36px);
+  top: clamp(20px, 3.2vw, 36px);
+  right: clamp(24px, 4vw, 56px);
   z-index: 1005;
   width: clamp(62px, 5.2vw, 76px);
   height: clamp(62px, 5.2vw, 76px);
@@ -297,7 +297,8 @@ body.scrolled .btn-hamburger {
   align-items: center;
   justify-content: center;
   position: relative;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.25s ease;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
 .btn-hamburger:hover .btn-click {
@@ -549,8 +550,8 @@ body.nav-active .drawer-nav-item:nth-child(7) { transition-delay: 0.34s; }
 
 .nav-container {
   width: 100%;
-  max-width: var(--max-width);
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -586,6 +587,7 @@ body.nav-active .drawer-nav-item:nth-child(7) { transition-delay: 0.34s; }
   display: flex;
   align-items: center;
   gap: clamp(1.4rem, 2.2vw, 2.2rem);
+  margin-left: auto;
 }
 
 .nav-item {
