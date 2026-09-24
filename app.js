@@ -14,6 +14,8 @@
 (function () {
   'use strict';
 
+  let updateHamburgerScroll = null;
+
   // --------------------------------------------------------------------------
   // 1. Dennis Snellenberg Multilingual "Hello" Preloader
   // --------------------------------------------------------------------------
@@ -69,36 +71,115 @@
   }
 
   // --------------------------------------------------------------------------
-  // 2. Adaptive Navbar Scroll Controller (Dark Hero -> Light Content -> Dark Footer)
+  // 2. Dennis Snellenberg Floating Hamburger & Sliding Drawer Controller
   // --------------------------------------------------------------------------
-  function initAdaptiveNavbar() {
-    const navbar = document.getElementById('navbar');
-    const hero = document.getElementById('hero');
-    const footer = document.getElementById('contact');
-    if (!navbar) return;
+  function initDennisHamburgerNav() {
+    const btnHamburger = document.getElementById('btnHamburger');
+    const fixedNav = document.getElementById('fixedNav');
+    const fixedNavBack = document.getElementById('fixedNavBack');
+    if (!btnHamburger || !fixedNav) return;
 
+    const drawerLinks = fixedNav.querySelectorAll('.drawer-nav-link');
+
+    // Scroll listener: appear when scrolled down, disappear when at top in hero
     function handleScroll() {
       const scrollY = window.scrollY;
-      const heroHeight = hero ? hero.offsetHeight - 50 : 600;
-      const footerTop = footer ? footer.offsetTop - 100 : 999999;
+      const threshold = 140; // past hero top navbar
 
-      if (scrollY < 30) {
-        navbar.classList.remove('scrolled-dark', 'nav-light');
-      } else if (scrollY >= 30 && scrollY < heroHeight) {
-        navbar.classList.add('scrolled-dark');
-        navbar.classList.remove('nav-light');
-      } else if (scrollY >= heroHeight && scrollY < footerTop) {
-        navbar.classList.add('nav-light');
-        navbar.classList.remove('scrolled-dark');
+      if (scrollY > threshold) {
+        btnHamburger.classList.add('visible');
+        document.body.classList.add('scrolled');
       } else {
-        // Over the footer
-        navbar.classList.add('scrolled-dark');
-        navbar.classList.remove('nav-light');
+        document.body.classList.remove('scrolled');
+        if (!document.body.classList.contains('nav-active')) {
+          btnHamburger.classList.remove('visible');
+        }
       }
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll, { passive: true });
+    updateHamburgerScroll = handleScroll;
     handleScroll();
+
+    function openMenu() {
+      document.body.classList.add('nav-active');
+      btnHamburger.classList.add('active', 'visible');
+      btnHamburger.setAttribute('aria-expanded', 'true');
+      fixedNav.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeMenu() {
+      document.body.classList.remove('nav-active');
+      btnHamburger.classList.remove('active');
+      btnHamburger.setAttribute('aria-expanded', 'false');
+      fixedNav.setAttribute('aria-hidden', 'true');
+
+      if (window.scrollY <= 140) {
+        btnHamburger.classList.remove('visible');
+      }
+    }
+
+    function toggleMenu() {
+      if (document.body.classList.contains('nav-active')) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    }
+
+    btnHamburger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMenu();
+    });
+
+    btnHamburger.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleMenu();
+      }
+    });
+
+    if (fixedNavBack) {
+      fixedNavBack.addEventListener('click', closeMenu);
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && document.body.classList.contains('nav-active')) {
+        closeMenu();
+      }
+    });
+
+    // Handle drawer link clicks
+    drawerLinks.forEach((link) => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+
+        // Close drawer immediately
+        closeMenu();
+
+        // If it's a page transition link to another page
+        if (link.classList.contains('page-transition-link')) {
+          return;
+        }
+
+        // If it's an in-page anchor (#work, #about, etc.)
+        if (href && (href.startsWith('#') || href.includes('#'))) {
+          const hash = href.includes('#') ? href.split('#')[1] : '';
+          const targetEl = hash ? document.getElementById(hash) : null;
+          if (targetEl) {
+            e.preventDefault();
+            setTimeout(() => {
+              if (window.lenisInstance) {
+                window.lenisInstance.scrollTo(targetEl, { offset: -30, duration: 1.2 });
+              } else {
+                targetEl.scrollIntoView({ behavior: 'smooth' });
+              }
+            }, 300);
+          }
+        }
+      });
+    });
   }
 
   // --------------------------------------------------------------------------
@@ -402,6 +483,7 @@
       lenisInstance.on('scroll', () => {
         updateCurvedDividers();
         updateScrollParallax();
+        if (updateHamburgerScroll) updateHamburgerScroll();
       });
     }
 
@@ -628,7 +710,7 @@
     initLanguagePreloader();
     initPageTransitions();
     initHeroMarquee();
-    initAdaptiveNavbar();
+    initDennisHamburgerNav();
     initMagneticPhysics();
     initProjectHoverModal();
     initWorkFilters();

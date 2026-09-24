@@ -34,6 +34,94 @@
   </div>
 
   <!-- ========================================================================
+       DENNIS SNELLENBERG FLOATING HAMBURGER & SLIDING DRAWER NAVIGATION
+       ======================================================================== -->
+  <!-- Floating Magnetic Hamburger Button (Appears when scrolling down) -->
+  <div class="btn-hamburger" id="btnHamburger" aria-label="Toggle navigation menu" role="button" tabindex="0" aria-expanded="false">
+    <div class="btn-click magnetic-target" data-strength="50" data-strength-text="25">
+      <div class="btn-fill"></div>
+      <div class="btn-text">
+        <div class="btn-bars" aria-hidden="true"></div>
+        <span class="btn-text-inner visually-hidden">Menu</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Backdrop Blur Overlay -->
+  <div class="fixed-nav-back" id="fixedNavBack" aria-hidden="true"></div>
+
+  <!-- Curved Drawer Navigation -->
+  <div class="fixed-nav theme-dark" id="fixedNav" aria-hidden="true">
+    <div class="fixed-nav-rounded-div">
+      <div class="rounded-div-wrap">
+        <div class="rounded-div"></div>
+      </div>
+    </div>
+    <div class="fixed-nav-inner">
+      <div class="nav-row">
+        <h5 class="nav-section-title">Navigation</h5>
+        <div class="stripe"></div>
+        <ul class="drawer-links-wrap">
+          <li class="drawer-nav-item">
+            <a href="index.html" class="drawer-nav-link magnetic-target page-transition-link" data-transition-word="Home">
+              <span class="drawer-dot"></span>
+              <span class="btn-text-inner">Home</span>
+            </a>
+          </li>
+          <li class="drawer-nav-item">
+            <a href="index.html#work" class="drawer-nav-link magnetic-target">
+              <span class="drawer-dot"></span>
+              <span class="btn-text-inner">Work</span>
+            </a>
+          </li>
+          <li class="drawer-nav-item active">
+            <a href="work.html" class="drawer-nav-link magnetic-target" aria-current="page">
+              <span class="drawer-dot"></span>
+              <span class="btn-text-inner">More Work</span>
+            </a>
+          </li>
+          <li class="drawer-nav-item">
+            <a href="index.html#about" class="drawer-nav-link magnetic-target">
+              <span class="drawer-dot"></span>
+              <span class="btn-text-inner">About</span>
+            </a>
+          </li>
+          <li class="drawer-nav-item">
+            <a href="index.html#experience" class="drawer-nav-link magnetic-target">
+              <span class="drawer-dot"></span>
+              <span class="btn-text-inner">Experience</span>
+            </a>
+          </li>
+          <li class="drawer-nav-item">
+            <a href="index.html#skills" class="drawer-nav-link magnetic-target">
+              <span class="drawer-dot"></span>
+              <span class="btn-text-inner">Skills</span>
+            </a>
+          </li>
+          <li class="drawer-nav-item">
+            <a href="#contact" class="drawer-nav-link magnetic-target">
+              <span class="drawer-dot"></span>
+              <span class="btn-text-inner">Contact</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="social-row">
+        <div class="stripe"></div>
+        <div class="socials">
+          <h5 class="nav-section-title">Socials</h5>
+          <ul class="social-links-list">
+            <li><a href="https://linkedin.com/in/sahil-belchada" target="_blank" rel="noopener noreferrer" class="magnetic-target">LinkedIn</a></li>
+            <li><a href="https://github.com/sahilbelchada" target="_blank" rel="noopener noreferrer" class="magnetic-target">GitHub</a></li>
+            <li><a href="mailto:sahilbelchada786@gmail.com" class="magnetic-target">Email</a></li>
+            <li><a href="assets/Sahil_Belchada_Resume.pdf" download="Sahil_Belchada_Resume.pdf" target="_blank" class="magnetic-target">Resume</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
        1. HEADER NAVIGATION
        ======================================================================== -->
   <header class="navbar nav-light" id="navbar">
