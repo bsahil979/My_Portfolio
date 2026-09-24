@@ -455,18 +455,23 @@
       if (!innerWrap) return;
 
       const rect = wrap.getBoundingClientRect();
-      const isToLight = wrap.classList.contains('to-light');
-      
+
+      // When wrap is at or below the bottom of the viewport, keep height at 0px
+      if (rect.top >= windowH) {
+        innerWrap.style.height = '0px';
+        return;
+      }
+
       // Calculate scroll progress for the divider:
-      // Start scrubbing when divider enters bottom of viewport (rect.top == windowH)
-      // Fully flattened when divider reaches upper viewport (rect.top <= windowH * 0.15)
+      // Starts at 0px when divider enters bottom of viewport (rect.top == windowH)
+      // Morphs smoothly as section enters, flattening cleanly
       const start = windowH;
       const end = windowH * 0.15;
       const progress = Math.max(0, Math.min(1, (start - rect.top) / (start - end)));
 
-      // Height morphs smoothly from ~115px down to 0px, creating the peeling curved overlap
-      const maxHeight = Math.min(125, Math.max(75, windowH * 0.1));
-      const targetHeight = (maxHeight * (1 - progress)).toFixed(1);
+      // Height morphs smoothly from 0px up to ~110px as you scroll into the next section
+      const maxHeight = Math.min(115, Math.max(65, windowH * 0.1));
+      const targetHeight = (maxHeight * progress).toFixed(1);
       innerWrap.style.height = `${targetHeight}px`;
     });
   }
@@ -841,6 +846,13 @@
           { type: 'spring', visualDuration: 0.65, bounce: 0, delay: 0.28 + i * 0.08 }
         );
       });
+
+      // Ensure typography descenders never get clipped on any device after reveal
+      setTimeout(() => {
+        hero.querySelectorAll('.hero-line-mask').forEach((m) => {
+          m.style.overflow = 'visible';
+        });
+      }, 1000);
     }
 
     const preloaderScreen = document.getElementById('loadingScreen');

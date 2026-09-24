@@ -386,8 +386,10 @@ body.nav-active .fixed-nav-back {
   background: var(--color-dark);
   color: #FFFFFF;
   z-index: 1000;
-  transform: translate(calc(100% + 5vw), 0) rotate(0.001deg);
-  transition: transform 0.75s cubic-bezier(0.7, 0, 0.2, 1);
+  transform: translate(calc(100% + 120px), 0) rotate(0.001deg);
+  transition: transform 0.75s cubic-bezier(0.7, 0, 0.2, 1), visibility 0.75s;
+  visibility: hidden;
+  pointer-events: none;
   will-change: transform;
   display: flex;
   flex-direction: column;
@@ -395,6 +397,8 @@ body.nav-active .fixed-nav-back {
 
 body.nav-active .fixed-nav {
   transform: translate(0, 0) rotate(0.001deg);
+  visibility: visible;
+  pointer-events: all;
 }
 
 /* Dennis Snellenberg Organic Curved Edge on Drawer Left */
@@ -827,7 +831,9 @@ body.nav-active .drawer-nav-item:nth-child(7) { transition-delay: 0.34s; }
 .hero-line-mask {
   display: block;
   overflow: hidden;
-  line-height: inherit;
+  line-height: 1.15;
+  padding-bottom: 0.15em;
+  margin-bottom: -0.15em;
 }
 
 .hero-reveal-line {
@@ -1102,7 +1108,7 @@ body.nav-active .drawer-nav-item:nth-child(7) { transition-delay: 0.34s; }
 
 .rounded-div-wrapper .rounded-div-wrap {
   width: 100%;
-  height: clamp(80px, 12vh, 130px);
+  height: 0px;
   position: absolute;
   left: 0;
   overflow: hidden;
@@ -2617,6 +2623,17 @@ html, body {
     pointer-events: all !important;
   }
 
+  /* Full screen drawer without protruding desktop curve on mobile/tablet */
+  .fixed-nav {
+    width: 100vw;
+    width: 100dvw;
+    transform: translate(100%, 0) rotate(0.001deg);
+  }
+
+  .fixed-nav-rounded-div {
+    display: none !important;
+  }
+
   .work-filters-container {
     flex-direction: column;
     align-items: flex-start;
@@ -2662,13 +2679,20 @@ html, body {
   }
 
   .hero-hanger svg.hanger-svg {
-    height: 3.8rem;
+    height: 3.6rem;
   }
 
   .hero-hanger p {
-    padding-left: 20px;
-    padding-right: 4.8em;
-    font-size: 0.82rem;
+    padding-left: 16px;
+    padding-right: 4.6rem;
+    font-size: 0.78rem;
+    line-height: 1.25;
+  }
+
+  .hero-hanger .digital-ball {
+    width: 2.8rem;
+    height: 2.8rem;
+    right: 0.45rem;
   }
 
   .hero-top-row {
@@ -2802,10 +2826,16 @@ html, body {
   }
 
   .hero-hanger p {
-    padding-left: 14px;
-    padding-right: 4.2em;
-    font-size: 0.75rem;
+    padding-left: 12px;
+    padding-right: 4.2rem;
+    font-size: 0.72rem;
     line-height: 1.2;
+  }
+
+  .hero-hanger .digital-ball {
+    width: 2.5rem;
+    height: 2.5rem;
+    right: 0.4rem;
   }
 
   .hero-top-row {
@@ -2974,17 +3004,35 @@ html, body {
 /* Landscape Mobile Phones (max-height: 520px and orientation: landscape) */
 @media (max-height: 520px) and (orientation: landscape) {
   .hero-section {
-    min-height: 540px;
-    padding-top: calc(var(--nav-height) + 10px);
-    padding-bottom: 20px;
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: calc(var(--nav-height) + 6px) var(--container-padding) 16px;
+    justify-content: space-between;
   }
 
-  .hero-sliding-strip {
-    bottom: 60px;
+  /* Hide hanger badge in landscape so it never collides with headline or marquee */
+  .hero-hanger {
+    display: none !important;
+  }
+
+  .hero-top-row {
+    padding-top: 0.4rem !important;
+  }
+
+  .hero-role-heading {
+    font-size: clamp(1.3rem, 4.5vw, 1.8rem) !important;
   }
 
   .strip-text {
-    font-size: clamp(3rem, 10vh, 4.5rem);
+    font-size: clamp(2.4rem, 8vw, 3.8rem) !important;
+  }
+
+  .hero-sliding-strip {
+    bottom: clamp(45px, 14vh, 75px) !important;
+  }
+
+  .hero-bottom-row {
+    padding-top: 10px !important;
   }
 
   .fixed-nav-inner {
