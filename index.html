@@ -207,8 +207,8 @@
         </div>
       </nav>
 
-      <!-- Dennis Snellenberg Authentic Hanger Tab Attached to Screen Edge -->
-      <div class="hero-hanger" data-scroll data-scroll-speed="-2.0" aria-label="Located in Mumbai, India">
+      <!-- Location & Interactive Globe Tab Attached to Screen Edge -->
+      <div class="hero-hanger" aria-label="Located in Mumbai, India">
         <p>
           <span>Located</span>
           <span>in <strong>Mumbai, India</strong></span>
@@ -233,24 +233,27 @@
         </div>
       </div>
 
-      <!-- Top Container Row: Dennis Snellenberg Intro Subtitle -->
+      <!-- Top Container Row: Hero Intro Subtitle & Masked Role Heading -->
       <div class="hero-top-row">
-        <!-- "Hi, I'm a Software Developer" Above Moving Font -->
-        <div class="hero-intro-badge" data-scroll data-scroll-speed="1.2">
-          <div class="hero-arrow-indicator">
+        <div class="hero-intro-badge">
+          <div class="hero-arrow-indicator hero-reveal-element">
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M2.5 2.5L11.5 11.5" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round"/>
               <path d="M4 11.5H11.5V4" stroke="#FFFFFF" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </div>
           <div class="hero-intro-text">
-            <span class="hero-hi-text">Hi, I'm a</span>
-            <h2 class="hero-role-heading">Software Developer</h2>
+            <div class="hero-line-mask">
+              <span class="hero-hi-text hero-reveal-line">Hi, I'm a</span>
+            </div>
+            <div class="hero-line-mask">
+              <h2 class="hero-role-heading hero-reveal-line">Software Developer</h2>
+            </div>
           </div>
         </div>
       </div>
 
-      <!-- Dennis Snellenberg Monumental Full-Width Drifting Name Marquee -->
+      <!-- Monumental Full-Width Drifting Name Marquee -->
       <h1 class="visually-hidden">Sahil Belchada — Software Developer</h1>
       <div class="hero-sliding-strip" aria-hidden="true">
         <div class="sliding-strip-track" id="heroMarqueeTrack">
@@ -267,16 +270,22 @@
         </div>
       </div>
 
-      <!-- Bottom Info Row -->
+      <!-- Bottom Info Row with Masked Line Reveals -->
       <div class="hero-bottom-row">
-        <a href="#work" class="hero-scroll-btn magnetic-target">
-          <div class="scroll-arrow-circle">
-            <i class="fa-solid fa-arrow-down"></i>
+        <div class="hero-line-mask">
+          <div class="hero-reveal-line">
+            <a href="#work" class="hero-scroll-btn magnetic-target">
+              <div class="scroll-arrow-circle">
+                <i class="fa-solid fa-arrow-down"></i>
+              </div>
+              <span class="btn-text-inner">Scroll to explore</span>
+            </a>
           </div>
-          <span class="btn-text-inner">Scroll to explore</span>
-        </a>
-        <div class="hero-education-tag">
-          <span>B.Tech in Computer Engineering (2027) • K.J. Somaiya College of Engineering</span>
+        </div>
+        <div class="hero-line-mask">
+          <div class="hero-education-tag hero-reveal-line">
+            <span>B.Tech in Computer Engineering (2027) • K.J. Somaiya College of Engineering</span>
+          </div>
         </div>
       </div>
     </section>
@@ -720,9 +729,11 @@
     </footer>
   </main>
 
-  <!-- Lenis Smooth Inertia Scroll Library (Dennis Snellenberg Scroll Physics) -->
+  <!-- Motion Engine (Vanilla JS Animation & WAAPI Scroll/Spring Physics) -->
+  <script src="assets/motion.js"></script>
+  <!-- Lenis Smooth Inertia Scroll Library -->
   <script src="assets/lenis.min.js"></script>
-  <!-- Dennis Snellenberg Full Motion & Interactive Controller -->
-  <script src="app.js?v=9.0"></script>
+  <!-- Interactive Controller (Hero Motion Engine v10.0) -->
+  <script src="app.js?v=10.0"></script>
 </body>
 </html>

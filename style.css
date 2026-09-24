@@ -715,11 +715,6 @@ body.nav-active .drawer-nav-item:nth-child(7) { transition-delay: 0.34s; }
   display: inline-block;
   z-index: 10;
   filter: drop-shadow(0 12px 28px rgba(0, 0, 0, 0.45));
-  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.hero-hanger:hover {
-  transform: translateX(6px);
 }
 
 .hero-hanger svg.hanger-svg {
@@ -826,6 +821,44 @@ body.nav-active .drawer-nav-item:nth-child(7) { transition-delay: 0.34s; }
   display: flex;
   flex-direction: column;
   gap: 3px;
+}
+
+/* Hero Masked Typography Reveal System */
+.hero-line-mask {
+  display: block;
+  overflow: hidden;
+  line-height: inherit;
+}
+
+.hero-reveal-line {
+  display: inline-block;
+  transform: translate3d(0, 115%, 0);
+}
+
+.hero-reveal-element {
+  opacity: 0;
+  transform: scale(0.85);
+}
+
+/* Reduced motion accessibility contract for hero */
+@media (prefers-reduced-motion: reduce) {
+  .hero-reveal-line {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+  .hero-reveal-element {
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+  .hero-line-mask {
+    overflow: visible !important;
+  }
+  .dennis-globe-wrap,
+  .dennis-circle {
+    animation: none !important;
+  }
 }
 
 .hero-hi-text {
@@ -1317,11 +1350,11 @@ body.nav-active .drawer-nav-item:nth-child(7) { transition-delay: 0.34s; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  will-change: transform;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .magnetic-target.is-hovered {
+  will-change: transform;
   transition: transform 0.08s ease-out;
 }
 
@@ -1331,12 +1364,21 @@ body.nav-active .drawer-nav-item:nth-child(7) { transition-delay: 0.34s; }
   justify-content: center;
   gap: inherit;
   pointer-events: none;
-  will-change: transform;
   transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .magnetic-target.is-hovered .btn-text-inner {
+  will-change: transform;
   transition: transform 0.08s ease-out;
+}
+
+/* Hero Motion: Direct Physics Authority (Eliminate CSS transition lag during rAF/spring physics) */
+#hero .magnetic-target,
+#hero .magnetic-target.is-hovered,
+#hero .magnetic-target .btn-text-inner,
+#hero .magnetic-target.is-hovered .btn-text-inner,
+#hero .scroll-arrow-circle {
+  transition: color 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
 }
 
 /* --------------------------------------------------------------------------
