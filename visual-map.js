@@ -639,11 +639,11 @@
         offCanvas.width = targetW;
         offCanvas.height = targetH;
 
-        // Crop centered face:
-        const cropW = img.width * 0.8;
+        // High-detail crop centered on Sahil's face:
+        const cropW = img.width * (620 / 877);
         const cropH = cropW * (targetH / targetW);
         const cropX = (img.width - cropW) / 2;
-        const cropY = img.height * 0.08;
+        const cropY = img.height * (45 / 877);
 
         offCtx.drawImage(img, cropX, cropY, cropW, cropH, 0, 0, targetW, targetH);
         const imgData = offCtx.getImageData(0, 0, targetW, targetH).data;
